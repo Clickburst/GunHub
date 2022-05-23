@@ -5,6 +5,8 @@
  * @package HelloElementorChild
  */
 
+define('GUNHUB_THEME_VERSION', '1.0.0');
+
 /**
  * Load child theme css and optional scripts
  *
@@ -17,7 +19,7 @@ function hello_elementor_child_enqueue_scripts() {
 		[
 			'hello-elementor-theme-style',
 		],
-		'1.0.0'
+        GUNHUB_THEME_VERSION
 	);
 }
 add_action( 'wp_enqueue_scripts', 'hello_elementor_child_enqueue_scripts' );
@@ -30,13 +32,11 @@ function send_email_to_listitem_author($recipients, $values, $form_id, $args){
 	//if form is "Contact Listing Owner"
 	if ( $form_id == 1 ) {
 		$recipients = array();	
-		$mail_idx = 0;
 		$idx = 0;
 		// find the additional hidden field with the page author's email.
 		foreach ( $values as $value ) {
 			 if ( $value->field_key == 'author_email' ){
 				$recipients[] = $value->meta_value;
-				$mail_idx = $idx;
 				break;
 			 }
 			 $idx++;
