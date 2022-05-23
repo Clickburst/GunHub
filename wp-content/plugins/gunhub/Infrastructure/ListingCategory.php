@@ -1,15 +1,15 @@
 <?php
 
 
-namespace GunHub\Infrastructure\Wordpress;
+namespace GunHub\Infrastructure;
 
 use GunHub\Core\Module;
 
-class ListingCondition {
+class ListingCategory {
     
     use Module;
 
-    const SLUG = 'gh-listing-condition';
+    const SLUG = 'gh-listing-category';
 
     public function init() {
         add_action( 'init', function () {
@@ -27,8 +27,8 @@ class ListingCondition {
 
     protected function get_arguments() {
         return [
-            'label' => __( 'Condition', 'gunhub' ),
-            'rewrite' => array( 'slug' => 'condidtion' ),
+            'label' => __( 'Category', 'gunhub' ),
+            'rewrite' => array( 'slug' => 'category' ),
             'hierarchical' => true
         ];
     }

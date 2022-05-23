@@ -1,15 +1,15 @@
 <?php
 
 
-namespace GunHub\Infrastructure\Wordpress;
+namespace GunHub\Infrastructure;
 
 use GunHub\Core\Module;
 
-class ListingCategory {
+class ListingState {
     
     use Module;
 
-    const SLUG = 'gh-listing-category';
+    const SLUG = 'gh-listing-state';
 
     public function init() {
         add_action( 'init', function () {
@@ -27,8 +27,8 @@ class ListingCategory {
 
     protected function get_arguments() {
         return [
-            'label' => __( 'Category', 'gunhub' ),
-            'rewrite' => array( 'slug' => 'category' ),
+            'label' => __( 'State', 'gunhub' ),
+            'rewrite' => array( 'slug' => 'state' ),
             'hierarchical' => true
         ];
     }

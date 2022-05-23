@@ -10,11 +10,6 @@ namespace GunHub\Infrastructure;
 
 use GunHub\Core\Provider;
 
-use GunHub\Infrastructure\Wordpress\Listing;
-use GunHub\Infrastructure\Wordpress\ListingCategory;
-use GunHub\Infrastructure\Wordpress\ListingCondition;
-use GunHub\Infrastructure\Wordpress\ListingCaliber;
-use GunHub\Infrastructure\Wordpress\ListingState;
 
 /**
  * Class ModulesProvider

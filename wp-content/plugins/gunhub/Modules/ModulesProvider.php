@@ -28,7 +28,6 @@ final class ModulesProvider {
 	protected function get_modules() {
 		return [
 			Checkout::class,
-			Checkout::class,
 		];
 	}
 }
