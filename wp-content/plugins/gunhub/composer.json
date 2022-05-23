@@ -1,0 +1,12 @@
+{
+    "name": "gunhub/gunfub",
+    "description": "custom functions for jointheteem",
+    "type": "project",
+    "minimum-stability": "alpha",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "GunHub\\": "./"
+        }
+    }
+}
