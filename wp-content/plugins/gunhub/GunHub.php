@@ -25,6 +25,9 @@ class GunHub {
 
     /** @var string */
     public $plugin_path;
+    
+    /** @var string */
+    public $plugin_url;
 
     /**
      * @return void
@@ -32,6 +35,8 @@ class GunHub {
     public function init() {
 
         $this->plugin_path = __DIR__;
+        
+        $this->plugin_url = plugin_dir_url(__FILE__);
 
         ModulesProvider::get_instance();
         Infrastructure\InfrastructureProvider::get_instance();

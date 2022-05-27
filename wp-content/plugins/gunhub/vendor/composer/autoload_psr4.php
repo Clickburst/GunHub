@@ -6,5 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'GunHub\\' => array($baseDir . '/'),
+    'GunHub\\' => array($baseDir . '/src'),
 );

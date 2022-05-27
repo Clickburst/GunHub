@@ -11,7 +11,115 @@ License: GNU General Public License v3 or later.
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Tags: flexible-header, custom-colors, custom-menu, custom-logo, editor-style, featured-images, rtl-language-support, threaded-comments, translation-ready
 */
+.listing-content {
+  display: flex;
+}
+.listing-content__left {
+  width: 60%;
+  margin-right: 20px;
+}
+.listing-content__right {
+  width: calc( 40% - 20px );
+}
+.listing-content__attributes {
+  list-style: none;
+  padding-left: 0;
+  font-size: 16px;
+}
+.listing-content__description {
+  padding: 1em;
+}
+.listing-content__gallery #links {
+  display: flex;
+}
+.listing-content__gallery #links a {
+  width: 100px;
+  height: 100px;
+  margin-right: 10px;
+  position: relative;
+  overflow: hidden;
+}
+.listing-content__gallery #links a img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
-/*
-    Add your custom styles here
-*/
+.single-gh-listing .listing-content__attributes {
+  columns: 2;
+}
+.single-gh-listing .listing-header {
+  border-bottom: 1px solid #000;
+}
+
+.listing-attribute {
+  text-transform: uppercase;
+  font-size: 16px;
+  display: inline-flex;
+  justify-content: space-between;
+  line-height: 2.1;
+  border-bottom: 1px solid #000;
+  width: 100%;
+}
+.listing-attribute__title {
+  font-weight: 700;
+}
+.listing-attribute__value {
+  font-size: 14px;
+}
+
+.listing-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+.listing-header__title {
+  font-size: 35px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #f26522;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+.listing-header__price {
+  font-weight: 400;
+  font-size: 22px;
+}
+
+.gh-box {
+  border: 1px solid #000;
+  margin-bottom: 30px;
+}
+
+.listing-loop {
+  display: flex;
+  border: 1px solid #000;
+  margin-bottom: 20px;
+}
+.listing-loop__img, .listing-loop__attributes, .listing-loop__body {
+  width: 33.3%;
+}
+.listing-loop__attributes, .listing-loop__body {
+  padding-left: 10px;
+  padding-top: 20px;
+  font-size: 16px;
+}
+.listing-loop__attributes {
+  padding-right: 20px;
+}
+.listing-loop__price, .listing-loop__condition,
+.listing-loop .listing-header {
+  margin-bottom: 10px;
+}
+.listing-loop .listing-attribute {
+  border-bottom: none;
+}
+.listing-loop .listing-header__title {
+  font-size: 16px;
+}
+.listing-loop .listing-header__title a {
+  color: #f26522;
+}
+
+/*# sourceMappingURL=style.css.map */

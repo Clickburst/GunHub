@@ -9,6 +9,15 @@ class ListingACF {
 
     use Module;
 
+    public static $price = 'price';
+    public static $serial_no = 'serial_no';
+    public static $gallery = 'gallery';
+    public static $phone_number = 'phone_number';
+    public static $make = 'make';
+    public static $model = 'model';
+    public static $license_no = 'license_no';
+    public static $action = 'action';
+    public static $sights = 'sights';
 
     public function init() {
         add_action( 'acf/init', [$this, 'register_fields'] );
@@ -24,7 +33,7 @@ class ListingACF {
                     array(
                         'key' => 'field_628ba2cdec775',
                         'label' => 'Gallery',
-                        'name' => 'gallery',
+                        'name' => self::$gallery,
                         'type' => 'gallery',
                         'instructions' => '',
                         'required' => 0,
@@ -51,7 +60,7 @@ class ListingACF {
                     array(
                         'key' => 'field_628ba260ec76d',
                         'label' => 'Phone Number',
-                        'name' => 'phone_number',
+                        'name' => self::$phone_number,
                         'type' => 'number',
                         'instructions' => '',
                         'required' => 0,
@@ -72,7 +81,7 @@ class ListingACF {
                     array(
                         'key' => 'field_628ba27bec76e',
                         'label' => 'Make',
-                        'name' => 'make',
+                        'name' => self::$make,
                         'type' => 'text',
                         'instructions' => '',
                         'required' => 0,
@@ -91,7 +100,7 @@ class ListingACF {
                     array(
                         'key' => 'field_628ba288ec76f',
                         'label' => 'Model',
-                        'name' => 'model',
+                        'name' => self::$model,
                         'type' => 'text',
                         'instructions' => '',
                         'required' => 0,
@@ -110,7 +119,7 @@ class ListingACF {
                     array(
                         'key' => 'field_628ba293ec770',
                         'label' => 'Action',
-                        'name' => 'action',
+                        'name' => self::$action,
                         'type' => 'text',
                         'instructions' => '',
                         'required' => 0,
@@ -129,7 +138,7 @@ class ListingACF {
                     array(
                         'key' => 'field_628ba2a0ec771',
                         'label' => 'Sights',
-                        'name' => 'sights',
+                        'name' => self::$sights,
                         'type' => 'text',
                         'instructions' => '',
                         'required' => 0,
@@ -148,7 +157,7 @@ class ListingACF {
                     array(
                         'key' => 'field_628ba2a6ec772',
                         'label' => 'Price',
-                        'name' => 'price',
+                        'name' => self::$price,
                         'type' => 'number',
                         'instructions' => '',
                         'required' => 0,
@@ -169,7 +178,7 @@ class ListingACF {
                     array(
                         'key' => 'field_628ba2b9ec773',
                         'label' => 'Serial No',
-                        'name' => 'serial_no',
+                        'name' => self::$serial_no,
                         'type' => 'text',
                         'instructions' => '',
                         'required' => 0,
@@ -188,7 +197,7 @@ class ListingACF {
                     array(
                         'key' => 'field_628ba2bfec774',
                         'label' => 'License No',
-                        'name' => 'license_no',
+                        'name' => self::$license_no,
                         'type' => 'text',
                         'instructions' => '',
                         'required' => 0,

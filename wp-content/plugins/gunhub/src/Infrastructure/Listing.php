@@ -41,7 +41,7 @@ class Listing {
 
         $args = [
             'label'               => __( 'Listings', 'gunhub' ),
-            'description'         => __( 'Listing news and reviews', 'gunhub' ),
+            'description'         => '',
             'labels'              => $labels,
             // Features this CPT supports in Post Editor
             'supports'            => [ 'title', 'editor', 'author', 'thumbnail','custom-fields'],

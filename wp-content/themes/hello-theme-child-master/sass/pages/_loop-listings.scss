@@ -1,0 +1,44 @@
+.listing-loop {
+    display: flex;
+    border: 1px solid #000;
+    margin-bottom: 20px;
+    
+    &__img,
+    &__attributes,
+    &__body {
+        width: 33.3%;
+    }
+    &__img {
+        //max-width: 300px;
+    }
+
+    &__attributes,
+    &__body {
+        padding-left: 10px;
+        padding-top: 20px;
+        font-size: 16px;
+    }
+
+    &__attributes {
+        padding-right: 20px;
+    }
+    
+    &__price,
+    &__condition,
+    .listing-header {
+        margin-bottom: 10px;
+    }
+    
+    .listing-attribute {
+        border-bottom: none;
+    }
+     
+    .listing-header {
+        &__title {
+            font-size: 16px;
+            a {
+                color: $orange;
+            }
+        }
+    }
+}
