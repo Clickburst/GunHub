@@ -27,7 +27,8 @@ final class ModulesProvider {
 	 */
 	protected function get_modules() {
 		return [
-			Listin::class,
+			Listing::class,
+            SearchForm::class,
 		];
 	}
 }

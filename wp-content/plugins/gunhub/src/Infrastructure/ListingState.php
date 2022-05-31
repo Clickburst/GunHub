@@ -10,6 +10,7 @@ class ListingState {
     use Module;
 
     const SLUG = 'gh-listing-state';
+    const LABEL = 'State';
 
     public function init() {
         add_action( 'init', function () {
@@ -27,7 +28,7 @@ class ListingState {
 
     protected function get_arguments() {
         return [
-            'label' => __( 'State', 'gunhub' ),
+            'label' => self::LABEL,
             'rewrite' => array( 'slug' => 'state' ),
             'hierarchical' => true
         ];

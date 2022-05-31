@@ -1,0 +1,34 @@
+.listing-search {
+    margin-bottom: 50px;
+    
+    &__form {
+        display: flex;
+    }
+    &__select-boxes {
+        display: flex;
+        flex-basis: 66.66%;
+        flex-wrap: wrap;
+
+        .gf-field-wrapper {
+            flex: 0 0 50%;
+            max-width: 50%;
+            padding-right: 10px;
+
+        }
+    }
+    &__submit-and-keyword {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex-basis: 33.33%;
+    }
+}
+
+
+.gf-field-wrapper {
+    margin-top: 15px;
+    
+    &__align-right {
+        text-align: right;
+    }
+}

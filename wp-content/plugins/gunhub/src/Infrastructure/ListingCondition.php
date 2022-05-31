@@ -10,6 +10,7 @@ class ListingCondition {
     use Module;
 
     const SLUG = 'gh-listing-condition';
+    const LABEL = 'Condition';
 
     public function init() {
         add_action( 'init', function () {
@@ -27,7 +28,7 @@ class ListingCondition {
 
     protected function get_arguments() {
         return [
-            'label' => __( 'Condition', 'gunhub' ),
+            'label' => self::LABEL,
             'rewrite' => array( 'slug' => 'condidtion' ),
             'hierarchical' => true
         ];

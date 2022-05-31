@@ -10,6 +10,7 @@ class ListingCaliber {
     use Module;
 
     const SLUG = 'gh-listing-caliber';
+    const LABEL = 'Caliber';
 
     public function init() {
         add_action( 'init', function () {
@@ -27,7 +28,7 @@ class ListingCaliber {
 
     protected function get_arguments() {
         return [
-            'label' => __( 'Caliber', 'gunhub' ),
+            'label' => self::LABEL,
             'rewrite' => array( 'slug' => 'caliber' ),
             'hierarchical' => true
         ];

@@ -11,6 +11,36 @@ License: GNU General Public License v3 or later.
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Tags: flexible-header, custom-colors, custom-menu, custom-logo, editor-style, featured-images, rtl-language-support, threaded-comments, translation-ready
 */
+.listing-search {
+  margin-bottom: 50px;
+}
+.listing-search__form {
+  display: flex;
+}
+.listing-search__select-boxes {
+  display: flex;
+  flex-basis: 66.66%;
+  flex-wrap: wrap;
+}
+.listing-search__select-boxes .gf-field-wrapper {
+  flex: 0 0 50%;
+  max-width: 50%;
+  padding-right: 10px;
+}
+.listing-search__submit-and-keyword {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-basis: 33.33%;
+}
+
+.gf-field-wrapper {
+  margin-top: 15px;
+}
+.gf-field-wrapper__align-right {
+  text-align: right;
+}
+
 .listing-content {
   display: flex;
 }

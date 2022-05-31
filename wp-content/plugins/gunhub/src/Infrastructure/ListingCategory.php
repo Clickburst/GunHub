@@ -10,6 +10,7 @@ class ListingCategory {
     use Module;
 
     const SLUG = 'gh-listing-category';
+    const LABEL = 'Category';
 
     public function init() {
         add_action( 'init', function () {
@@ -27,8 +28,8 @@ class ListingCategory {
 
     protected function get_arguments() {
         return [
-            'label' => __( 'Category', 'gunhub' ),
-            'rewrite' => array( 'slug' => 'category' ),
+            'label' => self::LABEL,
+            'rewrite' => ['slug' => 'category'],
             'hierarchical' => true
         ];
     }

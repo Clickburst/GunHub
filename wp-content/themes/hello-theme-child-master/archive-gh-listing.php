@@ -23,6 +23,11 @@ get_header();
             ?>
         </header>
     <?php endif; ?>
+    
+    <?php 
+    echo do_shortcode('[listings_search_form]')
+    ?>
+    
     <div class="page-content">
         <?php
         while ( have_posts() ) {
