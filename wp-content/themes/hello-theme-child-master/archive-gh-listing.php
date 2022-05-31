@@ -41,14 +41,12 @@ get_header();
     <?php
     global $wp_query;
     if ( $wp_query->max_num_pages > 1 ) :
-        ?>
-        <nav class="pagination" role="navigation">
-            <?php /* Translators: HTML arrow */ ?>
-            <div class="nav-previous"><?php next_posts_link( sprintf( __( '%s older', 'hello-elementor' ), '<span class="meta-nav">&larr;</span>' ) ); ?></div>
-            <?php /* Translators: HTML arrow */ ?>
-            <div class="nav-next"><?php previous_posts_link( sprintf( __( 'newer %s', 'hello-elementor' ), '<span class="meta-nav">&rarr;</span>' ) ); ?></div>
-        </nav>
-    <?php endif; ?>
+        the_posts_pagination( array(
+            'mid_size'  => 2,
+            'prev_text' => __( 'Prev', 'textdomain' ),
+            'next_text' => __( 'Next', 'textdomain' ),
+        ) );
+    endif; ?>
 </main>
 
 <?php

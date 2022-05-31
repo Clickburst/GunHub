@@ -16,7 +16,7 @@ class Listing {
     }
 
     public function maybe_load_owl() {
-        if( is_singular(ListingPostType::SLUG ) ) {
+        if( is_singular(ListingPostType::SLUG ) || is_archive(ListingPostType::SLUG) ) {
             wp_enqueue_script( 'blueimp-gallery', GunHub::get_instance()->plugin_url . 'js/blueimp-gallery/js/blueimp-gallery.min.js', ['jquery'], null, true );
             wp_enqueue_style( 'blueimp-gallery', GunHub::get_instance()->plugin_url . 'js/blueimp-gallery/css/blueimp-gallery.min.css' );
             
