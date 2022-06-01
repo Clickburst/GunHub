@@ -1,2 +1,4 @@
 /.idea
-/wp-content/themes/hello-elementor
+/wp-content/*
+!/wp-content/themes/hello-elementor
+!/wp-content/plugins/gunhub
