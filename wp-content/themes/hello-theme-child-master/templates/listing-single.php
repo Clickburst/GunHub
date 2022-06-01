@@ -1,9 +1,14 @@
 <?php
-
+global $post;
+$author_id = $post->post_author;
 use GunHub\Data\Listing;
+use GunHub\Data\Seller;
 
 $listing_data = new Listing( get_the_ID() ); 
+$seller_data = new Seller( $author_id )
 ?>
+
+<?php if (function_exists('rank_math_the_breadcrumbs')) rank_math_the_breadcrumbs(); ?>
 <header class="listing-header">
     <?php the_title( '<h1 class="listing-header__title">', '</h1>' ); ?>
     <h3 class="listing-header__price"><?php echo $listing_data->get_price() ?></h3>
@@ -23,7 +28,7 @@ $listing_data = new Listing( get_the_ID() );
             </a>
             <?php
             ?>
-            <div >
+            <div class="listing-content__gallery-list">
                 <?php
                 foreach ( $gallery as $item ) {
                     ?>
@@ -42,10 +47,27 @@ $listing_data = new Listing( get_the_ID() );
     </div>
 
     <div class="listing-content__right">
-        <h3>Seller user data</h3>
-        <div class="listing-content__description gh-box">
-            <h4>Description</h4>
+        <div class="listing-content__seller-data gh-box gh-box__with-padding">
+            <h4 class="gh-section-title"><?php esc_html_e('Seller Information', 'gunhub'); ?></h4>
+            <?php
+            get_template_part('templates/parts/listing', 'attribute', $seller_data->get_data());
+            ?> 
+        </div>
+        
+        <div class="listing-content__description gh-box gh-box__with-padding">
+            <h4 class="gh-section-title"><?php esc_html_e('Description', 'gunhub'); ?></h4>
             <?php the_content(); ?>
+        </div>
+        
+        <div class="enqueue-about-listing gh-box gh-box__with-padding">
+            <h4 class="gh-section-title"><?php printf( __('Date Listed: %s'), get_the_date() ); ?></h4>
+
+            <h3 class="h3">ENQUIRE ABOUT THIS LISTING</h3>
+            <form action="">
+                <textarea name="" id="" cols="30" rows="10"></textarea>
+                <button type="submit">Submit</button>
+            </form>
+            
         </div>
     </div>
 </div>

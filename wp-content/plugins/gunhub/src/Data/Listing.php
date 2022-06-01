@@ -30,10 +30,6 @@ class Listing extends ACFData {
         return $this->get_field( ListingACF::$gallery );
     }
     
-    public function get_phone_number() {
-        return $this->get_field( ListingACF::$phone_number );
-    }
-
     public function get_make() {
         return $this->get_field( ListingACF::$make );
     }
@@ -66,7 +62,6 @@ class Listing extends ACFData {
     public function get_state(): string {
         return $this->get_term_first_item_name(ListingState::SLUG);
     }
-
 
     public function get_attributes_list(): array {
         return [

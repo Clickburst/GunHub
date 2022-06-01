@@ -30,10 +30,15 @@ get_header();
     
     <div class="page-content">
         <?php
-        while ( have_posts() ) {
-            the_post();
-            get_template_part( 'templates/listing','loop' );
-        } ?>
+        if( have_posts() ) {
+            while ( have_posts() ) {
+                the_post();
+                get_template_part( 'templates/listing','loop' );
+            }
+        } else {
+            get_template_part( 'templates/no', 'listings' );
+        }
+        ?>
     </div>
 
     <?php wp_link_pages(); ?>
@@ -41,11 +46,17 @@ get_header();
     <?php
     global $wp_query;
     if ( $wp_query->max_num_pages > 1 ) :
-        the_posts_pagination( array(
-            'mid_size'  => 2,
-            'prev_text' => __( 'Prev', 'textdomain' ),
-            'next_text' => __( 'Next', 'textdomain' ),
-        ) );
+        ?>
+        <div class="gh-listings-pagination">
+            <?php
+            the_posts_pagination( array(
+                'mid_size'  => 2,
+                'prev_text' => __( 'Prev', 'textdomain' ),
+                'next_text' => __( 'Next', 'textdomain' ),
+            ) );
+            ?>
+        </div>
+        <?php
     endif; ?>
 </main>
 

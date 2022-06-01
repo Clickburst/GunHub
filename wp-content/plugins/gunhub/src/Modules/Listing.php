@@ -16,12 +16,20 @@ class Listing {
     }
 
     public function maybe_load_owl() {
-        if( is_singular(ListingPostType::SLUG ) || is_archive(ListingPostType::SLUG) ) {
+        if( is_singular(ListingPostType::SLUG ) ) {
             wp_enqueue_script( 'blueimp-gallery', GunHub::get_instance()->plugin_url . 'js/blueimp-gallery/js/blueimp-gallery.min.js', ['jquery'], null, true );
             wp_enqueue_style( 'blueimp-gallery', GunHub::get_instance()->plugin_url . 'js/blueimp-gallery/css/blueimp-gallery.min.css' );
-            
-            wp_enqueue_script( 'gunhub-front-main', GunHub::get_instance()->plugin_url . 'js/front-main.js', ['jquery'], null, true );
         }
+
+        if( is_singular(ListingPostType::SLUG ) || is_archive(ListingPostType::SLUG) ) {
+            wp_enqueue_script( 'gunhub-front-main', GunHub::get_instance()->plugin_url . 'js/front-main.js', [ 'jquery' ], null, true );
+        }
+
+        // todo - not active yet
+//        if( is_archive(ListingPostType::SLUG) ) {
+//            wp_enqueue_script( 'select2', GunHub::get_instance()->plugin_url . 'js/select2/js/select2.min.js', ['jquery'], null, true );
+//            wp_enqueue_style( 'select2', GunHub::get_instance()->plugin_url . 'js/select2/css/select2.min.css' );
+//        }
     }
 
 }

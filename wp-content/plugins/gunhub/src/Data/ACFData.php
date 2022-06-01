@@ -10,12 +10,21 @@ class ACFData {
         $this->post_id = $post_id;
     }
 
-    protected function get_field($key) {
+    protected function get_field( $key, $for_user = false ) {
         if( ! function_exists( 'get_field' ) ) {
             return null;
         }
 
-        return get_field($key, $this->post_id);
+        $for = $this->post_id;
+        if( $for_user ) {
+            $for = 'user_' . $this->post_id;
+        }
+        
+        return get_field($key, $for);
+    }
+    
+    protected function get_user_field( $key ) {
+        return $this->get_field( $key, true );
     }
     
     protected function get_term_first_item_name( $term ) {

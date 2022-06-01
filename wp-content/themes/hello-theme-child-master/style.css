@@ -11,6 +11,10 @@ License: GNU General Public License v3 or later.
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Tags: flexible-header, custom-colors, custom-menu, custom-logo, editor-style, featured-images, rtl-language-support, threaded-comments, translation-ready
 */
+.text-center {
+  text-align: center;
+}
+
 .listing-search {
   margin-bottom: 50px;
 }
@@ -41,6 +45,17 @@ Tags: flexible-header, custom-colors, custom-menu, custom-logo, editor-style, fe
   text-align: right;
 }
 
+@media (min-width: 1300px) {
+  body:not([class*=elementor-page-]) .site-main {
+    max-width: 1260px;
+  }
+}
+
+.h3 {
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
 .listing-content {
   display: flex;
 }
@@ -56,8 +71,8 @@ Tags: flexible-header, custom-colors, custom-menu, custom-logo, editor-style, fe
   padding-left: 0;
   font-size: 16px;
 }
-.listing-content__description {
-  padding: 1em;
+.listing-content__attributes li {
+  padding-top: 10px;
 }
 .listing-content__gallery #links {
   display: flex;
@@ -75,8 +90,16 @@ Tags: flexible-header, custom-colors, custom-menu, custom-logo, editor-style, fe
   left: 50%;
   transform: translate(-50%, -50%);
 }
+.listing-content__gallery-list {
+  padding-left: 6px;
+}
 
-.single-gh-listing .listing-content__attributes {
+.gh-section-title {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.single-gh-listing .listing-content__left .listing-content__attributes {
   columns: 2;
 }
 .single-gh-listing .listing-header {
@@ -120,6 +143,21 @@ Tags: flexible-header, custom-colors, custom-menu, custom-logo, editor-style, fe
 .gh-box {
   border: 1px solid #000;
   margin-bottom: 30px;
+}
+.gh-box__with-padding {
+  padding: 1em;
+}
+
+.gh-listings-pagination {
+  text-align: center;
+}
+.gh-listings-pagination .nav-links {
+  display: inline-block;
+}
+.gh-listings-pagination .nav-links a, .gh-listings-pagination .nav-links span {
+  display: inline-block;
+  padding: 5px 10px;
+  border: 1px solid grey;
 }
 
 .listing-loop {

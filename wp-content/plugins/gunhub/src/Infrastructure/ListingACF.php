@@ -12,7 +12,6 @@ class ListingACF {
     public static $price = 'price';
     public static $serial_no = 'serial_no';
     public static $gallery = 'gallery';
-    public static $phone_number = 'phone_number';
     public static $make = 'make';
     public static $model = 'model';
     public static $license_no = 'license_no';
@@ -56,27 +55,6 @@ class ListingACF {
                         'max_height' => '',
                         'max_size' => '',
                         'mime_types' => '',
-                    ),
-                    array(
-                        'key' => 'field_628ba260ec76d',
-                        'label' => 'Phone Number',
-                        'name' => self::$phone_number,
-                        'type' => 'number',
-                        'instructions' => '',
-                        'required' => 0,
-                        'conditional_logic' => 0,
-                        'wrapper' => array(
-                            'width' => '33',
-                            'class' => '',
-                            'id' => '',
-                        ),
-                        'default_value' => '',
-                        'placeholder' => '',
-                        'prepend' => '',
-                        'append' => '',
-                        'min' => '',
-                        'max' => '',
-                        'step' => '',
                     ),
                     array(
                         'key' => 'field_628ba27bec76e',

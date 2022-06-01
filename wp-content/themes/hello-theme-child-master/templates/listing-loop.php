@@ -17,7 +17,7 @@ $attributes = [
 
 <article class="listing-loop">
     <div class="listing-loop__img">
-        <?php printf( '<a href="%s">%s</a>', esc_url( $post_link ), get_the_post_thumbnail( $post, 'large' ) );        ?>
+        <?php printf( '<a href="%s">%s</a>', esc_url( $post_link ), get_the_post_thumbnail( $post, 'post-medium' ) );        ?>
     </div>
     <div class="listing-loop__body">
         <div class="listing-header">

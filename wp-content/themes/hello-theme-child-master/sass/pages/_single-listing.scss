@@ -18,10 +18,9 @@
         list-style: none;
         padding-left: 0;
         font-size: 16px;
-    }
-    
-    &__description {
-        padding: 1em;
+        li {
+            padding-top: 10px;
+        }
     }
     
     &__gallery {
@@ -42,12 +41,22 @@
             }
         }
     }
+    
+    &__gallery-list {
+        padding-left: 6px;
+    }
+}
+
+.gh-section-title {
+    font-size: 13px;
+    font-weight: 700;
 }
 
 
 .single-gh-listing {
-    .listing-content {
-        &__attributes {
+    
+    .listing-content__left {
+        .listing-content__attributes {
             columns: 2;
         }
     }
@@ -94,5 +103,8 @@
 .gh-box {
     border: 1px solid #000;
     margin-bottom: 30px;
+    &__with-padding {
+        padding: 1em;
+    }
 }
 
