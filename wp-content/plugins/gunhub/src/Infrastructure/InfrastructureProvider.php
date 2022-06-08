@@ -32,6 +32,7 @@ final class InfrastructureProvider {
             ListingCondition::class,
             ListingCaliber::class,
             ListingState::class,
+            SettingsPage::class,
         ];
     }
 }

@@ -9,7 +9,7 @@ class ListingCondition {
     
     use Module;
 
-    const SLUG = 'gh-listing-condition';
+    const SLUG = 'condition';
     const LABEL = 'Condition';
 
     public function init() {

@@ -29,6 +29,7 @@ final class ModulesProvider {
 		return [
 			Listing::class,
             SearchForm::class,
+            Formidable::class,
 		];
 	}
 }

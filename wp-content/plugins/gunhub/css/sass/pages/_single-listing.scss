@@ -1,0 +1,126 @@
+.listing-content {
+    display: flex;
+    
+    &__left {
+        width: 60%;
+        margin-right: 20px;
+    }
+    &__right {
+        width: calc( 40% - 20px );
+    }
+
+
+    &__attributes {
+        list-style: none;
+        padding-left: 0;
+        font-size: 16px;
+        li {
+            padding-top: 10px;
+        }
+    }
+    
+    &__gallery {
+        #links {
+            display: flex;
+            a {
+                width: 100px;
+                height: 100px;
+                margin-right: 10px;
+                position: relative;
+                overflow: hidden;
+                img {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                }
+            }
+        }
+    }
+    
+    &__gallery-list {
+        padding-left: 6px;
+    }
+}
+
+.gh-section-title {
+    font-size: 13px;
+    font-weight: 700;
+}
+
+
+.single-gh-listing {
+    
+    .listing-content__left {
+        .listing-content__attributes {
+            columns: 2;
+        }
+    }
+    .listing-header {
+        border-bottom: 1px solid #000;
+    }
+}
+
+
+.listing-attribute {
+    text-transform: uppercase;
+    font-size: 16px;
+    display: inline-flex;
+    justify-content: space-between;
+    line-height: 2.1;
+    border-bottom: 1px solid #000;
+    width: 100%;
+    &__title {
+        font-weight: 700;
+    }
+    &__value {
+        font-size: 14px;
+    }
+}
+
+.listing-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    &__title {
+        font-size: 35px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: $orange;
+        margin-bottom: 0;
+        margin-top: 0;
+    }
+    &__price {
+        font-weight: 400;
+        font-size: 22px;
+    }
+}
+
+.gh-box {
+    border: 1px solid #000;
+    margin-bottom: 30px;
+    &__with-padding {
+        padding: 1em;
+    }
+}
+
+
+.gunhub-related {
+    
+    &__items {
+        display: flex;
+        .listing-loop {
+            display: block;
+            margin-right: 15px;
+            width: calc( 33.33% - 10px );
+            &:last-child {
+                margin-right: 0;
+            }
+            
+            &__img,
+            &__body {
+                width: 100%;
+            }
+        }
+    }
+}
