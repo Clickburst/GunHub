@@ -22,6 +22,10 @@ class Seller extends ACFData {
         return $this->get_user_field( SellerACF::$phone_number );
     }
     
+    public function get_credits():int {
+        return (int) $this->get_user_field( SellerACF::$credits );
+    }
+    
     public function get_data() {
         $out = [];
         if( $val = $this->get_location() ) {
@@ -39,5 +43,16 @@ class Seller extends ACFData {
 
         return $out;
     }
-    
+
+    public function add_credits( $credits_to_add ) {
+        $current_amount = $this->get_credits();
+        $updated_amount = $current_amount + (int)$credits_to_add;
+        return $this->set_user_field( SellerACF::$credits, $updated_amount);
+    }
+
+    public function decrease_credit( $credits_to_remove = 1 ) {
+        $current_amount = $this->get_user_field( SellerACF::$credits );
+        $updated_amount = $current_amount - (int)$credits_to_remove;
+        return $this->set_user_field( SellerACF::$credits, $updated_amount);
+    }
 }

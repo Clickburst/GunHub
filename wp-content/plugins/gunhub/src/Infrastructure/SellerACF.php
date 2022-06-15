@@ -13,6 +13,7 @@ class SellerACF {
     public static $type = 'type';
     public static $phone_number = 'phone_number';
     public static $licence_id = 'licence_id';
+    public static $credits = 'credits';
 
     public function init() {
         add_action( 'acf/init', [$this, 'register_fields'] );
@@ -108,6 +109,27 @@ class SellerACF {
                         'prepend' => '',
                         'append' => '',
                         'maxlength' => '',
+                    ),
+                    array(
+                        'key' => 'field_62a89addd6ca4',
+                        'label' => 'Credits',
+                        'name' => self::$credits,
+                        'type' => 'number',
+                        'instructions' => '',
+                        'required' => 0,
+                        'conditional_logic' => 0,
+                        'wrapper' => array(
+                            'width' => '',
+                            'class' => '',
+                            'id' => '',
+                        ),
+                        'default_value' => '0',
+                        'placeholder' => '',
+                        'prepend' => '',
+                        'append' => '',
+                        'min' => '',
+                        'max' => '',
+                        'step' => '',
                     ),
                 ),
                 'location' => array(

@@ -3,6 +3,7 @@ namespace GunHub\Modules;
 
 use GunHub\Core\Module;
 use GunHub\Data\Settings;
+use GunHub\Data\Shop;
 
 class Formidable {
 
@@ -55,8 +56,20 @@ class Formidable {
         $this->print_field_in_wrapper('Email', $current_user_data['email']);
         $this->print_field_in_wrapper('First Name', $current_user_data['first_name']);
         $this->print_field_in_wrapper('Last Name', $current_user_data['last_name']);
-        _e('profile details can be edited in my-account');
+        
+        $this->print_edit_account_details_message();
         return ob_get_clean();
+    }
+
+    private function print_edit_account_details_message() {
+        
+        if( $url = Shop::get_my_account_url('edit-account') ) {
+            printf('%s <a href="'. esc_url( $url ) .'">%s</a>',
+                __( 'Profile deatails can be adited in', 'gunhub' ),
+            __('my-account', 'gunhub'));
+        } else {
+            _e('profile details can be edited in my-account', 'gunhub');
+        }
     }
     
     public function add_seller_email_to_cc( $to, $values, $form_id ) {

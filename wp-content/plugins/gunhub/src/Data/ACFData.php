@@ -4,10 +4,10 @@ namespace GunHub\Data;
 
 class ACFData {
 
-    public $post_id;
+    public $id;
 
-    public function __construct( $post_id ) {
-        $this->post_id = $post_id;
+    public function __construct( $id ) {
+        $this->id = $id;
     }
 
     protected function get_field( $key, $type = '' ) {
@@ -15,16 +15,7 @@ class ACFData {
             return null;
         }
 
-        $for = $this->post_id;
-        if( $type === 'user' ) {
-            $for = 'user_' . $this->post_id;
-        }
-        
-        if( $type === 'option' ) {
-            $for = 'option';
-        }
-        
-        return get_field($key, $for);
+        return get_field($key, $this->get_acf_for( $type ));
     }
     
     protected function get_user_field( $key ) {
@@ -36,7 +27,7 @@ class ACFData {
     }
     
     protected function get_term_first_item_name( $term ) {
-        $terms = wp_get_post_terms($this->post_id, $term);
+        $terms = wp_get_post_terms($this->id, $term);
         
         if( is_wp_error( $terms ) ) {
             return '';
@@ -46,5 +37,29 @@ class ACFData {
             return $terms[0]->name;
         }
         return '';
+    }
+    
+    protected function set_user_field( $key, $value ) {
+        return $this->set_field( $key, $value, 'user' );
+    }
+
+    protected function set_field($key, $value, $type='') {
+        return update_field( $key, $value, $this->get_acf_for( $type ) );
+    }
+
+    /**
+     * Returns correct 'for' attribute, if its post, user or setting
+     * 
+     * @param $type
+     * @return string
+     */
+    private function get_acf_for( $type ) {
+        $for = $this->id;
+        if( $type === 'user' ) {
+            $for = 'user_' . $this->id;
+        }elseif( $type === 'option' ) {
+            $for = 'option';
+        }
+        return $for;
     }
 }

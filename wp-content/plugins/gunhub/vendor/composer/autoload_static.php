@@ -27,8 +27,10 @@ class ComposerStaticInit3a6503e85605eee61fc168dfad22f372
         'GunHub\\Core\\Singleton' => __DIR__ . '/../..' . '/src/Core/Singleton.php',
         'GunHub\\Data\\ACFData' => __DIR__ . '/../..' . '/src/Data/ACFData.php',
         'GunHub\\Data\\Listing' => __DIR__ . '/../..' . '/src/Data/Listing.php',
+        'GunHub\\Data\\Order' => __DIR__ . '/../..' . '/src/Data/Order.php',
         'GunHub\\Data\\Seller' => __DIR__ . '/../..' . '/src/Data/Seller.php',
         'GunHub\\Data\\Settings' => __DIR__ . '/../..' . '/src/Data/Settings.php',
+        'GunHub\\Data\\Shop' => __DIR__ . '/../..' . '/src/Data/Shop.php',
         'GunHub\\Infrastructure\\InfrastructureProvider' => __DIR__ . '/../..' . '/src/Infrastructure/InfrastructureProvider.php',
         'GunHub\\Infrastructure\\Listing' => __DIR__ . '/../..' . '/src/Infrastructure/Listing.php',
         'GunHub\\Infrastructure\\ListingACF' => __DIR__ . '/../..' . '/src/Infrastructure/ListingACF.php',
@@ -42,6 +44,7 @@ class ComposerStaticInit3a6503e85605eee61fc168dfad22f372
         'GunHub\\Modules\\Listing' => __DIR__ . '/../..' . '/src/Modules/Listing.php',
         'GunHub\\Modules\\ModulesProvider' => __DIR__ . '/../..' . '/src/Modules/ModulesProvider.php',
         'GunHub\\Modules\\SearchForm' => __DIR__ . '/../..' . '/src/Modules/SearchForm.php',
+        'GunHub\\Modules\\Woocommerce' => __DIR__ . '/../..' . '/src/Modules/Woocommerce.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

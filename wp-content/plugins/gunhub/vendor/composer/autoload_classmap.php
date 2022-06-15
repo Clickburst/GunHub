@@ -12,8 +12,10 @@ return array(
     'GunHub\\Core\\Singleton' => $baseDir . '/src/Core/Singleton.php',
     'GunHub\\Data\\ACFData' => $baseDir . '/src/Data/ACFData.php',
     'GunHub\\Data\\Listing' => $baseDir . '/src/Data/Listing.php',
+    'GunHub\\Data\\Order' => $baseDir . '/src/Data/Order.php',
     'GunHub\\Data\\Seller' => $baseDir . '/src/Data/Seller.php',
     'GunHub\\Data\\Settings' => $baseDir . '/src/Data/Settings.php',
+    'GunHub\\Data\\Shop' => $baseDir . '/src/Data/Shop.php',
     'GunHub\\Infrastructure\\InfrastructureProvider' => $baseDir . '/src/Infrastructure/InfrastructureProvider.php',
     'GunHub\\Infrastructure\\Listing' => $baseDir . '/src/Infrastructure/Listing.php',
     'GunHub\\Infrastructure\\ListingACF' => $baseDir . '/src/Infrastructure/ListingACF.php',
@@ -27,4 +29,5 @@ return array(
     'GunHub\\Modules\\Listing' => $baseDir . '/src/Modules/Listing.php',
     'GunHub\\Modules\\ModulesProvider' => $baseDir . '/src/Modules/ModulesProvider.php',
     'GunHub\\Modules\\SearchForm' => $baseDir . '/src/Modules/SearchForm.php',
+    'GunHub\\Modules\\Woocommerce' => $baseDir . '/src/Modules/Woocommerce.php',
 );
