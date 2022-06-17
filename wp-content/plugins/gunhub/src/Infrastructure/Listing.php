@@ -119,11 +119,12 @@ class Listing {
         </script>";
     }
 
+    // todo - fires in Appearance > Menus, can something be improved?
     public function display_archive_state($states) {
         global $post;
         $arg = get_query_var( 'post_status' );
         if ( $arg != 'expired' ) {
-            if ( $post->post_status == 'expired' ) {
+            if ( isset( $post->post_status ) && $post->post_status == 'expired' ) {
                 echo "<script>
                 jQuery(document).ready( function() {
                 jQuery( '#post-status-display' ).text( 'Expired' );
