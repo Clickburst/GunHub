@@ -12,6 +12,9 @@ class Listing {
 
     use Module;
 
+    // todo - update before releasing
+    static $expired_days = 10;
+    
     public function init() {
         add_action('wp_enqueue_scripts', [$this, 'load_assets']);
         
@@ -28,6 +31,12 @@ class Listing {
         add_filter('pre_get_posts', [$this, 'archive_page_show_only_published_listings']);
         
         // todo - single listing page - add redirect to root page for expired listings?
+//        add_action('template_redirect', [$this, 'redirect to archive root'])
+        
+        // update listings to expired each midnight 
+        add_action('init', [$this, 'schedule_cron']);
+        add_action('update_to_expired_old_listings', [$this, 'update_to_expired_old_listings']);
+        
     }
 
     public function load_assets() {
@@ -121,5 +130,47 @@ class Listing {
             $query->set('post_status', 'publish');
         }
         return $query;
+    }
+
+    public function schedule_cron() {
+        if ( ! wp_next_scheduled( 'update_to_expired_old_listings' ) ) {
+            $local_time_to_run = 'midnight';
+            $timestamp = strtotime( $local_time_to_run ) - ( get_option( 'gmt_offset' ) * HOUR_IN_SECONDS );
+            wp_schedule_event(
+                $timestamp,
+                'daily',
+                'update_to_expired_old_listings'
+            );
+        }
+    }
+
+    public function update_to_expired_old_listings() {
+        $old_listings_ids = get_posts( array(
+            'post_type' => \GunHub\Infrastructure\Listing::SLUG,
+            'post_status' => 'publish',
+            'numberposts'  => -1,
+            'fields' => 'ids',
+            'date_query' => [
+                [
+                    'before' => strtotime(sprintf("-%d days", self::$expired_days))
+                ]
+            ]
+        ) );
+        
+
+        foreach ( $old_listings_ids as $old_listings_id ) {
+            wp_update_post([
+                'ID' => $old_listings_id,
+                'post_status' => 'expired'
+            ]);
+        }
+        
+        ob_start();
+        echo 'updated listings:';
+        echo '<pre>';
+        print_r($old_listings_ids);
+        echo '</pre>';
+        $out = ob_get_clean();
+        wp_mail('temka789@gmail.com', 'gunhub midnight crone', $out);
     }
 }
