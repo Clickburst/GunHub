@@ -7,7 +7,9 @@ class Order extends \WC_Order {
         $credits = 0;
         foreach ( $this->get_items() as $item ) {
             $product = wc_get_product($item->get_product_id());
-            $credits += (int) $product->get_attribute('credits');
+            
+            $product_credits = (int) $product->get_attribute('credits'); 
+            $credits += $product_credits * $item->get_quantity();
         }
         return $credits;
     }
