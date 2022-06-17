@@ -24,6 +24,10 @@ class Listing {
         add_action('gunhub_contact_seller_form', [$this, 'print_contact_seller_form']);
         
         add_filter( 'wpcf7_before_send_mail', [$this, 'add_gun_2seller_email_to_recipient']);
+        
+        add_filter('pre_get_posts', [$this, 'archive_page_show_only_published_listings']);
+        
+        // todo - single listing page - add redirect to root page for expired listings?
     }
 
     public function load_assets() {
@@ -39,7 +43,7 @@ class Listing {
             wp_enqueue_style( 'gunhub-front-main', GunHub::get_instance()->plugin_url . 'css/style.css' );
         }
 
-        // todo - not active yet
+        // todo - add pretty select boxes
 //        if( is_archive(ListingPostType::SLUG) ) {
 //            wp_enqueue_script( 'select2', GunHub::get_instance()->plugin_url . 'js/select2/js/select2.min.js', ['jquery'], null, true );
 //            wp_enqueue_style( 'select2', GunHub::get_instance()->plugin_url . 'js/select2/css/select2.min.css' );
@@ -108,7 +112,14 @@ class Listing {
 
     }
     
-//    public function add_gun_seller_email_to_recipient( $contact_form ) {
-//        return $contact_form;
-//    }
+    public function archive_page_show_only_published_listings( $query ) {
+        if ( $query->is_archive 
+            && $query->is_search
+            && $query->query_vars['post_type'] === ListingPostType::SLUG
+            && ! is_admin() ) {
+            
+            $query->set('post_status', 'publish');
+        }
+        return $query;
+    }
 }

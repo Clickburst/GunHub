@@ -15,6 +15,11 @@ class Listing {
         add_action( 'init', function () {
             register_post_type( $this->get_slug(), $this->get_arguments() );
         } );
+        add_action('init', [$this, 'register_expired_post_status']);
+        add_action( 'post_submitbox_misc_actions', [$this, 'expired_post_status_to_edit_page_dropdown']);
+        add_action('admin_footer-edit.php',[$this, 'expired_post_status_to_quick_edit_dropdown']);
+        add_filter( 'display_post_states', [$this, 'display_archive_state'] );
+
     }
 
     protected function get_slug() {
@@ -72,4 +77,61 @@ class Listing {
         return $args;
     }
 
+
+    // todo - set post status as variable, clean code
+    public function register_expired_post_status() {
+        register_post_status( 'expired', array(
+            'label' => _x( 'Expired', 'post' ),
+            'public' => false,
+            'exclude_from_search' => true,
+            'show_in_admin_all_list' => false,
+            'show_in_admin_status_list' => true,
+            'label_count' => _n_noop( 'Expired <span class="count">(%s)</span>', 'Expired <span class="count">(%s)</span>' ),
+        ) );
+    }
+
+    public function expired_post_status_to_edit_page_dropdown() {
+        global $post;
+        if ( $post->post_type !== self::SLUG ) {
+            return false;
+        }
+
+        $status = ($post->post_status == 'expired') ? "jQuery( '#post-status-display' ).text( 'Expired' );
+        jQuery( 'select[name=\"post_status\"]' ).val('expired');" : '';
+                echo "<script>
+        jQuery(document).ready( function() {
+        jQuery( 'select[name=\"post_status\"]' ).append( '<option value=\"expired\">Expired</option>' );
+        " . $status . "
+        });
+        </script>";
+    }
+
+    public function expired_post_status_to_quick_edit_dropdown() {
+        global $post;
+        if ( $post->post_type !== self::SLUG ) {
+            return false;
+        }
+            
+        echo "<script>
+        jQuery(document).ready( function() {
+        jQuery( 'select[name=\"_status\"]' ).append( '<option value=\"expired\">Expired</option>' );
+        });
+        </script>";
+    }
+
+    public function display_archive_state($states) {
+        global $post;
+        $arg = get_query_var( 'post_status' );
+        if ( $arg != 'expired' ) {
+            if ( $post->post_status == 'expired' ) {
+                echo "<script>
+                jQuery(document).ready( function() {
+                jQuery( '#post-status-display' ).text( 'Expired' );
+                });
+                </script>";
+                return array( 'Expired' );
+            }
+        }
+        return $states;
+    }
 }
