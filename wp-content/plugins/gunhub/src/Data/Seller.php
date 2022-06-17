@@ -25,6 +25,10 @@ class Seller extends ACFData {
     public function get_credits():int {
         return (int) $this->get_user_field( SellerACF::$credits );
     }
+
+    public function is_seller():int {
+        return (bool) $this->get_user_field( SellerACF::$is_seller );
+    }
     
     public function get_data() {
         $out = [];
@@ -54,5 +58,9 @@ class Seller extends ACFData {
         $current_amount = $this->get_user_field( SellerACF::$credits );
         $updated_amount = $current_amount - (int)$credits_to_remove;
         return $this->set_user_field( SellerACF::$credits, $updated_amount);
+    }
+    
+    public function update_to_seller() {
+        return $this->set_user_field( SellerACF::$is_seller, true);
     }
 }

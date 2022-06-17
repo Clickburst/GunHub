@@ -57,6 +57,14 @@ class Woocommerce {
 
     public function my_account_listing_content() {
         $seller = new Seller( get_current_user_id() );
+        if( ! $seller->is_seller() ) {
+            ?>
+            <h3>If you want to post some listings - please purchase credits <a href="/shop">here</a></h3>
+            <p><?php printf('Listing is displayed for %d days', Listing::$expired_days); ?></p>
+            <?php
+            return;
+        }
+        
         $credits = $seller->get_credits();
         ?>
         <h3><?php printf( 'You have %s left', sprintf( _n( '%s credit', '%s credits', $credits, 'gunhub' ), $credits ) ) ?></h3>
@@ -75,6 +83,9 @@ class Woocommerce {
         $seller = $order->get_user_id();
         if( $seller ) {
             $seller = new Seller( $order->get_user_id() );
+            if( ! $seller->is_seller() ) {
+                $seller->update_to_seller();
+            }
             $seller->add_credits( $order_credits );
         }
     }
