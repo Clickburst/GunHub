@@ -183,7 +183,7 @@ class Listing {
         
         if( in_array( SellerRole::$name, $roles ) ) {
             $query['author'] = $user->ID;
-            $query['post_parent'] = 0;
+//            $query['post_parent'] = 0;
         }
 
         return $query;
