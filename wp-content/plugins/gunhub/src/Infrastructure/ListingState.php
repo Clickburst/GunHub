@@ -30,7 +30,9 @@ class ListingState {
         return [
             'label' => self::LABEL,
             'rewrite' => array( 'slug' => 'state' ),
-            'hierarchical' => true
+            'hierarchical' => true,
+            'show_in_quick_edit' => false,
+            'meta_box_cb'      => false,
         ];
     }
 

@@ -31,7 +31,7 @@ class SearchForm {
         return ob_get_clean();        
     }
 
-    private static function get_taxonomies(): array {
+    public static function get_taxonomies(): array {
         return [
             [
                 'slug' => ListingCategory::SLUG,
@@ -55,7 +55,7 @@ class SearchForm {
     private static function get_taxonomies_data_for_select_boxes() {
         $out = [];
         foreach ( self::get_taxonomies() as $term_data ) {
-            $terms = get_terms($term_data['slug'], array( 'hide_empty' => false ) );
+            $terms = get_terms($term_data['slug'], ['hide_empty' => false] );
             $options = [];
 
             if( $terms ) {

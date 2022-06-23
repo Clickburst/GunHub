@@ -65,8 +65,7 @@ class Listing extends ACFData {
 
     // todo - check image size
     public function featured_image() {
-        $image_id = $this->get_field('featured_image');
-        var_dump($image_id);
+        $image_id = $this->get_field(ListingACF::$featured_image);
         if( $image_id ) {
             return wp_get_attachment_image( $image_id, 'post-medium');
         }

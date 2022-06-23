@@ -12,6 +12,7 @@ class ListingACF {
     public static $price = 'price';
     public static $serial_no = 'serial_no';
     public static $gallery = 'gallery';
+    public static $featured_image = 'featured_image';
     public static $make = 'make';
     public static $model = 'model';
     public static $license_no = 'license_no';
@@ -32,7 +33,7 @@ class ListingACF {
                     array(
                         'key' => 'field_62ac8b9de9a25',
                         'label' => 'Featured Image',
-                        'name' => 'featured_image',
+                        'name' => self::$featured_image,
                         'type' => 'image',
                         'instructions' => 'used on archive page',
                         'required' => 1,
@@ -180,7 +181,7 @@ class ListingACF {
                     array(
                         'key' => 'field_628ba2b9ec773',
                         'label' => 'Serial No',
-                        'name' => self::$serial_no,
+                        'name' => 'serial_no',
                         'type' => 'text',
                         'instructions' => '',
                         'required' => 1,
@@ -199,7 +200,7 @@ class ListingACF {
                     array(
                         'key' => 'field_628ba2bfec774',
                         'label' => 'License No',
-                        'name' => self::$license_no,
+                        'name' => 'license_no',
                         'type' => 'text',
                         'instructions' => '',
                         'required' => 1,
@@ -214,6 +215,94 @@ class ListingACF {
                         'prepend' => '',
                         'append' => '',
                         'maxlength' => '',
+                    ),
+                    array(
+                        'key' => 'field_62b477fe001c5',
+                        'label' => 'Category',
+                        'name' => 'category',
+                        'type' => 'taxonomy',
+                        'instructions' => '',
+                        'required' => 1,
+                        'conditional_logic' => 0,
+                        'wrapper' => array(
+                            'width' => '33',
+                            'class' => '',
+                            'id' => '',
+                        ),
+                        'taxonomy' => 'category',
+                        'field_type' => 'select',
+                        'allow_null' => 0,
+                        'add_term' => 1,
+                        'save_terms' => 1,
+                        'load_terms' => 1,
+                        'return_format' => 'id',
+                        'multiple' => 0,
+                    ),
+                    array(
+                        'key' => 'field_62b47bf595b65',
+                        'label' => 'Condition',
+                        'name' => 'condition',
+                        'type' => 'taxonomy',
+                        'instructions' => '',
+                        'required' => 1,
+                        'conditional_logic' => 0,
+                        'wrapper' => array(
+                            'width' => '33',
+                            'class' => '',
+                            'id' => '',
+                        ),
+                        'taxonomy' => 'condition',
+                        'field_type' => 'select',
+                        'allow_null' => 0,
+                        'add_term' => 1,
+                        'save_terms' => 1,
+                        'load_terms' => 1,
+                        'return_format' => 'id',
+                        'multiple' => 0,
+                    ),
+                    array(
+                        'key' => 'field_62b47c406ece4',
+                        'label' => 'Caliber',
+                        'name' => 'caliber',
+                        'type' => 'taxonomy',
+                        'instructions' => '',
+                        'required' => 1,
+                        'conditional_logic' => 0,
+                        'wrapper' => array(
+                            'width' => '33',
+                            'class' => '',
+                            'id' => '',
+                        ),
+                        'taxonomy' => 'caliber',
+                        'field_type' => 'select',
+                        'allow_null' => 0,
+                        'add_term' => 1,
+                        'save_terms' => 1,
+                        'load_terms' => 1,
+                        'return_format' => 'id',
+                        'multiple' => 0,
+                    ),
+                    array(
+                        'key' => 'field_62b47c738ee29',
+                        'label' => 'State',
+                        'name' => 'state',
+                        'type' => 'taxonomy',
+                        'instructions' => '',
+                        'required' => 1,
+                        'conditional_logic' => 0,
+                        'wrapper' => array(
+                            'width' => '33',
+                            'class' => '',
+                            'id' => '',
+                        ),
+                        'taxonomy' => 'state',
+                        'field_type' => 'select',
+                        'allow_null' => 0,
+                        'add_term' => 1,
+                        'save_terms' => 1,
+                        'load_terms' => 1,
+                        'return_format' => 'id',
+                        'multiple' => 0,
                     ),
                 ),
                 'location' => array(
@@ -234,7 +323,7 @@ class ListingACF {
                 'active' => true,
                 'description' => '',
                 'show_in_rest' => 0,
-            ));
+            ));;
 
         endif;
     }

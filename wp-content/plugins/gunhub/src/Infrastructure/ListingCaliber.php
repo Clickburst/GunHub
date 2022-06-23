@@ -30,7 +30,9 @@ class ListingCaliber {
         return [
             'label' => self::LABEL,
             'rewrite' => array( 'slug' => 'caliber' ),
-            'hierarchical' => true
+            'hierarchical' => true,
+            'show_in_quick_edit' => false,
+            'meta_box_cb'      => false,
         ];
     }
 

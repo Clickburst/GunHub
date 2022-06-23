@@ -30,8 +30,9 @@ class ListingCategory {
         return [
             'label' => self::LABEL,
             'rewrite' => ['slug' => 'category'],
-            'hierarchical' => true
+            'hierarchical' => true,
+            'show_in_quick_edit' => false,
+            'meta_box_cb'      => false,
         ];
     }
-
 }

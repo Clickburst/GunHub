@@ -99,24 +99,9 @@ class Woocommerce {
         if( ! $seller->is_seller() ) {
             return;
         }
+        ListingFrontendBuilder::print_add_listing_form();
 
-        acf_form_head();
-        
-        // todo - add term fields
-        acf_form( [
-            'post_id' => 'new_post',
-            'post_title' => true,
-            'post_content' => true,
-            'field_groups' => [ 'group_628ba24e9de28' ],
-            'return' => false,
-            'submit_value' => __( 'Save Changes', 'aspirantus' ),
-            'new_post' => [
-                'post_type' => \GunHub\Infrastructure\Listing::SLUG,
-                'post_status' => 'draft'
-            ]
-        ] );
     }
-
 
     public function my_account_my_listings_endpoint() {
         if( isset( $_GET['listing'] ) ) {
@@ -130,41 +115,11 @@ class Woocommerce {
     }
 
     private function print_seller_edit_listing( $listing_Id ) {
-        acf_form_head();
-        acf_form( [
-            'post_id' => $listing_Id,
-            'post_title' => true,
-            'post_content' => true,
-            'field_groups' => [ 'group_628ba24e9de28' ],
-            'return' => false,
-            'submit_value' => __( 'Save Changes', 'aspirantus' ),
-            'new_post' => [
-                'post_type' => \GunHub\Infrastructure\Listing::SLUG,
-                'post_status' => 'draft'
-            ]
-        ] );
+        ListingFrontendBuilder::print_edit_listing_form( $listing_Id );
     }
 
     private function print_seller_listings() {
-        $args = array(
-            'author'        =>  get_current_user_id(),
-            'posts_per_page' => -1,
-            'post_type' => \GunHub\Infrastructure\Listing::SLUG
-        );
-
-        $posts = get_posts( $args );
-
-        if( empty( $posts ) ) {
-            echo 'nothing here yel';
-            return;
-        }
-
-        foreach ( $posts as $post_obj ) {
-            global $post;
-            $post = get_post($post_obj);
-            require GunHub::get_instance()->plugin_path . '/templates/loop/archive-item.php';
-        }
-        wp_reset_postdata();
+        ListingFrontendBuilder::print_seller_listings();
     }
 
     public function maybe_add_user_credits_on_complete_order( $order_id ) {
@@ -190,7 +145,6 @@ class Woocommerce {
             return;
         }
         acf_form_head();
-
         acf_form([
             'post_id' => 'user_' . get_current_user_id(), 
             'fields' => [

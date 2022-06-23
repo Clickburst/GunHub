@@ -30,7 +30,9 @@ class ListingCondition {
         return [
             'label' => self::LABEL,
             'rewrite' => array( 'slug' => 'condidtion' ),
-            'hierarchical' => true
+            'hierarchical' => true,
+            'show_in_quick_edit' => false,
+            'meta_box_cb'      => false,
         ];
     }
 
