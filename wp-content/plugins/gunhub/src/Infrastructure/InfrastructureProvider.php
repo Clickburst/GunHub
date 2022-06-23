@@ -33,6 +33,7 @@ final class InfrastructureProvider {
             ListingCaliber::class,
             ListingState::class,
             SettingsPage::class,
+            SellerRole::class,
         ];
     }
 }

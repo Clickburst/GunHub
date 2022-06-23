@@ -30,6 +30,30 @@ class ListingACF {
                 'title' => 'Listing',
                 'fields' => array(
                     array(
+                        'key' => 'field_62ac8b9de9a25',
+                        'label' => 'Featured Image',
+                        'name' => 'featured_image',
+                        'type' => 'image',
+                        'instructions' => 'used on archive page',
+                        'required' => 1,
+                        'conditional_logic' => 0,
+                        'wrapper' => array(
+                            'width' => '',
+                            'class' => '',
+                            'id' => '',
+                        ),
+                        'return_format' => 'id',
+                        'preview_size' => 'large',
+                        'library' => 'all',
+                        'min_width' => '',
+                        'min_height' => '',
+                        'min_size' => '',
+                        'max_width' => '',
+                        'max_height' => '',
+                        'max_size' => '',
+                        'mime_types' => '',
+                    ),
+                    array(
                         'key' => 'field_628ba2cdec775',
                         'label' => 'Gallery',
                         'name' => self::$gallery,
@@ -62,7 +86,7 @@ class ListingACF {
                         'name' => self::$make,
                         'type' => 'text',
                         'instructions' => '',
-                        'required' => 0,
+                        'required' => 1,
                         'conditional_logic' => 0,
                         'wrapper' => array(
                             'width' => '33',
@@ -81,7 +105,7 @@ class ListingACF {
                         'name' => self::$model,
                         'type' => 'text',
                         'instructions' => '',
-                        'required' => 0,
+                        'required' => 1,
                         'conditional_logic' => 0,
                         'wrapper' => array(
                             'width' => '33',
@@ -100,7 +124,7 @@ class ListingACF {
                         'name' => self::$action,
                         'type' => 'text',
                         'instructions' => '',
-                        'required' => 0,
+                        'required' => 1,
                         'conditional_logic' => 0,
                         'wrapper' => array(
                             'width' => '33',
@@ -119,7 +143,7 @@ class ListingACF {
                         'name' => self::$sights,
                         'type' => 'text',
                         'instructions' => '',
-                        'required' => 0,
+                        'required' => 1,
                         'conditional_logic' => 0,
                         'wrapper' => array(
                             'width' => '33',
@@ -138,7 +162,7 @@ class ListingACF {
                         'name' => self::$price,
                         'type' => 'number',
                         'instructions' => '',
-                        'required' => 0,
+                        'required' => 1,
                         'conditional_logic' => 0,
                         'wrapper' => array(
                             'width' => '33',
@@ -159,7 +183,7 @@ class ListingACF {
                         'name' => self::$serial_no,
                         'type' => 'text',
                         'instructions' => '',
-                        'required' => 0,
+                        'required' => 1,
                         'conditional_logic' => 0,
                         'wrapper' => array(
                             'width' => '33',
@@ -178,7 +202,7 @@ class ListingACF {
                         'name' => self::$license_no,
                         'type' => 'text',
                         'instructions' => '',
-                        'required' => 0,
+                        'required' => 1,
                         'conditional_logic' => 0,
                         'wrapper' => array(
                             'width' => '33',

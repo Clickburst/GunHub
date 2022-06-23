@@ -181,6 +181,7 @@
   display: flex;
   border: 1px solid #000;
   margin-bottom: 20px;
+  position: relative;
 }
 .listing-loop__img, .listing-loop__attributes, .listing-loop__body {
   width: 33.3%;
@@ -208,6 +209,12 @@
 }
 .listing-loop .listing-header__title a {
   color: #f26522;
+}
+
+.edit-listing {
+  position: absolute;
+  right: 10px;
+  top: 10px;
 }
 
 /*# sourceMappingURL=style.css.map */

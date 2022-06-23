@@ -26,7 +26,11 @@ class Seller extends ACFData {
         return (int) $this->get_user_field( SellerACF::$credits );
     }
 
-    public function is_seller():int {
+    public function is_seller():bool {
+        if( current_user_can( 'manage_options' ) ) {
+            return true;
+        }
+
         return (bool) $this->get_user_field( SellerACF::$is_seller );
     }
     

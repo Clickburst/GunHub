@@ -7,6 +7,7 @@ use GunHub\Core\Module;
 use GunHub\Infrastructure\Listing as ListingPostType;
 use GunHub\GunHub;
 use GunHub\Infrastructure\ListingCategory;
+use GunHub\Infrastructure\SellerRole;
 
 class Listing {
 
@@ -37,6 +38,7 @@ class Listing {
         add_action('init', [$this, 'schedule_cron']);
         add_action('update_to_expired_old_listings', [$this, 'update_to_expired_old_listings']);
         
+        add_filter('ajax_query_attachments_args', [$this, 'show_only_current_user_attachments']);
     }
 
     public function load_assets() {
@@ -46,11 +48,11 @@ class Listing {
             wp_enqueue_style( 'blueimp-gallery', GunHub::get_instance()->plugin_url . 'js/blueimp-gallery/css/blueimp-gallery.min.css' );
         }
 
-        // single and archive pages
-        if( is_singular(ListingPostType::SLUG ) || is_archive(ListingPostType::SLUG) ) {
+        // todo - optimize assets loading?
+//        if( is_singular(ListingPostType::SLUG ) || is_archive(ListingPostType::SLUG) ) {
             wp_enqueue_script( 'gunhub-front-main', GunHub::get_instance()->plugin_url . 'js/front-main.js', [ 'jquery' ], null, true );
             wp_enqueue_style( 'gunhub-front-main', GunHub::get_instance()->plugin_url . 'css/style.css' );
-        }
+//        }
 
         // todo - add pretty select boxes
 //        if( is_archive(ListingPostType::SLUG) ) {
@@ -152,7 +154,7 @@ class Listing {
             'fields' => 'ids',
             'date_query' => [
                 [
-                    'before' => strtotime(sprintf("-%d days", self::$expired_days))
+                    'before' => sprintf("%d day ago", self::$expired_days)
                 ]
             ]
         ) );
@@ -165,6 +167,7 @@ class Listing {
             ]);
         }
         
+        // debug email
         ob_start();
         echo 'updated listings:';
         echo '<pre>';
@@ -172,5 +175,17 @@ class Listing {
         echo '</pre>';
         $out = ob_get_clean();
         wp_mail('temka789@gmail.com', 'gunhub midnight crone', $out);
+    }
+
+    public function show_only_current_user_attachments($query) {
+        $user = wp_get_current_user();
+        $roles = ( array ) $user->roles;
+        
+        if( in_array( SellerRole::$name, $roles ) ) {
+            $query['author'] = $user->ID;
+            $query['post_parent'] = 0;
+        }
+
+        return $query;
     }
 }

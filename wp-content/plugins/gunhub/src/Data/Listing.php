@@ -63,6 +63,21 @@ class Listing extends ACFData {
         return $this->get_term_first_item_name(ListingState::SLUG);
     }
 
+    // todo - check image size
+    public function featured_image() {
+        $image_id = $this->get_field('featured_image');
+        var_dump($image_id);
+        if( $image_id ) {
+            return wp_get_attachment_image( $image_id, 'post-medium');
+        }
+        // todo - remove in future
+        return get_the_post_thumbnail( $this->id, 'post-medium' );
+    }
+
+//    public function get_my_account_edit_link() {
+//        
+//    }
+
     public function get_attributes_list(): array {
         return [
             'condition' => $this->get_condition(),
