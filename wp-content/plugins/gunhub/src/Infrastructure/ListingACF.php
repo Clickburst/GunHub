@@ -60,8 +60,8 @@ class ListingACF {
                         'label' => 'Gallery',
                         'name' => self::$gallery,
                         'type' => 'gallery',
-                        'instructions' => '',
-                        'required' => 0,
+                        'instructions' => 'used on listing detail page',
+                        'required' => 1,
                         'conditional_logic' => 0,
                         'wrapper' => array(
                             'width' => '',

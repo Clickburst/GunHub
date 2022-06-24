@@ -28,9 +28,9 @@ if(  $is_account = function_exists('is_account_page') && is_account_page() ) {
         <div class="img-wrapper">
             <?php 
             if( $is_account ) {
-                echo $listing_data->featured_image();
+                echo $listing_data->get_featured_image_html();
             } else {
-                printf( '<a href="%s">%s</a>', esc_url( $post_link ), $listing_data->featured_image() );
+                printf( '<a href="%s">%s</a>', esc_url( $post_link ), $listing_data->get_featured_image_html() );
             }
             ?>
         </div>

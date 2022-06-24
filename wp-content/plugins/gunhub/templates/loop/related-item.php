@@ -11,7 +11,7 @@ $post_link = get_permalink();
 <article class="listing-loop">
     <div class="listing-loop__img">
         <div class="img-wrapper">
-            <?php printf( '<a href="%s">%s</a>', esc_url( $post_link ), $listing_data->featured_image() ); ?>
+            <?php printf( '<a href="%s">%s</a>', esc_url( $post_link ), $listing_data->get_featured_image_html() ); ?>
         </div>
     </div>
     <div class="listing-loop__body">

@@ -65,13 +65,16 @@ class Listing extends ACFData {
     }
 
     // todo - check image size
-    public function featured_image(): string {
-        $image_id = $this->get_field(ListingACF::$featured_image);
-        if( $image_id ) {
+    public function get_featured_image_html(): string {
+        if( $image_id = $this->get_featured_image_id()) {
             return wp_get_attachment_image( $image_id, 'post-medium');
         }
         // todo - remove in future
         return get_the_post_thumbnail( $this->id, 'post-medium' );
+    }
+
+    public function get_featured_image_id() {
+        return $this->get_field(ListingACF::$featured_image);
     }
 
     public function is_editable(): bool {
