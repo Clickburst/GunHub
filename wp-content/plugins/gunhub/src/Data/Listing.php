@@ -103,7 +103,7 @@ class Listing extends ACFData {
                 <li><a href="<?php echo esc_url( $edit_url ); ?>" class="link link__blue">Edit</a></li>
             <?php } ?>
             <li><a href="<?php echo get_permalink( $this->id ) ?>" target="_blank" class="link link__blue">View</a></li>
-            <li><a href="#" data-lisging-id="<?php echo esc_attr( $this->id );?>" gh-seller-remove-listing class="link link__red">Delete</a></li>
+            <li><a href="#" data-listing-id="<?php echo esc_attr( $this->id );?>" gh-seller-remove-listing class="link link__red">Delete</a></li>
         </ul>
         <?php
         return ob_get_clean();

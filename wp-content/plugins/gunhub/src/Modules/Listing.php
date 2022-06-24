@@ -47,11 +47,15 @@ class Listing {
             wp_enqueue_style( 'blueimp-gallery', GunHub::get_instance()->plugin_url . 'js/blueimp-gallery/css/blueimp-gallery.min.css' );
         }
 
-        // todo - optimize assets loading?
-//        if( is_singular(ListingPostType::SLUG ) || is_archive(ListingPostType::SLUG) ) {
-            wp_enqueue_script( 'gunhub-front-main', GunHub::get_instance()->plugin_url . 'js/front-main.js', [ 'jquery' ], null, true );
-            wp_enqueue_style( 'gunhub-front-main', GunHub::get_instance()->plugin_url . 'css/style.css' );
-//        }
+        // todo - load assets on particular pages only?
+        wp_enqueue_script( 'gunhub-front-main', GunHub::get_instance()->plugin_url . 'js/front-main.js', [ 'jquery' ], null, true );
+
+        wp_localize_script( 'gunhub-front-main', 'gunhub', array(
+            'ajaxurl'   => admin_url( 'admin-ajax.php' ),
+            'ajaxnonce' => wp_create_nonce( 'gunhub_remove_listing' )
+        ) );
+
+        wp_enqueue_style( 'gunhub-front-main', GunHub::get_instance()->plugin_url . 'css/style.css' );
 
         // todo - add pretty select boxes
 //        if( is_archive(ListingPostType::SLUG) ) {

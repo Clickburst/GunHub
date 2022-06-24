@@ -14,6 +14,7 @@ class ListingFrontendBuilder {
     
     public function init() {
         add_action('wp_head', [$this, 'maybe_print_acf_form_head'], 1);
+        add_action('wp_ajax_remove_listing', [$this, 'remove_listing']);
     }
 
     public function maybe_print_acf_form_head() {
@@ -23,7 +24,38 @@ class ListingFrontendBuilder {
         
         if( $this->is_acf_form_head_required() ) {
             acf_form_head();
-        } 
+        }
+    }
+
+    public function remove_listing() {
+
+        check_ajax_referer( 'gunhub_remove_listing', 'nonce' );
+        
+        $listing_id = (int) $_POST['listing_id'] ?? false;
+        
+        if( ! $listing_id ) {
+            wp_send_json_error([
+                'message' => 'missing listing ID'
+            ]);
+        }
+        
+        $listing = new \GunHub\Data\Listing( $listing_id );
+
+        if( ! $listing->belongs_to_current_user() ) {
+            wp_send_json_error([
+                'message' => 'You cant delete this listing'
+            ]);
+        }
+
+        if( wp_trash_post( $listing_id ) ) {
+            wp_send_json_success([
+                'message' => 'Listing was removed'
+            ]);
+        }
+
+        wp_send_json_error([
+            'message' => 'Error occurred, please contact site admin'
+        ]);
     }
 
     private function is_acf_form_head_required() {
@@ -85,7 +117,7 @@ class ListingFrontendBuilder {
         $posts = get_posts( $args );
 
         if( empty( $posts ) ) {
-            echo 'nothing here yel';
+            echo 'nothing here yet';
             return;
         }
 

@@ -29,5 +29,36 @@
     // if( $.fn.select2 !== undefined ) {
     //   $('.select2').select2()
     // }
+    
+    $('[gh-seller-remove-listing]').click(function(e){
+        e.preventDefault();
+        const $this = $(this),
+        listingId = $this.data('listing-id')
+      
+      if( ! window.confirm( 'Are you sure you want to delete listing ?' ) ) {
+        return;
+      }
+      
+      
+      $.ajax({
+        type: 'POST',
+        url: gunhub.ajaxurl,
+        data: {
+          action: 'remove_listing',
+          listing_id: listingId,
+          nonce: gunhub.ajaxnonce
+        },
+        dataType: 'JSON',
+      }).success(function (response) {
+        if( response.success ) {
+          $this.parents('[gunhub-listing-wrapper]').remove();
+          return
+        }
+        
+        alert(response.data.message);
+      }).fail(function() {
+        alert('error occurred, please contact site administrator');
+      })
+    })
   })
 }(jQuery) )

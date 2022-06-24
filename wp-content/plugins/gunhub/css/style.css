@@ -237,4 +237,11 @@
   text-transform: capitalize;
 }
 
+.woocommerce-MyAccount-navigation-link a {
+  color: #2271b1;
+}
+.woocommerce-MyAccount-navigation-link.is-active a {
+  color: #f26522;
+}
+
 /*# sourceMappingURL=style.css.map */

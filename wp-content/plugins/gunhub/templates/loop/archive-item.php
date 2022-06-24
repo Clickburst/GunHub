@@ -14,14 +14,15 @@ $attributes = [
     'calibre' => $listing_data->get_calibre(),    
 ];
 
-$actions = $status = '';
-if(  $is_account = function_exists('is_account_page') && is_account_page() ) {
+$actions = $status = $js_selector ='';
+if( $is_account = function_exists('is_account_page') && is_account_page() ) {
     $actions = $listing_data->get_action_buttons_html(); 
     $status = $listing_data->get_pretty_status_html();
+    $js_selector = 'gunhub-listing-wrapper';
 }
 ?>
 
-<article class="listing-loop">
+<article class="listing-loop" <?php echo $js_selector; ?>>
     <?php echo $actions; ?>
     <?php echo $status; ?>
     <div class="listing-loop__img">
@@ -44,7 +45,6 @@ if(  $is_account = function_exists('is_account_page') && is_account_page() ) {
                 printf( '<h2 class="listing-header__title"><a href="%s">%s</a></h2>',  esc_url( $post_link ), esc_html( get_the_title() ) );
             }
             ?>
-        <?php ; ?>
         </div>
         <div class="listing-loop__price"><?php echo $listing_data->get_price(); ?></div>
         <div class="listing-loop__condition"><?php echo $listing_data->get_condition(); ?></div>

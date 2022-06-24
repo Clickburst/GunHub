@@ -16,3 +16,14 @@
     padding: 3px;
     text-transform: capitalize;
 }
+
+
+.woocommerce-MyAccount-navigation-link {
+    a {
+        color: $blue;
+    }
+
+    &.is-active a {
+        color: $orange;
+    }
+}
