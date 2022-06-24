@@ -13,7 +13,6 @@ class ListingFrontendBuilder {
     use Module;
     
     public function init() {
-
         add_action('wp_head', [$this, 'maybe_print_acf_form_head'], 1);
     }
 
@@ -29,9 +28,9 @@ class ListingFrontendBuilder {
 
     private function is_acf_form_head_required() {
         $out = false;
-        if( Shop::is_wc_endpoint(ListingFrontendVariables::$new_listing_url) ) {
+        if ( Shop::is_wc_endpoint( ListingFrontendVariables::$new_listing_url ) ) {
             $out = true;
-        } elseif( Shop::is_wc_endpoint(ListingFrontendVariables::$my_listings_url) &&  isset( $_GET[ListingFrontendVariables::$listgin_id_url] ) ) {
+        } elseif ( Shop::is_wc_endpoint( ListingFrontendVariables::$my_listings_url ) && isset( $_GET[ListingFrontendVariables::$listgin_id_url] ) ) {
             $out = true;
         }
         return $out;
@@ -79,6 +78,7 @@ class ListingFrontendBuilder {
         $args = array(
             'author'        =>  get_current_user_id(),
             'posts_per_page' => -1,
+            'post_status' => ['publish', 'draft', 'expired'],
             'post_type' => \GunHub\Infrastructure\Listing::SLUG
         );
 

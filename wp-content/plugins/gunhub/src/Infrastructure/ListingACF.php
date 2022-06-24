@@ -45,7 +45,7 @@ class ListingACF {
                             'id' => '',
                         ),
                         'return_format' => 'id',
-                        'preview_size' => 'large',
+                        'preview_size' => 'thumbnail',
                         'library' => 'all',
                         'min_width' => '',
                         'min_height' => '',

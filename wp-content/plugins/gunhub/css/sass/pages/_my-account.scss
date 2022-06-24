@@ -1,7 +1,18 @@
-.listing-frontent-acitons {
+.listing-actions {
+    position: absolute;
+    right: 10px;
     list-style: none;
     margin-top: 10px;
     padding-left: 10px;
+}
+
+.listing-status {
     position: absolute;
-    right: 10px;
+    left: 0;
+    top: 0;
+    background: $orange;
+    color: #fff;
+    z-index: 10;
+    padding: 3px;
+    text-transform: capitalize;
 }

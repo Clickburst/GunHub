@@ -5,6 +5,7 @@ use GunHub\Core\Module;
 use GunHub\Data\ListingFrontendVariables;
 use GunHub\Data\Order;
 use GunHub\Data\Seller;
+use GunHub\Data\Shop;
 use GunHub\Infrastructure\SellerACF;
 
 class Woocommerce {
@@ -105,12 +106,26 @@ class Woocommerce {
     public function my_account_my_listings_endpoint() {
         if( isset( $_GET[ListingFrontendVariables::$listgin_id_url] ) ) {
             $listing_id = (int) $_GET[ListingFrontendVariables::$listgin_id_url];
-            if( get_current_user_ID() === (int) get_post_field ('post_author', $listing_id) ) {
+            $listing = new \GunHub\Data\Listing( $listing_id );
+            
+            if( $listing->belongs_to_current_user() ) {
+                if( ! $listing->is_editable() ) {
+                    $this->print_not_allowed_to_edit();
+                    return;
+                }
                 $this->print_seller_edit_listing( $listing_id );
                 return;
             }
         }
         $this->print_seller_listings();
+    }
+    
+    private function print_not_allowed_to_edit() {
+        $my_listings_url = Shop::get_my_listings_url();
+        echo 'Sorry, you are not allowed to edit published listings ';
+        if( '' !== $my_listings_url ) {
+            printf('<a href="%s">%s</a', $my_listings_url, 'go back');
+        }
     }
 
     private function print_seller_edit_listing( $listing_Id ) {

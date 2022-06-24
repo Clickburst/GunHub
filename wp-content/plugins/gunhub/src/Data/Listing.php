@@ -65,7 +65,7 @@ class Listing extends ACFData {
     }
 
     // todo - check image size
-    public function featured_image() {
+    public function featured_image(): string {
         $image_id = $this->get_field(ListingACF::$featured_image);
         if( $image_id ) {
             return wp_get_attachment_image( $image_id, 'post-medium');
@@ -74,7 +74,15 @@ class Listing extends ACFData {
         return get_the_post_thumbnail( $this->id, 'post-medium' );
     }
 
-    public function get_action_buttons(): string {
+    public function is_editable(): bool {
+        return ! in_array(get_post_status( $this->id ), ['publish', 'expired']);
+    }
+
+    public function belongs_to_current_user(): bool {
+        return get_current_user_ID() === (int) get_post_field ('post_author', $this->id);
+    }
+
+    public function get_action_buttons_html(): string {
         $my_listings_url = Shop::get_my_listings_url(); 
         if( $my_listings_url === '' ) {
             return '';
@@ -87,13 +95,31 @@ class Listing extends ACFData {
         );
         ob_start();
         ?>
-        <ul class="listing-frontent-acitons">
-            <li><a href="<?php echo esc_url( $edit_url ); ?>" class="link link__blue">Edit</a></li>
+        <ul class="listing-actions">
+            <?php if( $this->is_editable() ){ ?>
+                <li><a href="<?php echo esc_url( $edit_url ); ?>" class="link link__blue">Edit</a></li>
+            <?php } ?>
             <li><a href="<?php echo get_permalink( $this->id ) ?>" target="_blank" class="link link__blue">View</a></li>
             <li><a href="#" data-lisging-id="<?php echo esc_attr( $this->id );?>" gh-seller-remove-listing class="link link__red">Delete</a></li>
         </ul>
         <?php
         return ob_get_clean();
+    }
+
+    public function get_pretty_status_html():string {
+        return sprintf('<span class="listing-status">%s</span>', $this->get_pretty_status());
+    }
+
+    private function get_pretty_status(): string {
+        $status = get_post_status($this->id);
+        return self::get_pretty_statuses()[$status] ?? $status;
+    }
+
+    private static function get_pretty_statuses():array {
+        return [
+            'publish' => 'published',
+            'draft' => 'pending review'
+        ];
     }
 
     public function get_attributes_list(): array {

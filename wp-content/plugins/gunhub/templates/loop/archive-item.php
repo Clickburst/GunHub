@@ -14,23 +14,37 @@ $attributes = [
     'calibre' => $listing_data->get_calibre(),    
 ];
 
-$listing_actions = '';
-if( function_exists('is_account_page') && is_account_page() ) {
-    $listing_actions = $listing_data->get_action_buttons(); 
+$actions = $status = '';
+if(  $is_account = function_exists('is_account_page') && is_account_page() ) {
+    $actions = $listing_data->get_action_buttons_html(); 
+    $status = $listing_data->get_pretty_status_html();
 }
-
 ?>
 
 <article class="listing-loop">
-    <?php echo $listing_actions; ?>
+    <?php echo $actions; ?>
+    <?php echo $status; ?>
     <div class="listing-loop__img">
         <div class="img-wrapper">
-            <?php printf( '<a href="%s">%s</a>', esc_url( $post_link ), $listing_data->featured_image() ); ?>
+            <?php 
+            if( $is_account ) {
+                echo $listing_data->featured_image();
+            } else {
+                printf( '<a href="%s">%s</a>', esc_url( $post_link ), $listing_data->featured_image() );
+            }
+            ?>
         </div>
     </div>
     <div class="listing-loop__body">
         <div class="listing-header">
-        <?php printf( '<h2 class="%s"><a href="%s">%s</a></h2>', 'listing-header__title', esc_url( $post_link ), esc_html( get_the_title() ) ); ?>
+            <?php
+            if( $is_account ) {
+                printf( '<h2 class="listing-header__title">%s</h2>', esc_html( get_the_title() ) );
+            } else {
+                printf( '<h2 class="listing-header__title"><a href="%s">%s</a></h2>',  esc_url( $post_link ), esc_html( get_the_title() ) );
+            }
+            ?>
+        <?php ; ?>
         </div>
         <div class="listing-loop__price"><?php echo $listing_data->get_price(); ?></div>
         <div class="listing-loop__condition"><?php echo $listing_data->get_condition(); ?></div>
