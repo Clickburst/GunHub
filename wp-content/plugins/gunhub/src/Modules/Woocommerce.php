@@ -99,8 +99,12 @@ class Woocommerce {
         if( ! $seller->is_seller() ) {
             return;
         }
-        ListingFrontendBuilder::print_add_listing_form();
-
+        
+        if( 0 === $seller->get_credits() ) {
+            echo 'You have no credits to post listing';
+        } else {
+            ListingFrontendBuilder::print_add_listing_form();
+        }
     }
 
     public function my_account_my_listings_endpoint() {

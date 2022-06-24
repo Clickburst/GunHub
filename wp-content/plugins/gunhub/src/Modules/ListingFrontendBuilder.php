@@ -4,6 +4,7 @@ namespace GunHub\Modules;
 
 use GunHub\Core\Module;
 use GunHub\Data\ListingFrontendVariables;
+use GunHub\Data\Seller;
 use GunHub\Data\Shop;
 use GunHub\GunHub;
 use GunHub\Infrastructure\ListingACF;
@@ -15,6 +16,24 @@ class ListingFrontendBuilder {
     public function init() {
         add_action('wp_head', [$this, 'maybe_print_acf_form_head'], 1);
         add_action('wp_ajax_remove_listing', [$this, 'remove_listing']);
+        
+        add_filter('acf/pre_save_post', [$this, 'decrease_seller_credits'], 1);
+    }
+
+    public function decrease_seller_credits( $post_id ) {
+        if( $post_id === 'new_post' ) {
+            $seller = new Seller(get_current_user_id());
+            if( $seller->is_seller() ) {
+                if( 0 === $seller->get_credits() ) {
+                    // todo - maybe redirect with messages 
+                    echo 'You have no credits to create post';
+                    die;
+                } else {
+                    $seller->decrease_credit();
+                }
+            }
+        }
+        return $post_id;
     }
 
     public function maybe_print_acf_form_head() {
