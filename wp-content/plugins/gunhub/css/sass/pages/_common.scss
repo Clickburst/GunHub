@@ -23,4 +23,13 @@ body:not([class*=elementor-page-]) .site-main {
         top: 50%;
         transform: translate(-50%, -50%);
     }
- }
+}
+
+.link {
+    &__blue {
+        color: $blue;
+    }
+    &__red {
+        color: $red;
+    }
+}

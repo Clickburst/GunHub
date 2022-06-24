@@ -58,6 +58,13 @@
   transform: translate(-50%, -50%);
 }
 
+.link__blue {
+  color: #2271b1;
+}
+.link__red {
+  color: #b32d2e;
+}
+
 .listing-content {
   display: flex;
 }
@@ -211,10 +218,12 @@
   color: #f26522;
 }
 
-.edit-listing {
+.listing-frontent-acitons {
+  list-style: none;
+  margin-top: 10px;
+  padding-left: 10px;
   position: absolute;
   right: 10px;
-  top: 10px;
 }
 
 /*# sourceMappingURL=style.css.map */

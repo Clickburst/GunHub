@@ -9,6 +9,7 @@ class ListingACF {
 
     use Module;
 
+    public static $group_id = 'group_628ba24e9de28';
     public static $price = 'price';
     public static $serial_no = 'serial_no';
     public static $gallery = 'gallery';
@@ -27,7 +28,7 @@ class ListingACF {
         if( function_exists('acf_add_local_field_group') ):
 
             acf_add_local_field_group(array(
-                'key' => 'group_628ba24e9de28',
+                'key' => self::$group_id,
                 'title' => 'Listing',
                 'fields' => array(
                     array(

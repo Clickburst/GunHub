@@ -19,32 +19,33 @@ $seller_data = new Seller( $author_id )
         <div class="listing-content__gallery gh-box" id="gallery-items">
             <?php $gallery = $listing_data->get_gallery();
 
-            if (!empty( $gallery )) {
-            $first_img = array_shift( $gallery );
-            ?>
-            <a href="<?php echo $first_img['url'] ?>" title="<?php echo $first_img['alt'] ?>">
-                <img src="<?php echo $first_img['sizes']['medium_large']; ?>"
-                     alt="<?php echo $first_img['alt']; ?>"/>
-            </a>
-            <?php
-            ?>
-            <div class="listing-content__gallery-list">
-                <?php
-                foreach ( $gallery as $item ) {
-                    ?>
-                    <a href="<?php echo $item['url'] ?>" title="<?php echo $item['alt'] ?>">
-                        <img src="<?php echo $item['sizes']['thumbnail']; ?>" alt="<?php echo $item['alt']; ?>"/>
-                    </a>
-                    <?php
-                }
+            if ( !empty( $gallery ) ) {
+                $first_img = array_shift( $gallery );
                 ?>
-            </div>
-        </div>
-        <?php
-        }
+                <a href="<?php echo $first_img['url'] ?>" title="<?php echo $first_img['alt'] ?>">
+                    <img src="<?php echo $first_img['sizes']['medium_large']; ?>"
+                         alt="<?php echo $first_img['alt']; ?>"/>
+                </a>
+                <?php
+                ?>
+                <div class="listing-content__gallery-list">
+                    <?php
+                    foreach ( $gallery as $item ) {
+                        ?>
+                        <a href="<?php echo $item['url'] ?>" title="<?php echo $item['alt'] ?>">
+                            <img src="<?php echo $item['sizes']['thumbnail']; ?>" alt="<?php echo $item['alt']; ?>"/>
+                        </a>
+                        <?php
+                    }
+                    ?>
+                </div>
+                <?php
+            }
             $attributes = $listing_data->get_attributes_list();
             require 'parts/listing-attribute.php';
-        ?>
+            ?>
+        </div>
+
     </div>
 
     <div class="listing-content__right">

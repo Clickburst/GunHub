@@ -3,23 +3,38 @@ namespace GunHub\Modules;
 
 
 use GunHub\Core\Module;
+use GunHub\Data\ListingFrontendVariables;
+use GunHub\Data\Shop;
 use GunHub\GunHub;
+use GunHub\Infrastructure\ListingACF;
 
 class ListingFrontendBuilder {
     
     use Module;
     
     public function init() {
-        add_action('acf/save_post', [$this, 'store_taxonomies']);
+
+        add_action('wp_head', [$this, 'maybe_print_acf_form_head'], 1);
     }
 
-    public function store_taxonomies(  $listing_id ) {
+    public function maybe_print_acf_form_head() {
+        if( ! function_exists('acf_form') ) {
+            return;
+        }
         
-        var_dump($listing_id);
-        echo '<pre>';
-        var_dump($_POST);
-        echo '</pre>';
-        die;
+        if( $this->is_acf_form_head_required() ) {
+            acf_form_head();
+        } 
+    }
+
+    private function is_acf_form_head_required() {
+        $out = false;
+        if( Shop::is_wc_endpoint(ListingFrontendVariables::$new_listing_url) ) {
+            $out = true;
+        } elseif( Shop::is_wc_endpoint(ListingFrontendVariables::$my_listings_url) &&  isset( $_GET[ListingFrontendVariables::$listgin_id_url] ) ) {
+            $out = true;
+        }
+        return $out;
     }
 
     public static function print_add_listing_form() {
@@ -41,15 +56,15 @@ class ListingFrontendBuilder {
 
     private static function get_acf_form_args( $listing_id = null ) {
         $args = [
-            'post_id' => 'new_post',
-            'post_title' => true,
-            'post_content' => true,
-            'field_groups' => [ 'group_628ba24e9de28' ],
-            'return' => false,
-            'submit_value' => __( 'Save Changes', 'aspirantus' ),
-            'new_post' => [
-                'post_type' => \GunHub\Infrastructure\Listing::SLUG,
-                'post_status' => 'draft'
+            'post_id'       => 'new_post',
+            'post_title'    => true,
+            'post_content'  => true,
+            'field_groups'  => [ ListingACF::$group_id ],
+            'return'        => Shop::get_my_listings_url(),
+            'submit_value'  => __( 'Save Changes', 'aspirantus' ),
+            'new_post'      => [
+                'post_type'     => \GunHub\Infrastructure\Listing::SLUG,
+                'post_status'   => 'draft'
             ],
         ];
 

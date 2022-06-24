@@ -12,6 +12,7 @@ return array(
     'GunHub\\Core\\Singleton' => $baseDir . '/src/Core/Singleton.php',
     'GunHub\\Data\\ACFData' => $baseDir . '/src/Data/ACFData.php',
     'GunHub\\Data\\Listing' => $baseDir . '/src/Data/Listing.php',
+    'GunHub\\Data\\ListingFrontendVariables' => $baseDir . '/src/Data/ListingFrontendVariables.php',
     'GunHub\\Data\\Order' => $baseDir . '/src/Data/Order.php',
     'GunHub\\Data\\Seller' => $baseDir . '/src/Data/Seller.php',
     'GunHub\\Data\\Settings' => $baseDir . '/src/Data/Settings.php',

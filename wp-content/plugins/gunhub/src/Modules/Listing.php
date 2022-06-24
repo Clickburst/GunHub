@@ -38,7 +38,6 @@ class Listing {
         add_action('init', [$this, 'schedule_cron']);
         add_action('update_to_expired_old_listings', [$this, 'update_to_expired_old_listings']);
         
-        add_filter('ajax_query_attachments_args', [$this, 'show_only_current_user_attachments']);
     }
 
     public function load_assets() {
@@ -177,15 +176,4 @@ class Listing {
         wp_mail('temka789@gmail.com', 'gunhub midnight crone', $out);
     }
 
-    public function show_only_current_user_attachments($query) {
-        $user = wp_get_current_user();
-        $roles = ( array ) $user->roles;
-        
-        if( in_array( SellerRole::$name, $roles ) ) {
-            $query['author'] = $user->ID;
-//            $query['post_parent'] = 0;
-        }
-
-        return $query;
-    }
 }

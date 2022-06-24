@@ -27,6 +27,7 @@ class ComposerStaticInit3a6503e85605eee61fc168dfad22f372
         'GunHub\\Core\\Singleton' => __DIR__ . '/../..' . '/src/Core/Singleton.php',
         'GunHub\\Data\\ACFData' => __DIR__ . '/../..' . '/src/Data/ACFData.php',
         'GunHub\\Data\\Listing' => __DIR__ . '/../..' . '/src/Data/Listing.php',
+        'GunHub\\Data\\ListingFrontendVariables' => __DIR__ . '/../..' . '/src/Data/ListingFrontendVariables.php',
         'GunHub\\Data\\Order' => __DIR__ . '/../..' . '/src/Data/Order.php',
         'GunHub\\Data\\Seller' => __DIR__ . '/../..' . '/src/Data/Seller.php',
         'GunHub\\Data\\Settings' => __DIR__ . '/../..' . '/src/Data/Settings.php',

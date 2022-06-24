@@ -2,9 +2,9 @@
 namespace GunHub\Modules;
 
 use GunHub\Core\Module;
+use GunHub\Data\ListingFrontendVariables;
 use GunHub\Data\Order;
 use GunHub\Data\Seller;
-use GunHub\GunHub;
 use GunHub\Infrastructure\SellerACF;
 
 class Woocommerce {
@@ -17,8 +17,6 @@ class Woocommerce {
 
     public function __construct()  {
         $this->__ModuleConstruct();
-        
-//        $this->settings = new Settings( false );
     }
 
 
@@ -27,8 +25,8 @@ class Woocommerce {
         add_filter('query_vars', [$this, 'register_my_account_seller_query_var']);
         add_filter('woocommerce_account_menu_items', [$this, 'add_my_account_listing_menu_item']);
         add_action('woocommerce_account_seller_endpoint', [$this, 'my_account_seller_details_endpoint']);
-        add_action('woocommerce_account_my-listings_endpoint', [$this, 'my_account_my_listings_endpoint']);
-        add_action('woocommerce_account_new-listing_endpoint', [$this, 'my_account_new_listing_endpoint']);
+        add_action('woocommerce_account_' . ListingFrontendVariables::$my_listings_url . '_endpoint', [$this, 'my_account_my_listings_endpoint']);
+        add_action('woocommerce_account_' . ListingFrontendVariables::$new_listing_url . '_endpoint', [$this, 'my_account_new_listing_endpoint']);
         
         add_action('woocommerce_payment_complete', [$this, 'maybe_add_user_credits_on_complete_order']);
         
@@ -37,16 +35,16 @@ class Woocommerce {
 
     public function register_my_account_seller_endpoint() {
         add_rewrite_endpoint( 'seller', EP_ROOT | EP_PAGES );
-        add_rewrite_endpoint( 'my-listings', EP_ROOT | EP_PAGES );
-        add_rewrite_endpoint( 'new-listing', EP_ROOT | EP_PAGES );
+        add_rewrite_endpoint( ListingFrontendVariables::$my_listings_url, EP_ROOT | EP_PAGES );
+        add_rewrite_endpoint( ListingFrontendVariables::$new_listing_url, EP_ROOT | EP_PAGES );
     }
 
     public function register_my_account_seller_query_var( $vars ) {
         $vars[] = 'seller';
         $seller = new Seller(get_current_user_id());
         if( $seller->is_seller() ) {
-            $vars[] = 'my-listings';
-            $vars[] = 'new-listing';
+            $vars[] = ListingFrontendVariables::$my_listings_url;
+            $vars[] = ListingFrontendVariables::$new_listing_url;
         }
         return $vars;
     }
@@ -62,8 +60,8 @@ class Woocommerce {
         
         $seller = new Seller(get_current_user_id());
         if( $seller->is_seller() ) {
-            $items['my-listings'] = 'My Listings';
-            $items['new-listing'] = 'New Listing';
+            $items[ListingFrontendVariables::$my_listings_url] = 'My Listings';
+            $items[ListingFrontendVariables::$new_listing_url] = 'New Listing';
         }
 
         if( $backup ) {
@@ -75,6 +73,7 @@ class Woocommerce {
     public function my_account_seller_details_endpoint() {
         $seller = new Seller( get_current_user_id() );
         if( ! $seller->is_seller() ) {
+            // todo - dynamic shop page url
             ?>
             <h3>If you want to post some listings - please purchase credits <a href="/shop">here</a></h3>
             <p><?php printf('Listing is displayed for %d days', Listing::$expired_days); ?></p>
@@ -104,8 +103,8 @@ class Woocommerce {
     }
 
     public function my_account_my_listings_endpoint() {
-        if( isset( $_GET['listing'] ) ) {
-            $listing_id = (int) $_GET['listing'];
+        if( isset( $_GET[ListingFrontendVariables::$listgin_id_url] ) ) {
+            $listing_id = (int) $_GET[ListingFrontendVariables::$listgin_id_url];
             if( get_current_user_ID() === (int) get_post_field ('post_author', $listing_id) ) {
                 $this->print_seller_edit_listing( $listing_id );
                 return;

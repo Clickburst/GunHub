@@ -14,15 +14,15 @@ $attributes = [
     'calibre' => $listing_data->get_calibre(),    
 ];
 
-$edit_link = '';
+$listing_actions = '';
 if( function_exists('is_account_page') && is_account_page() ) {
-    $edit_link = sprintf('<a href="%s" class="edit-listing">Edit</a>', '/my-account/my-listings/?listing=' . get_the_ID()); 
+    $listing_actions = $listing_data->get_action_buttons(); 
 }
 
 ?>
 
 <article class="listing-loop">
-    <?php echo $edit_link; ?>
+    <?php echo $listing_actions; ?>
     <div class="listing-loop__img">
         <div class="img-wrapper">
             <?php printf( '<a href="%s">%s</a>', esc_url( $post_link ), $listing_data->featured_image() ); ?>

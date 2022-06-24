@@ -31,6 +31,7 @@ final class ModulesProvider {
             SearchForm::class,
             Formidable::class,
             Woocommerce::class,
+            ListingFrontendBuilder::class,
 		];
 	}
 }

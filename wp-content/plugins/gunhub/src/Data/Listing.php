@@ -8,6 +8,7 @@ use GunHub\Infrastructure\ListingCategory;
 use GunHub\Infrastructure\ListingCondition;
 use GunHub\Infrastructure\ListingState;
 
+
 class Listing extends ACFData {
     
     private $currency = '$';
@@ -73,9 +74,27 @@ class Listing extends ACFData {
         return get_the_post_thumbnail( $this->id, 'post-medium' );
     }
 
-//    public function get_my_account_edit_link() {
-//        
-//    }
+    public function get_action_buttons(): string {
+        $my_listings_url = Shop::get_my_listings_url(); 
+        if( $my_listings_url === '' ) {
+            return '';
+        }
+
+        $edit_url = add_query_arg(
+            ListingFrontendVariables::$listgin_id_url,
+            $this->id,
+            $my_listings_url
+        );
+        ob_start();
+        ?>
+        <ul class="listing-frontent-acitons">
+            <li><a href="<?php echo esc_url( $edit_url ); ?>" class="link link__blue">Edit</a></li>
+            <li><a href="<?php echo get_permalink( $this->id ) ?>" target="_blank" class="link link__blue">View</a></li>
+            <li><a href="#" data-lisging-id="<?php echo esc_attr( $this->id );?>" gh-seller-remove-listing class="link link__red">Delete</a></li>
+        </ul>
+        <?php
+        return ob_get_clean();
+    }
 
     public function get_attributes_list(): array {
         return [
