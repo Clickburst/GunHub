@@ -26,9 +26,9 @@
     }
     
     // todo - not active yet
-    // if( $.fn.select2 !== undefined ) {
-    //   $('.select2').select2()
-    // }
+    if( $.fn.select2 !== undefined ) {
+      $('.select2').select2()
+    }
     
     $('[gh-seller-remove-listing]').click(function(e){
         e.preventDefault();

@@ -21,11 +21,8 @@ class SearchForm {
 
     public function search_form_shortcode() {
         $taxonomies = self::get_taxonomies_data_for_select_boxes();
-        
         $keyword = $_GET['s'] ?? '';
-
         $listings_root = get_post_type_archive_link(Listing::SLUG);
-
         ob_start();        
         require_once GunHub::get_instance()->plugin_path . '/templates/search-form.php'; 
         return ob_get_clean();        

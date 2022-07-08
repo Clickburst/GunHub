@@ -50,6 +50,6 @@ if( $is_account = function_exists('is_account_page') && is_account_page() ) {
         <div class="listing-loop__condition"><?php echo $listing_data->get_condition(); ?></div>
     </div>
     <div class="listing-loop__attributes">
-        <?php GunHub::get_instance()->plugin_path . '/templates/parts/listing-attribute.php' ?>
+        <?php require GunHub::get_instance()->plugin_path . '/templates/parts/listing-attribute.php' ?>
     </div>
 </article>

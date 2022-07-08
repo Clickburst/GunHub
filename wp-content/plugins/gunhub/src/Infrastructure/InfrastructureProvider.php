@@ -34,6 +34,8 @@ final class InfrastructureProvider {
             ListingState::class,
             SettingsPage::class,
             SellerRole::class,
+            ListingACF::class,
+            SellerACF::class,
         ];
     }
 }

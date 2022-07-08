@@ -20,7 +20,7 @@ class SellerACF {
         add_action( 'acf/init', [$this, 'register_fields'] );
     }
 
-    protected function register_fields() {
+    public function register_fields() {
         if( function_exists('acf_add_local_field_group') ):
 
             acf_add_local_field_group(array(

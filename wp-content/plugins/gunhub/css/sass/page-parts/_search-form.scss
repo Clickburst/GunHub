@@ -22,8 +22,23 @@
         justify-content: space-between;
         flex-basis: 33.33%;
     }
-}
 
+    button[type=submit] {
+        color: #f1f1f1;
+        background-color: rgba( 255, 105, 0, 1 );
+    }
+
+    .select2-selection, 
+    .select2-selection__rendered,
+    .select2-selection__arrow {
+        height: 40px !important;
+    }
+    .select2-selection__rendered {
+        line-height: 40px !important;
+        text-align: left;
+    }
+
+}
 
 .gf-field-wrapper {
     margin-top: 15px;

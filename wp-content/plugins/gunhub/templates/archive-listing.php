@@ -4,7 +4,7 @@ use GunHub\GunHub;
 echo do_shortcode('[listings_search_form]')
 ?>
 
-    <div class="page-content">
+    <div class="page-content gunhub-archive-body">
         <?php
         if( have_posts() ) {
             while ( have_posts() ) {

@@ -14,14 +14,16 @@ class Listing {
     use Module;
 
     // todo - update before releasing
-    static $expired_days = 10;
+    static $expired_days = 180;
     
     public function init() {
         add_action('wp_enqueue_scripts', [$this, 'load_assets']);
         
-        add_action('gunhub_single_listing_body', [$this, 'single_listing_body']);
-        add_action('gunhub_single_listing_body', [$this, 'print_related_listings'], 15);
-        add_action('gunhub_single_listing_body', [$this, 'blueimp_gallery'], 20);
+        
+        add_action('gunhub_single_listing', [$this, 'single_listing_body']);
+        add_action('gunhub_before_listing_content', [$this, 'print_breadcrumbs']);
+        add_action('gunhub_after_listing_content', [$this, 'print_related_listings']);
+        add_action('gunhub_single_listing', [$this, 'blueimp_gallery'], 20);
         
         add_action('gunhub_archive_listing', [$this, 'archive_listing']);
         
@@ -55,13 +57,16 @@ class Listing {
             'ajaxnonce' => wp_create_nonce( 'gunhub_remove_listing' )
         ) );
 
-        wp_enqueue_style( 'gunhub-front-main', GunHub::get_instance()->plugin_url . 'css/style.css' );
+        wp_enqueue_style( 'gunhub-front-main', GunHub::get_instance()->plugin_url . 'css/style.css', null, '1.0.1' );
 
         // todo - add pretty select boxes
-//        if( is_archive(ListingPostType::SLUG) ) {
-//            wp_enqueue_script( 'select2', GunHub::get_instance()->plugin_url . 'js/select2/js/select2.min.js', ['jquery'], null, true );
-//            wp_enqueue_style( 'select2', GunHub::get_instance()->plugin_url . 'js/select2/css/select2.min.css' );
-//        }
+        if( 
+            is_archive(ListingPostType::SLUG)
+            || is_front_page()
+        ) {
+            wp_enqueue_script( 'select2', GunHub::get_instance()->plugin_url . 'js/select2/js/select2.min.js', ['jquery'], null, true );
+            wp_enqueue_style( 'select2', GunHub::get_instance()->plugin_url . 'js/select2/css/select2.min.css' );
+        }
     }
 
     public function single_listing_body() {
@@ -81,6 +86,12 @@ class Listing {
             require GunHub::get_instance()->plugin_path . '/templates/parts/contact-seller-form.php';
         } else {
             require GunHub::get_instance()->plugin_path . '/templates/parts/login-to-see.php';
+        }
+    }
+
+    public function print_breadcrumbs() {
+        if (function_exists('rank_math_the_breadcrumbs')) {
+            rank_math_the_breadcrumbs();
         }
     }
 
@@ -123,7 +134,6 @@ class Listing {
         echo '</div>';
         echo '</div>';
         wp_reset_postdata();
-
     }
     
     public function archive_page_show_only_published_listings( $query ) {

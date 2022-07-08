@@ -17,8 +17,8 @@ get_header();
 
     <?php if ( apply_filters( 'hello_elementor_page_title', true ) ) : ?>
         <header class="page-header">
+            <h1 class="entry-title text-center">Listings</h1>
             <?php
-            the_archive_title( '<h1 class="entry-title">', '</h1>' );
             the_archive_description( '<p class="archive-description">', '</p>' );
             ?>
         </header>
