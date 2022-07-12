@@ -1,4 +1,4 @@
-﻿.text-center {
+.text-center {
   text-align: center; }
 
 .listing-search {
@@ -60,34 +60,38 @@
 .link__red {
   color: #b32d2e; }
 
+.single-listing {
+  margin-top: 60px;
+  margin-bottom: 60px; }
+
 .listing-content {
   display: flex; }
-  @media (max-width: 768px) {
-    .listing-content {
-      flex-direction: column; } }
   .listing-content__left {
     width: 60%;
     margin-right: 20px; }
-    @media (max-width: 768px) {
-      .listing-content__left {
-        width: 100%; } }
   .listing-content__right {
     width: calc( 40% - 20px ); }
-    @media (max-width: 768px) {
-      .listing-content__right {
-        width: 100%; } }
   .listing-content__attributes {
     list-style: none;
-    padding: 5px;
+    padding-left: 0;
     font-size: 16px; }
     .listing-content__attributes li {
       padding-top: 10px; }
+  .listing-content__gallery #links {
+    display: flex; }
+    .listing-content__gallery #links a {
+      width: 100px;
+      height: 100px;
+      margin-right: 10px;
+      position: relative;
+      overflow: hidden; }
+      .listing-content__gallery #links a img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); }
   .listing-content__gallery-list {
     padding-left: 6px; }
-    .listing-content__gallery-list a {
-      max-width: 150px;
-      width: calc( 50% - 5px );
-      display: inline-block; }
 
 .gh-section-title {
   font-size: 13px;
@@ -95,9 +99,6 @@
 
 .single-gh-listing .listing-content__left .listing-content__attributes {
   columns: 2; }
-  @media (max-width: 600px) {
-    .single-gh-listing .listing-content__left .listing-content__attributes {
-      columns: 1; } }
 .single-gh-listing .listing-header {
   border-bottom: 1px solid #000; }
 
@@ -118,66 +119,32 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 30px; }
-  .listing-header__text {
-    display: flex;
-    justify-content: end;
-    margin-top: auto;
-    margin-bottom: 20px; }
-    @media (max-width: 600px) {
-      .listing-header__text {
-        flex-direction: column; } }
   .listing-header__title {
     font-size: 35px;
     font-weight: 700;
     text-transform: uppercase;
-    color: #fff;
+    color: #f26522;
     margin-bottom: 0;
-    margin-top: 0;
-    width: calc( 100% - 150px ); }
-    @media (max-width: 600px) {
-      .listing-header__title {
-        width: 100%;
-        margin-bottom: 20px; } }
-  .listing-header__state {
-    font-size: 20px; }
+    margin-top: 0; }
   .listing-header__price {
-    color: #fff;
-    font-weight: 600;
-    width: 150px;
-    margin-top: auto;
-    font-size: 35px; }
-    @media (max-width: 600px) {
-      .listing-header__price {
-        width: 100%;
-        text-align: right; } }
-  .listing-header__with-image {
-    min-height: 400px;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: 50%; }
+    font-weight: 400;
+    font-size: 22px; }
 
 .gh-box {
+  padding: 1em;
+  border: 1px solid #000;
   margin-bottom: 30px; }
   .gh-box__with-padding {
     padding: 1em; }
-    @media (max-width: 600px) {
-      .gh-box__with-padding {
-        padding: 0; } }
 
 .gunhub-related__items {
   display: flex; }
-  @media (max-width: 600px) {
-    .gunhub-related__items {
-      flex-direction: column; } }
   .gunhub-related__items .listing-loop {
     display: block;
     margin-right: 15px;
-    width: 100%; }
+    width: calc( 33.33% - 10px ); }
     .gunhub-related__items .listing-loop:last-child {
       margin-right: 0; }
-    @media (max-width: 600px) {
-      .gunhub-related__items .listing-loop {
-        margin-right: 0; } }
     .gunhub-related__items .listing-loop__img, .gunhub-related__items .listing-loop__body {
       width: 100%; }
 

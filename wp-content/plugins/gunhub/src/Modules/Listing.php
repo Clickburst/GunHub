@@ -14,15 +14,13 @@ class Listing {
     use Module;
 
     // todo - update before releasing
-    static $expired_days = 180;
+    static $expired_days = 10;
     
     public function init() {
         add_action('wp_enqueue_scripts', [$this, 'load_assets']);
         
-        
         add_action('gunhub_single_listing', [$this, 'single_listing_body']);
-        add_action('gunhub_before_listing_content', [$this, 'print_breadcrumbs']);
-        add_action('gunhub_after_listing_content', [$this, 'print_related_listings']);
+        add_action('gunhub_single_listing', [$this, 'print_related_listings'], 15);
         add_action('gunhub_single_listing', [$this, 'blueimp_gallery'], 20);
         
         add_action('gunhub_archive_listing', [$this, 'archive_listing']);
