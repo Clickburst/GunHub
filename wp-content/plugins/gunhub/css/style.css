@@ -60,10 +60,6 @@
 .link__red {
   color: #b32d2e; }
 
-.single-listing {
-  margin-top: 60px;
-  margin-bottom: 60px; }
-
 .listing-content {
   display: flex; }
   .listing-content__left {
@@ -97,11 +93,6 @@
   font-size: 13px;
   font-weight: 700; }
 
-.single-gh-listing .listing-content__left .listing-content__attributes {
-  columns: 2; }
-.single-gh-listing .listing-header {
-  border-bottom: 1px solid #000; }
-
 .listing-attribute {
   text-transform: uppercase;
   font-size: 16px;
@@ -110,10 +101,8 @@
   line-height: 2.1;
   border-bottom: 1px solid #000;
   width: 100%; }
-  .listing-attribute__title {
-    font-weight: 700; }
   .listing-attribute__value {
-    font-size: 14px; }
+    font-weight: 700; }
 
 .listing-header {
   display: flex;
@@ -148,8 +137,17 @@
     .gunhub-related__items .listing-loop__img, .gunhub-related__items .listing-loop__body {
       width: 100%; }
 
-.gunhub-archive-body {
-  margin-bottom: 80px; }
+.single-gh-listing .site-main {
+  margin-top: 60px;
+  margin-bottom: 60px; }
+.single-gh-listing .listing-content__left .listing-content__attributes {
+  columns: 2; }
+.single-gh-listing .listing-header {
+  border-bottom: 1px solid #000; }
+
+body.post-type-archive-gh-listing .site-main {
+  margin-top: 60px;
+  margin-bottom: 60px; }
 
 .gh-listings-pagination {
   text-align: center; }
@@ -179,7 +177,10 @@
   .listing-loop .listing-header {
     margin-bottom: 10px; }
   .listing-loop .listing-attribute {
-    border-bottom: none; }
+    border: none;
+    justify-content: unset; }
+    .listing-loop .listing-attribute__value {
+      margin-left: 10px; }
   .listing-loop .listing-header__title {
     font-size: 16px; }
     .listing-loop .listing-header__title a {

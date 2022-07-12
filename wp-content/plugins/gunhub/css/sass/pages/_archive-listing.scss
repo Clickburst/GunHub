@@ -1,5 +1,8 @@
-.gunhub-archive-body {
-    margin-bottom: 80px;
+body.post-type-archive-gh-listing {
+    .site-main {
+        margin-top: 60px;
+        margin-bottom: 60px;
+    }
 }
 
 .gh-listings-pagination {
@@ -48,7 +51,11 @@
     }
 
     .listing-attribute {
-        border-bottom: none;
+        border: none;
+        justify-content: unset;
+        &__value {
+            margin-left: 10px;
+        }
     }
 
     .listing-header {
