@@ -1,6 +1,17 @@
+body{
+    &.woocommerce-account,
+    &.post-type-archive-gh-listing,
+    &.single-gh-listing {
+        .site-main {
+            margin-top: 60px;
+            margin-bottom: 60px;
+        }
+    }
+}
+
 body:not([class*=elementor-page-]) .site-main {
     @media (min-width: 1300px) {
-            max-width: 1260px;
+        max-width: 1260px;
     }
 }
 
@@ -11,8 +22,8 @@ body:not([class*=elementor-page-]) .site-main {
 
 
 .img-wrapper {
-     position: relative;
-     padding-bottom: 56%;
+    position: relative;
+    padding-bottom: 56%;
     overflow: hidden;
     img {
         position: absolute;

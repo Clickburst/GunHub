@@ -1,3 +1,9 @@
 .text-center {
     text-align: center;
 }
+
+@media (max-width: $width-mobile-l) {
+    .hide-xs {
+        display: none;
+    }
+}

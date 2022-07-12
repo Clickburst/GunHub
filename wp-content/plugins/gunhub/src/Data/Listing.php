@@ -18,7 +18,10 @@ class Listing extends ACFData {
         $price = $this->get_field( ListingACF::$price );
         
         if( '' !== $price) {
-            return $this->currency . $price;
+            
+            return function_exists( 'wc_price' )
+                ? wc_price( $price )
+                : $this->currency . $price;
         }
         
         return '';

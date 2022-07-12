@@ -1,26 +1,59 @@
 .text-center {
   text-align: center; }
 
+@media (max-width: 600px) {
+  .hide-xs {
+    display: none; } }
 .listing-search {
   margin-bottom: 50px; }
   .listing-search__form {
     display: flex; }
+    @media (max-width: 767px) {
+      .listing-search__form {
+        flex-wrap: wrap; } }
   .listing-search__select-boxes {
     display: flex;
     flex-basis: 66.66%;
     flex-wrap: wrap; }
+    @media (max-width: 767px) {
+      .listing-search__select-boxes {
+        flex-basis: 100%; } }
     .listing-search__select-boxes .gf-field-wrapper {
       flex: 0 0 50%;
       max-width: 50%;
       padding-right: 10px; }
+      @media (max-width: 767px) {
+        .listing-search__select-boxes .gf-field-wrapper:nth-child(2n) {
+          padding-right: 0; } }
+      @media (max-width: 400px) {
+        .listing-search__select-boxes .gf-field-wrapper {
+          flex: 0 0 100%;
+          max-width: 100%;
+          padding-right: 0; } }
   .listing-search__submit-and-keyword {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     flex-basis: 33.33%; }
+    @media (max-width: 767px) {
+      .listing-search__submit-and-keyword {
+        flex-basis: 100%;
+        flex-direction: row; }
+        .listing-search__submit-and-keyword .gf-field-wrapper {
+          width: 50%; } }
+    @media (max-width: 400px) {
+      .listing-search__submit-and-keyword {
+        flex-direction: column; } }
+  .listing-search input[type=text]:disabled {
+    background: #fff; }
   .listing-search button[type=submit] {
     color: #f1f1f1;
     background-color: #ff6900; }
+    @media (max-width: 768px) {
+      .listing-search button[type=submit] {
+        width: 100%; } }
+  .listing-search .select2-container {
+    width: 100% !important; }
   .listing-search .select2-selection,
   .listing-search .select2-selection__rendered,
   .listing-search .select2-selection__arrow {
@@ -31,8 +64,40 @@
 
 .gf-field-wrapper {
   margin-top: 15px; }
-  .gf-field-wrapper__align-right {
+  @media (max-width: 767px) {
+    .gf-field-wrapper__text {
+      width: calc( 100% - 180px - 10px ) !important; } }
+  .gf-field-wrapper__submit-button {
     text-align: right; }
+    @media (max-width: 767px) {
+      .gf-field-wrapper__submit-button {
+        width: 180px !important; } }
+  @media (max-width: 400px) {
+    .gf-field-wrapper {
+      width: 100% !important; } }
+
+.gunhub-hero-add-listing-button {
+  background: #23A455;
+  color: #fff !important;
+  font-weight: 600;
+  border-radius: 3px;
+  padding: 7px 10px 7px 5px; }
+
+@media (max-width: 768px) {
+  .elementor-element-36e9125f {
+    position: absolute !important;
+    right: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center; }
+    .elementor-element-36e9125f .elementor-widget-wrap {
+      padding: 0; }
+    .elementor-element-36e9125f a {
+      display: block;
+      min-width: 110px; } }
+body.woocommerce-account .site-main, body.post-type-archive-gh-listing .site-main, body.single-gh-listing .site-main {
+  margin-top: 60px;
+  margin-bottom: 60px; }
 
 @media (min-width: 1300px) {
   body:not([class*=elementor-page-]) .site-main {
@@ -137,17 +202,10 @@
     .gunhub-related__items .listing-loop__img, .gunhub-related__items .listing-loop__body {
       width: 100%; }
 
-.single-gh-listing .site-main {
-  margin-top: 60px;
-  margin-bottom: 60px; }
 .single-gh-listing .listing-content__left .listing-content__attributes {
   columns: 2; }
 .single-gh-listing .listing-header {
   border-bottom: 1px solid #000; }
-
-body.post-type-archive-gh-listing .site-main {
-  margin-top: 60px;
-  margin-bottom: 60px; }
 
 .gh-listings-pagination {
   text-align: center; }
@@ -162,9 +220,13 @@ body.post-type-archive-gh-listing .site-main {
   display: flex;
   border: 1px solid #000;
   margin-bottom: 20px;
-  position: relative; }
+  position: relative;
+  flex-wrap: wrap; }
   .listing-loop__img, .listing-loop__attributes, .listing-loop__body {
     width: 33.3%; }
+    @media (max-width: 500px) {
+      .listing-loop__img, .listing-loop__attributes, .listing-loop__body {
+        width: 100%; } }
   .listing-loop__img {
     position: relative; }
   .listing-loop__attributes, .listing-loop__body {

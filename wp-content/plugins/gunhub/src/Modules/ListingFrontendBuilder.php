@@ -23,7 +23,7 @@ class ListingFrontendBuilder {
     public function decrease_seller_credits( $post_id ) {
         if( $post_id === 'new_post' ) {
             $seller = new Seller(get_current_user_id());
-            if( $seller->is_seller() ) {
+            if( $seller->is_seller_or_admin() ) {
                 if( 0 === $seller->get_credits() ) {
                     // todo - maybe redirect with messages 
                     echo 'You have no credits to create post';
@@ -91,7 +91,6 @@ class ListingFrontendBuilder {
         if( ! function_exists('acf_form') ) {
             return;
         }
-        acf_form_head();
         acf_form( self::get_acf_form_args() );
     }
 
@@ -100,7 +99,6 @@ class ListingFrontendBuilder {
         if( ! function_exists('acf_form') ) {
             return;
         }
-        acf_form_head();
         acf_form( self::get_acf_form_args($listing_Id) );
     }
 

@@ -3,6 +3,7 @@ namespace GunHub\Data;
 
 
 use GunHub\Infrastructure\SellerACF;
+use GunHub\Infrastructure\SellerRole;
 
 class Seller extends ACFData {
 
@@ -26,12 +27,15 @@ class Seller extends ACFData {
         return (int) $this->get_user_field( SellerACF::$credits );
     }
 
-    public function is_seller():bool {
+    public function is_seller_or_admin():bool {
         if( current_user_can( 'manage_options' ) ) {
             return true;
         }
 
-        return (bool) $this->get_user_field( SellerACF::$is_seller );
+        $user = new \WP_User($this->id);
+        $roles = ( array ) $user->roles;
+
+        return in_array( SellerRole::$name, $roles );
     }
     
     public function get_data() {
@@ -65,6 +69,9 @@ class Seller extends ACFData {
     }
     
     public function update_to_seller() {
-        return $this->set_user_field( SellerACF::$is_seller, true);
+        $user = new \WP_User($this->id);
+        // todo - maybe remove 'customer' role?
+        $user->remove_role('customer');
+        return $user->add_role(SellerRole::$name);
     }
 }

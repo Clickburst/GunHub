@@ -1,31 +1,72 @@
+$field_padding: 10px;
+
 .listing-search {
     margin-bottom: 50px;
     
     &__form {
         display: flex;
+        @media (max-width: $width-tablet-s - 1) {
+            flex-wrap: wrap;
+        }
     }
     &__select-boxes {
         display: flex;
         flex-basis: 66.66%;
         flex-wrap: wrap;
+        @media (max-width: $width-tablet-s - 1) {
+            flex-basis: 100%;
+        }
 
         .gf-field-wrapper {
             flex: 0 0 50%;
             max-width: 50%;
-            padding-right: 10px;
+            padding-right: $field_padding;
 
+            &:nth-child(2n) {
+                @media (max-width: $width-tablet-s - 1) {
+                    padding-right: 0;
+                }
+            }
+
+            @media (max-width: $width-mobile-s) {
+                flex: 0 0 100%;
+                max-width: 100%;
+                padding-right: 0;
+            }
         }
     }
+    
     &__submit-and-keyword {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         flex-basis: 33.33%;
+        @media (max-width: $width-tablet-s - 1) {
+            flex-basis: 100%;
+            flex-direction: row;
+            .gf-field-wrapper {
+                width: 50%;
+            }
+        }
+        @media (max-width: $width-mobile-s) {
+            flex-direction: column;
+        }
+    }
+
+    input[type=text]:disabled {
+        background: #fff;
     }
 
     button[type=submit] {
         color: #f1f1f1;
         background-color: rgba( 255, 105, 0, 1 );
+        @media (max-width: $width-tablet-s ) {
+            width: 100%;
+        }
+    }
+
+    .select2-container {
+        width: 100% !important;
     }
 
     .select2-selection, 
@@ -42,8 +83,21 @@
 
 .gf-field-wrapper {
     margin-top: 15px;
+  
+    &__text {
+        @media (max-width: $width-tablet-s - 1) {
+            width: calc( 100% - 180px - #{$field_padding} ) !important;
+        }  
+    }
     
-    &__align-right {
+    &__submit-button {
         text-align: right;
+        @media (max-width: $width-tablet-s - 1) {
+            width: 180px !important;
+        }
+    }
+
+    @media (max-width: $width-mobile-s) {
+        width: 100% !important;
     }
 }

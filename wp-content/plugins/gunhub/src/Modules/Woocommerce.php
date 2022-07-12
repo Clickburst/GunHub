@@ -32,7 +32,18 @@ class Woocommerce {
         add_action('woocommerce_payment_complete', [$this, 'maybe_add_user_credits_on_complete_order']);
         
         add_action('gunhub_woocommerce_edit_account_after_email_address', [$this, 'print_my_account_acf_form']);
+        
+//        add_action('wp_head', [$this, 'wp_head']);
     }
+
+//    public function wp_head() {
+//        $seller_id = get_current_user_id();
+//        var_dump($seller_id);
+//        $seller = new Seller( $seller_id );
+//        var_dump($seller->is_seller_or_admin());
+//        die;
+//    }
+
 
     public function register_my_account_seller_endpoint() {
         add_rewrite_endpoint( 'seller', EP_ROOT | EP_PAGES );
@@ -43,7 +54,7 @@ class Woocommerce {
     public function register_my_account_seller_query_var( $vars ) {
         $vars[] = 'seller';
         $seller = new Seller(get_current_user_id());
-        if( $seller->is_seller() ) {
+        if( $seller->is_seller_or_admin() ) {
             $vars[] = ListingFrontendVariables::$my_listings_url;
             $vars[] = ListingFrontendVariables::$new_listing_url;
         }
@@ -60,7 +71,7 @@ class Woocommerce {
         $items['seller'] = 'Seller details';
         
         $seller = new Seller(get_current_user_id());
-        if( $seller->is_seller() ) {
+        if( $seller->is_seller_or_admin() ) {
             $items[ListingFrontendVariables::$my_listings_url] = 'My Listings';
             $items[ListingFrontendVariables::$new_listing_url] = 'New Listing';
         }
@@ -73,7 +84,7 @@ class Woocommerce {
 
     public function my_account_seller_details_endpoint() {
         $seller = new Seller( get_current_user_id() );
-        if( ! $seller->is_seller() ) {
+        if( ! $seller->is_seller_or_admin() ) {
             // todo - dynamic shop page url
             ?>
             <h3>If you want to post some listings - please purchase credits <a href="/shop">here</a></h3>
@@ -96,7 +107,8 @@ class Woocommerce {
 
         $seller = new Seller(get_current_user_id());
         
-        if( ! $seller->is_seller() ) {
+        if( ! $seller->is_seller_or_admin() ) {
+            echo 'Please contact site admin, you need to have "seller" role to create ads';
             return;
         }
         
@@ -148,11 +160,11 @@ class Woocommerce {
             return;
         }
 
-        $seller = $order->get_user_id();
-        if( $seller ) {
-            $seller = new Seller( $order->get_user_id() );
-            if( ! $seller->is_seller() ) {
-                $seller->update_to_seller();
+        $seller_id = $order->get_user_id();
+        if( $seller_id ) {
+            $seller = new Seller( $seller_id );
+            if( ! $seller->is_seller_or_admin() ) {
+                $seller->update_to_seller(); 
             }
             $seller->add_credits( $order_credits );
         }

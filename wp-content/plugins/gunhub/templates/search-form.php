@@ -20,11 +20,11 @@
             } ?>
         </div>
         <div class="listing-search__submit-and-keyword">
-            <div class="gf-field-wrapper">
+            <div class="gf-field-wrapper gf-field-wrapper__text">
                 <input type="text" name="s" placeholder="<?php _e('Keyword', 'gunhub'); ?>" value="<?php echo esc_attr( $keyword ); ?>">
             </div>
-            <div class="gf-field-wrapper gf-field-wrapper__align-right">
-                <button type="submit"><?php _e('Search', 'gunhub'); ?></button>
+            <div class="gf-field-wrapper gf-field-wrapper__submit-button">
+                <button type="submit"><?php _e('Search', 'gunhub'); ?> <span class="hide-xs"><?php _e('Listing', 'gunhub'); ?></span></button>
             </div>
         </div>
     </form>

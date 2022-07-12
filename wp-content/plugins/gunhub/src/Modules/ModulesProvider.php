@@ -32,6 +32,7 @@ final class ModulesProvider {
             Formidable::class,
             Woocommerce::class,
             ListingFrontendBuilder::class,
+            HeaderButtonShortcode::class,
 		];
 	}
 }

@@ -14,7 +14,7 @@ class SellerACF {
     public static $phone_number = 'phone_number';
     public static $licence_id = 'licence_id';
     public static $credits = 'credits';
-    public static $is_seller = 'is_seller';
+//    public static $is_seller = 'is_seller';
 
     public function init() {
         add_action( 'acf/init', [$this, 'register_fields'] );
@@ -27,25 +27,25 @@ class SellerACF {
                 'key' => 'group_6295f4d324db0',
                 'title' => 'Seller',
                 'fields' => array(
-                    array(
-                        'key' => 'field_62ac6cee40225',
-                        'label' => 'Is Seller',
-                        'name' => self::$is_seller,
-                        'type' => 'true_false',
-                        'instructions' => '',
-                        'required' => 0,
-                        'conditional_logic' => 0,
-                        'wrapper' => array(
-                            'width' => '',
-                            'class' => '',
-                            'id' => '',
-                        ),
-                        'message' => '',
-                        'default_value' => 0,
-                        'ui' => 0,
-                        'ui_on_text' => '',
-                        'ui_off_text' => '',
-                    ),
+//                    array(
+//                        'key' => 'field_62ac6cee40225',
+//                        'label' => 'Is Seller',
+//                        'name' => self::$is_seller,
+//                        'type' => 'true_false',
+//                        'instructions' => '',
+//                        'required' => 0,
+//                        'conditional_logic' => 0,
+//                        'wrapper' => array(
+//                            'width' => '',
+//                            'class' => '',
+//                            'id' => '',
+//                        ),
+//                        'message' => '',
+//                        'default_value' => 0,
+//                        'ui' => 0,
+//                        'ui_on_text' => '',
+//                        'ui_off_text' => '',
+//                    ),
                     array(
                         'key' => 'field_6295f4e3bc357',
                         'label' => 'Type',

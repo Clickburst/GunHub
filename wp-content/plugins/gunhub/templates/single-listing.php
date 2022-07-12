@@ -46,6 +46,10 @@ $seller_data = new Seller( $author_id )
             ?>
         </div>
 
+        <div class="listing-content__description gh-box gh-box__with-padding">
+            <h4 class="gh-section-title"><?php esc_html_e('Description', 'gunhub'); ?></h4>
+            <?php the_content(); ?>
+        </div>
     </div>
 
     <div class="listing-content__right">
@@ -55,11 +59,6 @@ $seller_data = new Seller( $author_id )
             $attributes = $seller_data->get_data();
             require 'parts/listing-attribute.php';
             ?>
-        </div>
-
-        <div class="listing-content__description gh-box gh-box__with-padding">
-            <h4 class="gh-section-title"><?php esc_html_e('Description', 'gunhub'); ?></h4>
-            <?php the_content(); ?>
         </div>
 
         <div class="enqueue-about-listing gh-box gh-box__with-padding">
