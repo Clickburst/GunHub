@@ -3,6 +3,7 @@ namespace GunHub\Modules;
 
 
 use GunHub\Core\Module;
+use GunHub\Data\ACFData;
 use GunHub\Data\ListingFrontendVariables;
 use GunHub\Data\Seller;
 use GunHub\Data\Shop;
@@ -91,6 +92,10 @@ class ListingFrontendBuilder {
         if( ! function_exists('acf_form') ) {
             return;
         }
+        $seller = new Seller(get_current_user_id());
+
+        echo '<h3 class="text-center">' . __('Create new listing', 'gunhub') . '</h3>';
+        echo '<h5 class="text-center">' . $seller->get_credits_left_message() . '</h5>';
         acf_form( self::get_acf_form_args() );
     }
 
@@ -99,6 +104,8 @@ class ListingFrontendBuilder {
         if( ! function_exists('acf_form') ) {
             return;
         }
+
+        echo '<h3 class="text-center">' . __('Edit ', 'gunhub') . '"' . get_the_title($listing_Id) . '"' . __('listing ', 'gunhub') . ' </h3>';
         acf_form( self::get_acf_form_args($listing_Id) );
     }
 

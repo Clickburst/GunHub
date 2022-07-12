@@ -93,9 +93,9 @@ class Woocommerce {
             return;
         }
         
-        $credits = $seller->get_credits();
+        $credits_message = $seller->get_credits_left_message();
         ?>
-        <h3><?php printf( 'You have %s left', sprintf( _n( '%s credit', '%s credits', $credits, 'gunhub' ), $credits ) ) ?></h3>
+        <h3><?php echo $credits_message; ?></h3>
         <?php
         $this->print_my_account_acf_form();
     }

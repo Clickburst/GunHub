@@ -27,6 +27,11 @@ class Seller extends ACFData {
         return (int) $this->get_user_field( SellerACF::$credits );
     }
 
+    public function get_credits_left_message():string {
+        $credits = $this->get_credits();
+        return sprintf( 'You have %s left', sprintf( _n( '%s credit', '%s credits', $credits, 'gunhub' ), $credits ) );
+    }
+
     public function is_seller_or_admin():bool {
         if( current_user_can( 'manage_options' ) ) {
             return true;

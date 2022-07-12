@@ -23,6 +23,15 @@ class Shop {
         return $my_account_url . ListingFrontendVariables::$my_listings_url;
     }
 
+    public static function get_new_listing_url() {
+        $my_account_url = self::get_my_account_url();
+        if( $my_account_url === '' ) {
+            return '';
+        }
+        
+        return $my_account_url . ListingFrontendVariables::$new_listing_url;
+    }
+
     public static function is_wc_endpoint($endpoint) {
         // Use the default WC function if the $endpoint is not provided
         if (empty($endpoint)) return is_wc_endpoint_url();
