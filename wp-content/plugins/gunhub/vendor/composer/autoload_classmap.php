@@ -32,6 +32,7 @@ return array(
     'GunHub\\Modules\\Listing' => $baseDir . '/src/Modules/Listing.php',
     'GunHub\\Modules\\ListingFrontendBuilder' => $baseDir . '/src/Modules/ListingFrontendBuilder.php',
     'GunHub\\Modules\\ModulesProvider' => $baseDir . '/src/Modules/ModulesProvider.php',
+    'GunHub\\Modules\\ReportAbuse' => $baseDir . '/src/Modules/ReportAbuse.php',
     'GunHub\\Modules\\SearchForm' => $baseDir . '/src/Modules/SearchForm.php',
     'GunHub\\Modules\\Woocommerce' => $baseDir . '/src/Modules/Woocommerce.php',
 );

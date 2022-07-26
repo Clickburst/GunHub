@@ -38,8 +38,7 @@
       if( ! window.confirm( 'Are you sure you want to delete listing ?' ) ) {
         return;
       }
-      
-      
+
       $.ajax({
         type: 'POST',
         url: gunhub.ajaxurl,
@@ -59,6 +58,13 @@
       }).fail(function() {
         alert('error occurred, please contact site administrator');
       })
+    })
+
+    $('[gunhub-hide-parent]').click(function (e) {
+      e.preventDefault()
+
+      $(this).parent().hide()
+
     })
   })
 }(jQuery) )

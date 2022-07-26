@@ -33,6 +33,7 @@ final class ModulesProvider {
             Woocommerce::class,
             ListingFrontendBuilder::class,
             HeaderButtonShortcode::class,
+            ReportAbuse::class,
 		];
 	}
 }

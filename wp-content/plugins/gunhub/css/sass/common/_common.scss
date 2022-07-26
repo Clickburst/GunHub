@@ -7,3 +7,12 @@
         display: none;
     }
 }
+
+
+.btn {
+    @include button;
+    
+    &__red {
+        @include button-red;
+    }
+}

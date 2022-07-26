@@ -45,6 +45,8 @@ $seller_data = new Seller( $author_id )
             require 'parts/listing-attribute.php';
             ?>
         </div>
+        
+        <?php do_action('gunhub_before_listing_description', get_the_ID()); ?>
 
         <div class="listing-content__description gh-box gh-box__with-padding">
             <h4 class="gh-section-title"><?php esc_html_e('Description', 'gunhub'); ?></h4>

@@ -14,7 +14,7 @@ class Listing {
     use Module;
 
     // todo - update before releasing
-    static $expired_days = 10;
+    static $expired_days = 30;
     
     public function init() {
         add_action('wp_enqueue_scripts', [$this, 'load_assets']);

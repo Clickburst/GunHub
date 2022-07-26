@@ -47,6 +47,7 @@ class ComposerStaticInit3a6503e85605eee61fc168dfad22f372
         'GunHub\\Modules\\Listing' => __DIR__ . '/../..' . '/src/Modules/Listing.php',
         'GunHub\\Modules\\ListingFrontendBuilder' => __DIR__ . '/../..' . '/src/Modules/ListingFrontendBuilder.php',
         'GunHub\\Modules\\ModulesProvider' => __DIR__ . '/../..' . '/src/Modules/ModulesProvider.php',
+        'GunHub\\Modules\\ReportAbuse' => __DIR__ . '/../..' . '/src/Modules/ReportAbuse.php',
         'GunHub\\Modules\\SearchForm' => __DIR__ . '/../..' . '/src/Modules/SearchForm.php',
         'GunHub\\Modules\\Woocommerce' => __DIR__ . '/../..' . '/src/Modules/Woocommerce.php',
     );

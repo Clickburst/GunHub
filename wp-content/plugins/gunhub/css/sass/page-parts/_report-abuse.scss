@@ -1,0 +1,26 @@
+.gunhub-report-abuse {
+    margin-bottom: 30px;
+    color: #8a6d3b;
+    background-color: #fcf8e3;
+    border-color: #f9f0c3;
+    padding: 15px;
+    border-left: 5px solid #f9efc3;
+    position: relative;
+    
+    &__close {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        display: block;
+        padding: .2em .5em;
+        cursor: pointer;
+    }
+
+    &__header {
+        font-weight: 600;
+    }
+
+    &__body {
+        font-size: 14px;
+    }
+}

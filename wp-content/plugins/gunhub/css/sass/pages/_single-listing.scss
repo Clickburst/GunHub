@@ -1,16 +1,27 @@
 .listing-content {
     display: flex;
+    flex-wrap: wrap;
     
     &__left {
         width: 60%;
         margin-right: 20px;
+        @media (max-width: $width-tablet-s) {
+            width: 100%;
+            margin-right: 0;
+        }
     }
     &__right {
         width: calc( 40% - 20px );
+        @media (max-width: $width-tablet-s) {
+            width: 100%;
+        }
     }
 
 
-    &__attributes {
+
+
+
+        &__attributes {
         list-style: none;
         padding-left: 0;
         font-size: 16px;
@@ -114,6 +125,9 @@
     .listing-content__left {
         .listing-content__attributes {
             columns: 2;
+            @media (max-width: $width-mobile-s) {
+                columns: 1;
+            }
         }
     }
     .listing-header {

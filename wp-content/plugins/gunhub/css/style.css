@@ -4,6 +4,16 @@
 @media (max-width: 600px) {
   .hide-xs {
     display: none; } }
+.btn {
+  color: #f1f1f1 !important;
+  background-color: #ff6900;
+  padding: 0.5rem 1rem;
+  border-radius: 3px;
+  text-align: center;
+  white-space: nowrap; }
+  .btn__red {
+    background-color: #d9534f; }
+
 .listing-search {
   margin-bottom: 50px; }
   .listing-search__form {
@@ -47,8 +57,12 @@
   .listing-search input[type=text]:disabled {
     background: #fff; }
   .listing-search button[type=submit] {
-    color: #f1f1f1;
-    background-color: #ff6900; }
+    color: #f1f1f1 !important;
+    background-color: #ff6900;
+    padding: 0.5rem 1rem;
+    border-radius: 3px;
+    text-align: center;
+    white-space: nowrap; }
     @media (max-width: 768px) {
       .listing-search button[type=submit] {
         width: 100%; } }
@@ -95,9 +109,34 @@
     .elementor-element-36e9125f a {
       display: block;
       min-width: 110px; } }
+.gunhub-report-abuse {
+  margin-bottom: 30px;
+  color: #8a6d3b;
+  background-color: #fcf8e3;
+  border-color: #f9f0c3;
+  padding: 15px;
+  border-left: 5px solid #f9efc3;
+  position: relative; }
+  .gunhub-report-abuse__close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    display: block;
+    padding: .2em .5em;
+    cursor: pointer; }
+  .gunhub-report-abuse__header {
+    font-weight: 600; }
+  .gunhub-report-abuse__body {
+    font-size: 14px; }
+
 body.woocommerce-account .site-main, body.post-type-archive-gh-listing .site-main, body.single-gh-listing .site-main {
   margin-top: 60px;
   margin-bottom: 60px; }
+  @media (max-width: 768px) {
+    body.woocommerce-account .site-main, body.post-type-archive-gh-listing .site-main, body.single-gh-listing .site-main {
+      max-width: 100% !important;
+      padding-left: 15px;
+      padding-right: 15px; } }
 
 @media (min-width: 1300px) {
   body:not([class*=elementor-page-]) .site-main {
@@ -126,12 +165,20 @@ body.woocommerce-account .site-main, body.post-type-archive-gh-listing .site-mai
   color: #b32d2e; }
 
 .listing-content {
-  display: flex; }
+  display: flex;
+  flex-wrap: wrap; }
   .listing-content__left {
     width: 60%;
     margin-right: 20px; }
+    @media (max-width: 768px) {
+      .listing-content__left {
+        width: 100%;
+        margin-right: 0; } }
   .listing-content__right {
     width: calc( 40% - 20px ); }
+    @media (max-width: 768px) {
+      .listing-content__right {
+        width: 100%; } }
   .listing-content__attributes {
     list-style: none;
     padding-left: 0;
@@ -204,6 +251,9 @@ body.woocommerce-account .site-main, body.post-type-archive-gh-listing .site-mai
 
 .single-gh-listing .listing-content__left .listing-content__attributes {
   columns: 2; }
+  @media (max-width: 400px) {
+    .single-gh-listing .listing-content__left .listing-content__attributes {
+      columns: 1; } }
 .single-gh-listing .listing-header {
   border-bottom: 1px solid #000; }
 
