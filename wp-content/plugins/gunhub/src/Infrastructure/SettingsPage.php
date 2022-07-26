@@ -12,6 +12,8 @@ class SettingsPage {
     public static $report_abuse_form_id = 'report_abuse_form_id';
     public static $report_abuser_header = 'report_abuse_header';
     public static $report_abuser_body = 'report_abuse_body';
+    
+    public static $place_an_ad_guest_page = 'place_an_ad_guest_page';
 
     
     public function init() {
@@ -95,7 +97,6 @@ class SettingsPage {
                         'max' => '',
                         'step' => '',
                     ),
-
                     array(
                         'key' => 'field_62cea2cd01155',
                         'label' => 'Report Abuse',
@@ -149,6 +150,44 @@ class SettingsPage {
                         'maxlength' => '',
                         'rows' => '',
                         'new_lines' => '',
+                    ),
+                    array(
+                        'key' => 'field_62dfc31673619',
+                        'label' => 'Pages',
+                        'name' => '',
+                        'type' => 'tab',
+                        'instructions' => '',
+                        'required' => 0,
+                        'conditional_logic' => 0,
+                        'wrapper' => array(
+                            'width' => '',
+                            'class' => '',
+                            'id' => '',
+                        ),
+                        'placement' => 'left',
+                        'endpoint' => 0,
+                    ),
+                    array(
+                        'key' => 'field_62dfc3207361a',
+                        'label' => 'Place An Ad Guest Page',
+                        'name' => self::$place_an_ad_guest_page,
+                        'type' => 'post_object',
+                        'instructions' => '',
+                        'required' => 0,
+                        'conditional_logic' => 0,
+                        'wrapper' => array(
+                            'width' => '',
+                            'class' => '',
+                            'id' => '',
+                        ),
+                        'post_type' => array(
+                            0 => 'page',
+                        ),
+                        'taxonomy' => '',
+                        'allow_null' => 0,
+                        'multiple' => 0,
+                        'return_format' => 'id',
+                        'ui' => 1,
                     ),
                 ),
                 'location' => array(

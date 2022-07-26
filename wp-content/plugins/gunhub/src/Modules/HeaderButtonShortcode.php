@@ -2,6 +2,7 @@
 namespace GunHub\Modules;
 
 use GunHub\Core\Module;
+use GunHub\Data\Settings;
 use GunHub\Data\Shop;
 
 class HeaderButtonShortcode {
@@ -14,9 +15,6 @@ class HeaderButtonShortcode {
 
     public function register_my_account_seller_endpoint(): string {
         
-        if( ! is_user_logged_in() ) {
-            return '';
-        }
         $url = $this->get_button_url();
         
         // todo - create dynamic setting for button url
@@ -30,7 +28,13 @@ class HeaderButtonShortcode {
         $out = Shop::get_new_listing_url();
 
         if( ! is_user_logged_in() ) {
-            $out = '/signup';
+            $setting = new Settings( false );
+
+            $page_id = $setting->get_place_an_ad_guest_page();
+            
+            $out = $page_id 
+                ? get_permalink( $page_id )
+                : '/signup';
         }
         return $out;
         // todo - navigate users to purchase credit page if he is not 'seller'?

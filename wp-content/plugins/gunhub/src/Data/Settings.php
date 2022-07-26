@@ -20,4 +20,8 @@ class Settings extends ACFData {
     public function report_abuse_body() {
         return $this->get_option_field(SettingsPage::$report_abuser_body);
     }
+    
+    public function get_place_an_ad_guest_page() {
+        return $this->get_option_field(SettingsPage::$place_an_ad_guest_page);
+    }
 }
