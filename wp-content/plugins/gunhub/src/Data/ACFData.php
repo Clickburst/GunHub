@@ -44,6 +44,10 @@ class ACFData {
     }
 
     protected function set_field($key, $value, $type='') {
+        if( ! function_exists( 'get_field' ) ) {
+            return null;
+        }
+
         return update_field( $key, $value, $this->get_acf_for( $type ) );
     }
 

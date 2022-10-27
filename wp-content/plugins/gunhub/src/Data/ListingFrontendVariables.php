@@ -3,8 +3,8 @@ namespace GunHub\Data;
 
 
 class ListingFrontendVariables  {
-    public static $my_listings_url = 'my-listings';
-    public static $new_listing_url = 'new-listing';
+    public const MY_LISTINGS_URL = 'my-listings';
+    public const NEW_LISTING_URL = 'new-listing';
     
-    public static $listgin_id_url = 'listing-id';
+    public const LISTING_ID_URL = 'listing-id';
 }

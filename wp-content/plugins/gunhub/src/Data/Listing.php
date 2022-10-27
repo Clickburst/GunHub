@@ -102,7 +102,7 @@ class Listing extends ACFData {
         }
 
         $edit_url = add_query_arg(
-            ListingFrontendVariables::$listgin_id_url,
+            ListingFrontendVariables::LISTING_ID_URL,
             $this->id,
             $my_listings_url
         );
@@ -111,8 +111,9 @@ class Listing extends ACFData {
         <ul class="listing-actions">
             <?php if( $this->is_editable() ){ ?>
                 <li><a href="<?php echo esc_url( $edit_url ); ?>" class="link link__blue">Edit</a></li>
+            <?php } else { ?>
+                <li><a href="<?php echo get_permalink( $this->id ) ?>" target="_blank" class="link link__blue">View</a></li>
             <?php } ?>
-            <li><a href="<?php echo get_permalink( $this->id ) ?>" target="_blank" class="link link__blue">View</a></li>
             <li><a href="#" data-listing-id="<?php echo esc_attr( $this->id );?>" gh-seller-remove-listing class="link link__red">Delete</a></li>
         </ul>
         <?php

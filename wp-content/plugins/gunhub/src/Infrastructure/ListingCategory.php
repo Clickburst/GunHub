@@ -9,7 +9,7 @@ class ListingCategory {
     
     use Module;
 
-    const SLUG = 'category';
+    const SLUG = 'gh-category';
     const LABEL = 'Category';
 
     public function init() {

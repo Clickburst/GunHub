@@ -9,7 +9,7 @@ class ListingCaliber {
     
     use Module;
 
-    const SLUG = 'caliber';
+    const SLUG = 'gh-caliber';
     const LABEL = 'Caliber';
 
     public function init() {

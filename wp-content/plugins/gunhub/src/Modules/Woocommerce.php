@@ -26,8 +26,8 @@ class Woocommerce {
         add_filter('query_vars', [$this, 'register_my_account_seller_query_var']);
         add_filter('woocommerce_account_menu_items', [$this, 'add_my_account_listing_menu_item']);
         add_action('woocommerce_account_seller_endpoint', [$this, 'my_account_seller_details_endpoint']);
-        add_action('woocommerce_account_' . ListingFrontendVariables::$my_listings_url . '_endpoint', [$this, 'my_account_my_listings_endpoint']);
-        add_action('woocommerce_account_' . ListingFrontendVariables::$new_listing_url . '_endpoint', [$this, 'my_account_new_listing_endpoint']);
+        add_action('woocommerce_account_' . ListingFrontendVariables::MY_LISTINGS_URL . '_endpoint', [$this, 'my_account_my_listings_endpoint']);
+        add_action('woocommerce_account_' . ListingFrontendVariables::NEW_LISTING_URL . '_endpoint', [$this, 'my_account_new_listing_endpoint']);
         
         add_action('woocommerce_payment_complete', [$this, 'maybe_add_user_credits_on_complete_order']);
         
@@ -47,16 +47,16 @@ class Woocommerce {
 
     public function register_my_account_seller_endpoint() {
         add_rewrite_endpoint( 'seller', EP_ROOT | EP_PAGES );
-        add_rewrite_endpoint( ListingFrontendVariables::$my_listings_url, EP_ROOT | EP_PAGES );
-        add_rewrite_endpoint( ListingFrontendVariables::$new_listing_url, EP_ROOT | EP_PAGES );
+        add_rewrite_endpoint( ListingFrontendVariables::MY_LISTINGS_URL, EP_ROOT | EP_PAGES );
+        add_rewrite_endpoint( ListingFrontendVariables::NEW_LISTING_URL, EP_ROOT | EP_PAGES );
     }
 
     public function register_my_account_seller_query_var( $vars ) {
         $vars[] = 'seller';
         $seller = new Seller(get_current_user_id());
         if( $seller->is_seller_or_admin() ) {
-            $vars[] = ListingFrontendVariables::$my_listings_url;
-            $vars[] = ListingFrontendVariables::$new_listing_url;
+            $vars[] = ListingFrontendVariables::MY_LISTINGS_URL;
+            $vars[] = ListingFrontendVariables::NEW_LISTING_URL;
         }
         return $vars;
     }
@@ -72,8 +72,8 @@ class Woocommerce {
         
         $seller = new Seller(get_current_user_id());
         if( $seller->is_seller_or_admin() ) {
-            $items[ListingFrontendVariables::$my_listings_url] = 'My Listings';
-            $items[ListingFrontendVariables::$new_listing_url] = 'New Listing';
+            $items[ListingFrontendVariables::MY_LISTINGS_URL] = 'My Listings';
+            $items[ListingFrontendVariables::NEW_LISTING_URL] = 'New Listing';
         }
 
         if( $backup ) {
@@ -120,8 +120,8 @@ class Woocommerce {
     }
 
     public function my_account_my_listings_endpoint() {
-        if( isset( $_GET[ListingFrontendVariables::$listgin_id_url] ) ) {
-            $listing_id = (int) $_GET[ListingFrontendVariables::$listgin_id_url];
+        if( isset( $_GET[ListingFrontendVariables::LISTING_ID_URL] ) ) {
+            $listing_id = (int) $_GET[ListingFrontendVariables::LISTING_ID_URL];
             $listing = new \GunHub\Data\Listing( $listing_id );
             
             if( $listing->belongs_to_current_user() ) {

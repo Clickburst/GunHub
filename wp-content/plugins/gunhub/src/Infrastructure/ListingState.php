@@ -9,7 +9,7 @@ class ListingState {
     
     use Module;
 
-    const SLUG = 'state';
+    const SLUG = 'gh-state';
     const LABEL = 'State';
 
     public function init() {

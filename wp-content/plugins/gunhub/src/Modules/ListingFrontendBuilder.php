@@ -80,9 +80,12 @@ class ListingFrontendBuilder {
 
     private function is_acf_form_head_required() {
         $out = false;
-        if ( Shop::is_wc_endpoint( ListingFrontendVariables::$new_listing_url ) ) {
+        if ( Shop::is_wc_endpoint( ListingFrontendVariables::NEW_LISTING_URL ) ) {
             $out = true;
-        } elseif ( Shop::is_wc_endpoint( ListingFrontendVariables::$my_listings_url ) && isset( $_GET[ListingFrontendVariables::$listgin_id_url] ) ) {
+        } elseif (
+            Shop::is_wc_endpoint( ListingFrontendVariables::MY_LISTINGS_URL ) 
+            && isset( $_GET[ListingFrontendVariables::LISTING_ID_URL] ) 
+        ) {
             $out = true;
         }
         return $out;
