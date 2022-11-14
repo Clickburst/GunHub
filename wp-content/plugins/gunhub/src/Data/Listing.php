@@ -70,7 +70,7 @@ class Listing extends ACFData {
     // todo - check image size
     public function get_featured_image_html(): string {
         if( $image_id = $this->get_featured_image_id()) {
-            return wp_get_attachment_image( $image_id, 'post-medium');
+            return wp_get_attachment_image( $image_id, 'medium');
         }
         return '';
     }

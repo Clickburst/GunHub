@@ -1,6 +1,7 @@
 <?php
 namespace GunHub\Modules;
 
+use Cassandra\Set;
 use GunHub\Core\Module;
 use GunHub\Data\Settings;
 use GunHub\Data\Shop;
@@ -14,10 +15,7 @@ class HeaderButtonShortcode {
     }
 
     public function register_my_account_seller_endpoint(): string {
-        
         $url = $this->get_button_url();
-        
-        // todo - create dynamic setting for button url
         ob_start();?>
         <a href="<?php echo esc_html( $url ); ?>" class="gunhub-hero-add-listing-button"><?php _e('Place An Ad', 'gunhub'); ?></a>
         <?php
@@ -28,7 +26,7 @@ class HeaderButtonShortcode {
         $out = Shop::get_new_listing_url();
 
         if( ! is_user_logged_in() ) {
-            $setting = new Settings( false );
+            $setting = new Settings();
 
             $page_id = $setting->get_place_an_ad_guest_page();
             

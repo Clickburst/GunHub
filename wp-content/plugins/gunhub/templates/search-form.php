@@ -7,7 +7,7 @@
                 <div class="gf-field-wrapper <?php echo $taxonomy_select_box['slug'] ?> al-js-<?php echo $taxonomy_select_box['slug'] ?> ">
                     <select class="gh-js-<?php echo $taxonomy_select_box['slug']; ?> select2"
                             name="<?php echo $taxonomy_select_box['slug'] ?>">
-                        <option value=""><?php printf( __('All %s', 'gunhub'), $taxonomy_select_box['title'] ); ?></option>
+                        <option value=""><?php echo $taxonomy_select_box['title']; ?></option>
                         <?php foreach ($taxonomy_select_box['options'] as $term_data) { ?>
                             <option value="<?php echo $term_data['slug']; ?>"
                                     data-slug="<?php echo $term_data['slug']; ?>"

@@ -11,6 +11,7 @@ class ListingCategory {
 
     const SLUG = 'gh-category';
     const LABEL = 'Category';
+    const LABEL_PLURAL = 'Categories';
 
     public function init() {
         add_action( 'init', function () {

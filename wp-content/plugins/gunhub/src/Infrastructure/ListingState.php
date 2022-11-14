@@ -11,6 +11,8 @@ class ListingState {
 
     const SLUG = 'gh-state';
     const LABEL = 'State';
+    const LABEL_PLURAL = 'States';
+
 
     public function init() {
         add_action( 'init', function () {

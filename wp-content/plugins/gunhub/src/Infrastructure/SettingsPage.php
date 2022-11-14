@@ -8,12 +8,14 @@ class SettingsPage {
 
     use Module;
 
-    public static $contact_seller_form_id = 'contact_seller_form_id';
-    public static $report_abuse_form_id = 'report_abuse_form_id';
-    public static $report_abuser_header = 'report_abuse_header';
-    public static $report_abuser_body = 'report_abuse_body';
+    public const CONTACT_SELLER_FORM_ID = 'contact_seller_form_id';
+    public const REPORT_ABUSER_FORM_ID = 'report_abuse_form_id';
+    public const REPORT_ABUSER_HEADER = 'report_abuse_header';
+    public const REPORT_ABUSER_BODY = 'report_abuse_body';
+
+    public const PLACE_AD_QUEST_PAGE = 'place_an_ad_guest_page';
     
-    public static $place_an_ad_guest_page = 'place_an_ad_guest_page';
+    public const MAIN_PRODUCT_ID = 'main_product_id';
 
     
     public function init() {
@@ -58,7 +60,7 @@ class SettingsPage {
                     array(
                         'key' => 'field_62a0841ee73e0',
                         'label' => 'Contact Seller Form ID',
-                        'name' => self::$contact_seller_form_id,
+                        'name' => self::CONTACT_SELLER_FORM_ID,
                         'type' => 'number',
                         'instructions' => '',
                         'required' => 0,
@@ -79,7 +81,7 @@ class SettingsPage {
                     array(
                         'key' => 'field_62d036f9a8dbb',
                         'label' => 'Report Abuse Form ID',
-                        'name' => self::$report_abuse_form_id,
+                        'name' => self::REPORT_ABUSER_FORM_ID,
                         'type' => 'number',
                         'instructions' => '',
                         'required' => 0,
@@ -116,7 +118,7 @@ class SettingsPage {
                     array(
                         'key' => 'field_62cea2d701156',
                         'label' => 'Report Abuse Header',
-                        'name' => self::$report_abuser_header,
+                        'name' => self::REPORT_ABUSER_HEADER,
                         'type' => 'text',
                         'instructions' => '',
                         'required' => 0,
@@ -135,7 +137,7 @@ class SettingsPage {
                     array(
                         'key' => 'field_62cea2e101157',
                         'label' => 'Report Abuse Body',
-                        'name' => self::$report_abuser_body,
+                        'name' => self::REPORT_ABUSER_BODY,
                         'type' => 'textarea',
                         'instructions' => '',
                         'required' => 0,
@@ -170,7 +172,7 @@ class SettingsPage {
                     array(
                         'key' => 'field_62dfc3207361a',
                         'label' => 'Place An Ad Guest Page',
-                        'name' => self::$place_an_ad_guest_page,
+                        'name' => self::PLACE_AD_QUEST_PAGE,
                         'type' => 'post_object',
                         'instructions' => '',
                         'required' => 0,
@@ -182,6 +184,44 @@ class SettingsPage {
                         ),
                         'post_type' => array(
                             0 => 'page',
+                        ),
+                        'taxonomy' => '',
+                        'allow_null' => 0,
+                        'multiple' => 0,
+                        'return_format' => 'id',
+                        'ui' => 1,
+                    ),
+                    array(
+                        'key' => 'field_62dfc31673620',
+                        'label' => 'Products',
+                        'name' => '',
+                        'type' => 'tab',
+                        'instructions' => '',
+                        'required' => 0,
+                        'conditional_logic' => 0,
+                        'wrapper' => array(
+                            'width' => '',
+                            'class' => '',
+                            'id' => '',
+                        ),
+                        'placement' => 'left',
+                        'endpoint' => 0,
+                    ),
+                    array(
+                        'key' => 'field_62dfc3207362a',
+                        'label' => 'Main Product ID',
+                        'name' => self::MAIN_PRODUCT_ID,
+                        'type' => 'post_object',
+                        'instructions' => '',
+                        'required' => 0,
+                        'conditional_logic' => 0,
+                        'wrapper' => array(
+                            'width' => '',
+                            'class' => '',
+                            'id' => '',
+                        ),
+                        'post_type' => array(
+                            0 => 'product',
                         ),
                         'taxonomy' => '',
                         'allow_null' => 0,

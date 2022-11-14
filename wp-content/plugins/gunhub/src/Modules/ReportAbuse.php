@@ -16,11 +16,11 @@ class ReportAbuse {
     public function __construct()  {
         $this->__ModuleConstruct();
 
-        $this->settings = new Settings( false );
+        $this->settings = new Settings();
     }
 
     public function init() {
-        add_action('gunhub_before_listing_description', [$this, 'print_message']);
+        add_action('gunhub_after_listing_description', [$this, 'print_message']);
         add_action('gunhub_before_listing_description', [$this, 'print_modal']);
         add_action('wp_enqueue_scripts', [$this, 'load_assets']);
     }

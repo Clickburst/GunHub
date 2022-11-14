@@ -320,4 +320,13 @@ body.woocommerce-account .site-main, body.post-type-archive-gh-listing .site-mai
 .woocommerce-MyAccount-navigation-link.is-active a {
   color: #f26522; }
 
+form.woocommerce-checkout div.acf-field {
+  padding-left: 0;
+  padding-right: 0; }
+  form.woocommerce-checkout div.acf-field label {
+    color: #333;
+    font-weight: normal; }
+  form.woocommerce-checkout div.acf-field input[type='text'] {
+    padding: .5rem 1rem !important; }
+
 /*# sourceMappingURL=style.css.map */

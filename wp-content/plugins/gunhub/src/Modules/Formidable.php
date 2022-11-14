@@ -26,14 +26,11 @@ class Formidable {
     private static $hidden_meta_field = 'gh-meta';
     
     private $settings;
-    
-    // todo - make it dynamic with ACF settings page
-    private static $form_id = '2';
 
     public function __construct()  {
         $this->__ModuleConstruct();
         
-        $this->settings = new Settings( false );
+        $this->settings = new Settings();
     }
     
     public function init() {

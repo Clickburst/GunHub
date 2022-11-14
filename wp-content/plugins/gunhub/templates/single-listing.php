@@ -52,6 +52,8 @@ $seller_data = new Seller( $author_id )
             <h4 class="gh-section-title"><?php esc_html_e('Description', 'gunhub'); ?></h4>
             <?php the_content(); ?>
         </div>
+        <?php do_action('gunhub_after_listing_description', get_the_ID()); ?>
+
     </div>
 
     <div class="listing-content__right">

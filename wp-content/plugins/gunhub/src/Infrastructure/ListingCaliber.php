@@ -11,6 +11,8 @@ class ListingCaliber {
 
     const SLUG = 'gh-caliber';
     const LABEL = 'Caliber';
+    const LABEL_PLURAL = 'Calibers';
+
 
     public function init() {
         add_action( 'init', function () {

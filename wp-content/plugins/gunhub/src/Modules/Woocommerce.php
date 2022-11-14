@@ -8,13 +8,18 @@ use GunHub\Data\Seller;
 use GunHub\Data\Shop;
 use GunHub\Infrastructure\SellerACF;
 
+
+/**
+ * todo - style acf form on checkout
+ */
 class Woocommerce {
 
     use Module {
         Module::__construct as private __ModuleConstruct;
     }
     
-    private static $listing_id_field_name = 'gh-listing-id';
+//    private static $listing_id_field_name = 'gh-listing-id';
+    private const THANK_YOU_PAGE_COUNTER_REDIRECT = 4;
 
     public function __construct()  {
         $this->__ModuleConstruct();
@@ -33,7 +38,16 @@ class Woocommerce {
         
         add_action('gunhub_woocommerce_edit_account_after_email_address', [$this, 'print_my_account_acf_form']);
         
-//        add_action('wp_head', [$this, 'wp_head']);
+        add_filter('woocommerce_product_get_category_ids', [$this, 'hide_uncategorized_category_single_product']);
+
+        // todo - do we need order additional field?
+//        add_filter( 'woocommerce_enable_order_notes_field', '__return_false' );
+
+
+        add_action('woocommerce_after_checkout_billing_form', [$this, 'print_seller_form_on_checkout_page']);
+        add_action('woocommerce_after_checkout_validation', [$this, 'seller_acf_form_validation_checkout_page'], 10, 2);
+        add_action('user_register', [$this, 'save_seller_acf_data_from_checkout_page']);
+        add_action('woocommerce_before_thankyou', [$this, 'print_redirect_js']);
     }
 
 //    public function wp_head() {
@@ -113,7 +127,7 @@ class Woocommerce {
         }
         
         if( 0 === $seller->get_credits() ) {
-            echo 'You have no credits to post listing';
+            echo 'You have no credits to create new listing';
         } else {
             ListingFrontendBuilder::print_add_listing_form();
         }
@@ -171,20 +185,144 @@ class Woocommerce {
     }
 
     public function print_my_account_acf_form() {
+        self::print_seller_details_form();
+    }
+
+    /**
+     * todo - maybe add check if its listing credit product, currently listing credit is the only product we have
+     * @return void
+     */
+    public function print_seller_form_on_checkout_page() {
+        if( 
+            self::is_one_page_checkout()
+            && ! is_user_logged_in()
+        ) {
+            self::print_seller_details_form(true);
+            self::print_acf_fix_browser_reload_alert();
+        }
+    }
+
+    private static function print_seller_details_form( $on_checkout = false ) {
         if( ! function_exists('acf_form') ) {
             return;
         }
-        acf_form_head();
-        acf_form([
-            'post_id' => 'user_' . get_current_user_id(), 
+        $args = [
+            'post_id' => 'user_' . get_current_user_id(),
             'fields' => [
-                SellerACF::$phone_number,
-                SellerACF::$licence_id,
-                SellerACF::$location,
-                SellerACF::$type,
+                SellerACF::LICENCE_ID,
             ],
             'return' => false,
             'submit_value' => __('Save Changes', 'aspirantus')
-        ]);
+        ];
+        
+        if( $on_checkout ) {
+            $args['form'] = false;
+        }
+        
+        acf_form_head();
+        acf_form($args);
+    }
+
+    /**
+     * Fix for woocommerce checkout page. 
+     * When woocommerce tries to reload the page after successful ajax call - alert 'Changes that you made may not be saved.' appears
+     * @return void
+     */
+    private function print_acf_fix_browser_reload_alert() {
+        ?>
+        <script>
+          (function($) {
+            $(document).ready(function() {
+              if( acf !== undefined ) {
+                acf.unload.active = false
+              }
+            });
+          })(jQuery);
+        </script>
+        <?php
+    }
+
+    public function hide_uncategorized_category_single_product( $category_ids ) {
+        if( ! is_product() ) {
+            return $category_ids;
+        }
+
+        foreach ( $category_ids as $key => $category_id ) {
+            if( $category_id === (int) get_option( 'default_product_cat' ) ) {
+                unset( $category_ids[$key] );
+            }
+        }
+        
+        return $category_ids;
+    }
+    
+    public static function is_one_page_checkout() {
+        return is_product() && is_checkout();
+    }
+
+    public function seller_acf_form_validation_checkout_page($data, $errors) {
+        if( is_user_logged_in() ) {
+            return;
+        }
+
+        // Bail early if $_POST['acf'] doesn't exists
+        if ( !acf_maybe_get_POST( 'acf' ) ) {
+            return;
+        }
+
+        acf_setup_meta($_POST['acf'], 'form_validation', true);
+
+        if( ! get_field(SellerACF::LICENCE_ID) ) {
+            $errors->add( 'seller_phone', __( '<strong>Missing</strong> seller licence id.', 'woocommerce' ) );
+        }
+
+        acf_reset_meta('form_validation');
+    }
+
+    public function print_redirect_js( $order_id ) {
+        $order = wc_get_order( $order_id );
+        if( $order->has_status( 'failed' ) ) {
+            return;
+        }
+        
+        $new_listing_url = Shop::get_new_listing_url();
+        if( $new_listing_url === '' ) {
+            return;
+        }
+        ?>
+        <h3 class="text-center">You will be redirected to create listing page in <span gunhub-counter><?php echo self::THANK_YOU_PAGE_COUNTER_REDIRECT + 1; ?></span>s <button gunub-stop-redirect-counter><?php _e('Stop', 'gunhub'); ?></button></h3>
+        
+        <script>
+
+          (function($) {
+            $(document).ready(function() {
+              let timeLeft = <?php echo self::THANK_YOU_PAGE_COUNTER_REDIRECT; ?>;
+              const downloadTimer = setInterval(function(){
+                if(timeLeft <= 0){
+                  window.location.replace("<?php echo esc_url( $new_listing_url ); ?>");
+                  clearInterval(downloadTimer);
+                }
+
+                $('[gunhub-counter]').text(timeLeft)
+                timeLeft -= 1;
+              }, 1000);
+
+              $('[gunub-stop-redirect-counter]').click(function (e){
+                  e.preventDefault();
+                clearInterval(downloadTimer);
+              })
+
+            });
+          })(jQuery)
+          
+          
+        </script>
+        <?php
+    }
+
+    // todo - new order doesn't create account now - make it create account, test acf save field, polish acf validation
+    public function save_seller_acf_data_from_checkout_page( $user_id ) {
+        $licence_id = $_POST['acf'][SellerACF::LICENCE_ID_F_ID];
+        update_field(SellerACF::LICENCE_ID_F_ID, $licence_id, 'user_' . $user_id);
     }
 }

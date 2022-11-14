@@ -6,7 +6,7 @@ class ACFData {
 
     public $id;
 
-    public function __construct( $id ) {
+    public function __construct( $id = false ) {
         $this->id = $id;
     }
 
@@ -24,6 +24,10 @@ class ACFData {
     
     protected function get_option_field( $key ) {
         return $this->get_field($key, 'option');
+    }
+
+    public function get_ID() {
+        return $this->id;
     }
     
     protected function get_term_first_item_name( $term ) {

@@ -32,25 +32,25 @@ class SearchForm {
         return [
             [
                 'slug' => ListingCategory::SLUG,
-                'label' => ListingCategory::LABEL,
+                'label' => ListingCategory::LABEL_PLURAL,
             ],
             [
                 'slug' => ListingCaliber::SLUG,
-                'label' => ListingCaliber::LABEL,
+                'label' => ListingCaliber::LABEL_PLURAL,
             ],
             [
                 'slug' => ListingCondition::SLUG,
-                'label' => ListingCondition::LABEL,
+                'label' => ListingCondition::LABEL_PLURAL,
             ],
             [
                 'slug' => ListingState::SLUG,
-                'label' => ListingState::LABEL,
+                'label' => ListingState::LABEL_PLURAL,
             ],
         ];
     }
 
     private static function get_taxonomies_data_for_select_boxes() {
-        $out = [];
+        $select_boxes = [];
         foreach ( self::get_taxonomies() as $term_data ) {
             $terms = get_terms($term_data['slug'], ['hide_empty' => false] );
             $options = [];
@@ -66,13 +66,24 @@ class SearchForm {
             }
 
             if( ! empty( $options ) ) {
-                $out[] = [
+                $select_boxes[] = [
                     'slug'      => $term_data['slug'],
-                    'title'     => ucfirst($term_data['label']),
+                    'title'     => self::get_pretty_title( $term_data['label'] ),
                     'options'   => $options,
                 ];
             }
         }
-        return $out;
+        return $select_boxes;
+    }
+
+    private static function get_pretty_title( $name ): string {
+        $prefix = $name === ListingCategory::LABEL_PLURAL
+            ? __( 'All', 'gunhub' )
+            : __( 'Any', 'gunhub' );
+
+        $prefix .= ' ';
+        
+        return $prefix . ucfirst( $name );
+            
     }
 }

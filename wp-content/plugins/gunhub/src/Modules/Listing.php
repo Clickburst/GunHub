@@ -14,7 +14,7 @@ class Listing {
     use Module;
 
     // todo - update before releasing
-    static $expired_days = 30;
+    static $expired_days = 180;
     
     public function init() {
         add_action('wp_enqueue_scripts', [$this, 'load_assets']);
@@ -30,9 +30,6 @@ class Listing {
         add_filter( 'wpcf7_before_send_mail', [$this, 'add_gun_2seller_email_to_recipient']);
         
         add_filter('pre_get_posts', [$this, 'archive_page_show_only_published_listings']);
-        
-        // todo - single listing page - add redirect to root page for expired listings?
-//        add_action('template_redirect', [$this, 'redirect to archive root'])
         
         // update listings to expired each midnight 
         add_action('init', [$this, 'schedule_cron']);
@@ -57,7 +54,6 @@ class Listing {
 
         wp_enqueue_style( 'gunhub-front-main', GunHub::get_instance()->plugin_url . 'css/style.css', null, '1.0.1' );
 
-        // todo - add pretty select boxes
         if( 
             is_archive(ListingPostType::SLUG)
             || is_front_page()

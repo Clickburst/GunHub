@@ -8,23 +8,26 @@ use GunHub\Infrastructure\SellerRole;
 class Seller extends ACFData {
 
     public function get_type() {
-        return $this->get_user_field(SellerACF::$type);
+        return $this->get_user_field(SellerACF::TYPE);
     }
 
     public function get_licence_id() {
-        return $this->get_user_field(SellerACF::$licence_id);
+        return $this->get_user_field(SellerACF::LICENCE_ID);
     }
 
     public function get_location() {
-        return $this->get_user_field(SellerACF::$location);
+        return $this->get_user_field(SellerACF::LOCATION);
     }
 
+    // todo - update it to be customer billing email
     public function get_phone_number() {
-        return $this->get_user_field( SellerACF::$phone_number );
+        return get_user_meta( $this->get_ID(), 'billing_phone', true );
     }
     
+    // todo - maybe get seller state as a customer billing state?
+    
     public function get_credits():int {
-        return (int) $this->get_user_field( SellerACF::$credits );
+        return (int) $this->get_user_field( SellerACF::CREDITS );
     }
 
     public function get_credits_left_message():string {
@@ -64,18 +67,17 @@ class Seller extends ACFData {
     public function add_credits( $credits_to_add ) {
         $current_amount = $this->get_credits();
         $updated_amount = $current_amount + (int)$credits_to_add;
-        return $this->set_user_field( SellerACF::$credits, $updated_amount);
+        return $this->set_user_field( SellerACF::CREDITS, $updated_amount);
     }
 
     public function decrease_credit( $credits_to_remove = 1 ) {
-        $current_amount = $this->get_user_field( SellerACF::$credits );
+        $current_amount = $this->get_user_field( SellerACF::CREDITS );
         $updated_amount = $current_amount - (int)$credits_to_remove;
-        return $this->set_user_field( SellerACF::$credits, $updated_amount);
+        return $this->set_user_field( SellerACF::CREDITS, $updated_amount);
     }
     
     public function update_to_seller() {
         $user = new \WP_User($this->id);
-        // todo - maybe remove 'customer' role?
         $user->remove_role('customer');
         return $user->add_role(SellerRole::$name);
     }

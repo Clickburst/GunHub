@@ -9,11 +9,16 @@ class SellerACF {
 
     use Module;
 
-    public static $location = 'location';
-    public static $type = 'type';
-    public static $phone_number = 'phone_number';
-    public static $licence_id = 'licence_id';
-    public static $credits = 'credits';
+    public const LOCATION = 'location';
+    public const LOCATION_F_ID = 'field_6295f4f5bc358';
+    public const TYPE = 'type';
+    public const TYPE_F_ID = 'field_6295f4e3bc357';
+    
+    public const LICENCE_ID = 'licence_id';
+    public const LICENCE_ID_F_ID = 'field_6299cd48bbfd1';
+    
+    public const CREDITS = 'credits';
+
 //    public static $is_seller = 'is_seller';
 
     public function init() {
@@ -47,9 +52,9 @@ class SellerACF {
 //                        'ui_off_text' => '',
 //                    ),
                     array(
-                        'key' => 'field_6295f4e3bc357',
+                        'key' => self::TYPE_F_ID,
                         'label' => 'Type',
-                        'name' => self::$type,
+                        'name' => self::TYPE,
                         'type' => 'select',
                         'instructions' => '',
                         'required' => 0,
@@ -72,9 +77,9 @@ class SellerACF {
                         'placeholder' => '',
                     ),
                     array(
-                        'key' => 'field_6295f4f5bc358',
+                        'key' => self::LOCATION_F_ID,
                         'label' => 'Location',
-                        'name' => self::$location,
+                        'name' => self::LOCATION,
                         'type' => 'text',
                         'instructions' => '',
                         'required' => 0,
@@ -91,33 +96,12 @@ class SellerACF {
                         'maxlength' => '',
                     ),
                     array(
-                        'key' => 'field_62960e7b90786',
-                        'label' => 'Phone Number',
-                        'name' => self::$phone_number,
-                        'type' => 'number',
-                        'instructions' => '',
-                        'required' => 0,
-                        'conditional_logic' => 0,
-                        'wrapper' => array(
-                            'width' => '',
-                            'class' => '',
-                            'id' => '',
-                        ),
-                        'default_value' => '',
-                        'placeholder' => '',
-                        'prepend' => '',
-                        'append' => '',
-                        'min' => '',
-                        'max' => '',
-                        'step' => '',
-                    ),
-                    array(
-                        'key' => 'field_6299cd48bbfd1',
+                        'key' => self::LICENCE_ID_F_ID,
                         'label' => 'Licence ID',
-                        'name' => self::$licence_id,
+                        'name' => self::LICENCE_ID,
                         'type' => 'text',
                         'instructions' => '',
-                        'required' => 0,
+                        'required' => 1,
                         'conditional_logic' => 0,
                         'wrapper' => array(
                             'width' => '',
@@ -133,7 +117,7 @@ class SellerACF {
                     array(
                         'key' => 'field_62a89addd6ca4',
                         'label' => 'Credits',
-                        'name' => self::$credits,
+                        'name' => self::CREDITS,
                         'type' => 'number',
                         'instructions' => '',
                         'required' => 0,
