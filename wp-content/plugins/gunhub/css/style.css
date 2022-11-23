@@ -4,6 +4,12 @@
 @media (max-width: 600px) {
   .hide-xs {
     display: none; } }
+.brand-color {
+  color: #BE5D32; }
+
+.underline {
+  text-decoration: underline; }
+
 .btn {
   color: #f1f1f1 !important;
   background-color: #ff6900;
@@ -163,6 +169,17 @@ body.woocommerce-account .site-main, body.post-type-archive-gh-listing .site-mai
   color: #2271b1; }
 .link__red {
   color: #b32d2e; }
+
+.gunhub-stop-counter-thank-you-page {
+  border: none;
+  color: black;
+  text-decoration: underline;
+  margin-left: 0;
+  text-transform: lowercase; }
+  .gunhub-stop-counter-thank-you-page:hover, .gunhub-stop-counter-thank-you-page:focus {
+    background-color: transparent;
+    color: black;
+    outline: none; }
 
 .listing-content {
   display: flex;

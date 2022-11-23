@@ -50,3 +50,17 @@ body:not([class*=elementor-page-]) .site-main {
         color: $red;
     }
 }
+// todo - move to 'thank you page' styles file 
+.gunhub-stop-counter-thank-you-page {
+    border: none;
+    color: black;
+    text-decoration: underline;
+    margin-left: 0;
+    text-transform: lowercase;
+    &:hover,
+    &:focus {
+        background-color: transparent;
+        color: black;
+        outline: none;
+    }
+}

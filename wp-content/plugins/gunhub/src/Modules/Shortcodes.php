@@ -1,17 +1,18 @@
 <?php
 namespace GunHub\Modules;
 
-use Cassandra\Set;
 use GunHub\Core\Module;
 use GunHub\Data\Settings;
 use GunHub\Data\Shop;
 
-class HeaderButtonShortcode {
+class Shortcodes {
 
     use Module;
 
     public function init() {
         add_shortcode('gunhub_add_listing_header_button', [$this, 'register_my_account_seller_endpoint']);
+        
+        add_shortcode('gunhub_add_listing_email_link', [$this, 'add_listing_email_link_shortcode']);
     }
 
     public function register_my_account_seller_endpoint(): string {
@@ -41,4 +42,14 @@ class HeaderButtonShortcode {
 //            
 //        }
     }
+
+    public function add_listing_email_link_shortcode() {
+        $new_listing_url = Shop::get_new_listing_url();
+        if( ! $new_listing_url ) {
+            return '';
+        }
+        return sprintf('<p><a href="%s" target="_blank">%s</a></p>', $new_listing_url, __('Add New Listing', 'gunhub'));
+    }
 }
+
+

@@ -48,6 +48,10 @@ class Woocommerce {
         add_action('woocommerce_after_checkout_validation', [$this, 'seller_acf_form_validation_checkout_page'], 10, 2);
         add_action('user_register', [$this, 'save_seller_acf_data_from_checkout_page']);
         add_action('woocommerce_before_thankyou', [$this, 'print_redirect_js']);
+        
+        add_action('woocommerce_email_additional_content_customer_new_account', [$this, 'print_redirect_js']);
+        
+        add_action('woocommerce_email_order_details', [$this, 'print_add_listing_page_link_processing_order_email'], 10, 4);
     }
 
 //    public function wp_head() {
@@ -281,7 +285,10 @@ class Woocommerce {
 
     public function print_redirect_js( $order_id ) {
         $order = wc_get_order( $order_id );
-        if( $order->has_status( 'failed' ) ) {
+        if (
+            ! $order
+            || $order->has_status( 'failed' ) 
+        ) {
             return;
         }
         
@@ -290,7 +297,7 @@ class Woocommerce {
             return;
         }
         ?>
-        <h3 class="text-center">You will be redirected to create listing page in <span gunhub-counter><?php echo self::THANK_YOU_PAGE_COUNTER_REDIRECT + 1; ?></span>s <button gunub-stop-redirect-counter><?php _e('Stop', 'gunhub'); ?></button></h3>
+        <h3 class="text-center brand-color underline"><a href="<?php echo esc_url($new_listing_url); ?>">You will be redirected to create listing page in <span gunhub-counter><?php echo self::THANK_YOU_PAGE_COUNTER_REDIRECT + 1; ?></span>s</a> <button gunub-stop-redirect-counter class="gunhub-stop-counter-thank-you-page"><?php _e('Stop', 'gunhub'); ?></button></h3>
         
         <script>
 
@@ -324,5 +331,15 @@ class Woocommerce {
     public function save_seller_acf_data_from_checkout_page( $user_id ) {
         $licence_id = $_POST['acf'][SellerACF::LICENCE_ID_F_ID];
         update_field(SellerACF::LICENCE_ID_F_ID, $licence_id, 'user_' . $user_id);
+    }
+
+    public function print_add_listing_page_link_processing_order_email($order, $sent_to_admin, $plain_text, $email) {
+        if( $email->id === 'customer_processing_order' ) {
+            $new_listing_url = Shop::get_new_listing_url();
+            if( ! $new_listing_url ) {
+                return '';
+            }
+            printf('<p><a href="%s" target="_blank">%s</a></p>', $new_listing_url, __('Create New Listing', 'gunhub'));
+        }
     }
 }
