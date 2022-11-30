@@ -14,7 +14,7 @@ class Listing {
     use Module;
 
     // todo - update before releasing
-    static $expired_days = 180;
+    public const EXPIRED_DAYS = 180;
     
     public function init() {
         add_action('wp_enqueue_scripts', [$this, 'load_assets']);
@@ -73,6 +73,10 @@ class Listing {
 
     public function archive_listing() {
         require_once GunHub::get_instance()->plugin_path . '/templates/archive-listing.php';
+    }
+    
+    public static function archive_listing_item() {
+        require GunHub::get_instance()->plugin_path . '/templates/loop/archive-item.php';
     }
 
     public function print_contact_seller_form() {
@@ -161,7 +165,7 @@ class Listing {
             'fields' => 'ids',
             'date_query' => [
                 [
-                    'before' => sprintf("%d day ago", self::$expired_days)
+                    'before' => sprintf("%d day ago", self::EXPIRED_DAYS)
                 ]
             ]
         ) );

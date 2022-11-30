@@ -106,7 +106,7 @@ class Woocommerce {
             // todo - dynamic shop page url
             ?>
             <h3>If you want to post some listings - please purchase credits <a href="/shop">here</a></h3>
-            <p><?php printf('Listing is displayed for %d days', Listing::$expired_days); ?></p>
+            <p><?php printf('Listing is displayed for %d days', Listing::EXPIRED_DAYS); ?></p>
             <?php
             return;
         }

@@ -3,7 +3,7 @@
 Plugin Name: GunHub 
 Plugin URI: https://jointheteem.com/ 
 Description: GunHub custom functions
-Version: 1.0.0
+Version: 1.0.1
 Author: Artem Lapkin
 Author URI: https://automattic.com/wordpress-plugins/
 License: GPLv2 or later

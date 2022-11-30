@@ -36,15 +36,15 @@ class SearchForm {
             ],
             [
                 'slug' => ListingCaliber::SLUG,
-                'label' => ListingCaliber::LABEL_PLURAL,
+                'label' => ListingCaliber::LABEL,
             ],
             [
                 'slug' => ListingCondition::SLUG,
-                'label' => ListingCondition::LABEL_PLURAL,
+                'label' => ListingCondition::LABEL,
             ],
             [
                 'slug' => ListingState::SLUG,
-                'label' => ListingState::LABEL_PLURAL,
+                'label' => ListingState::LABEL,
             ],
         ];
     }

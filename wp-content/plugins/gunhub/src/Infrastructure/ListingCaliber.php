@@ -10,8 +10,7 @@ class ListingCaliber {
     use Module;
 
     const SLUG = 'gh-caliber';
-    const LABEL = 'Caliber';
-    const LABEL_PLURAL = 'Calibers';
+    const LABEL = 'Calibre';
 
 
     public function init() {

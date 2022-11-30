@@ -29,6 +29,7 @@ return array(
     'GunHub\\Infrastructure\\SettingsPage' => $baseDir . '/src/Infrastructure/SettingsPage.php',
     'GunHub\\Modules\\Formidable' => $baseDir . '/src/Modules/Formidable.php',
     'GunHub\\Modules\\Listing' => $baseDir . '/src/Modules/Listing.php',
+    'GunHub\\Modules\\ListingCategory' => $baseDir . '/src/Modules/ListingCategory.php',
     'GunHub\\Modules\\ListingFrontendBuilder' => $baseDir . '/src/Modules/ListingFrontendBuilder.php',
     'GunHub\\Modules\\ModulesProvider' => $baseDir . '/src/Modules/ModulesProvider.php',
     'GunHub\\Modules\\ReportAbuse' => $baseDir . '/src/Modules/ReportAbuse.php',

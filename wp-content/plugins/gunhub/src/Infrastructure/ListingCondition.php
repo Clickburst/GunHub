@@ -11,7 +11,6 @@ class ListingCondition {
 
     const SLUG = 'gh-condition';
     const LABEL = 'Condition';
-    const LABEL_PLURAL = 'Conditions';
 
 
     public function init() {

@@ -44,6 +44,7 @@ class ComposerStaticInit3a6503e85605eee61fc168dfad22f372
         'GunHub\\Infrastructure\\SettingsPage' => __DIR__ . '/../..' . '/src/Infrastructure/SettingsPage.php',
         'GunHub\\Modules\\Formidable' => __DIR__ . '/../..' . '/src/Modules/Formidable.php',
         'GunHub\\Modules\\Listing' => __DIR__ . '/../..' . '/src/Modules/Listing.php',
+        'GunHub\\Modules\\ListingCategory' => __DIR__ . '/../..' . '/src/Modules/ListingCategory.php',
         'GunHub\\Modules\\ListingFrontendBuilder' => __DIR__ . '/../..' . '/src/Modules/ListingFrontendBuilder.php',
         'GunHub\\Modules\\ModulesProvider' => __DIR__ . '/../..' . '/src/Modules/ModulesProvider.php',
         'GunHub\\Modules\\ReportAbuse' => __DIR__ . '/../..' . '/src/Modules/ReportAbuse.php',

@@ -1,5 +1,6 @@
 <?php
 use GunHub\GunHub;
+use GunHub\Modules\Listing;
 
 echo do_shortcode('[listings_search_form]')
 ?>
@@ -9,7 +10,7 @@ echo do_shortcode('[listings_search_form]')
         if( have_posts() ) {
             while ( have_posts() ) {
                 the_post();
-                require GunHub::get_instance()->plugin_path . '/templates/loop/archive-item.php'; 
+                Listing::archive_listing_item();
             }
         } else {
             require GunHub::get_instance()->plugin_path . '/templates/no-listings.php';

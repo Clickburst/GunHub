@@ -13,13 +13,10 @@ class SellerACF {
     public const LOCATION_F_ID = 'field_6295f4f5bc358';
     public const TYPE = 'type';
     public const TYPE_F_ID = 'field_6295f4e3bc357';
-    
     public const LICENCE_ID = 'licence_id';
     public const LICENCE_ID_F_ID = 'field_6299cd48bbfd1';
-    
     public const CREDITS = 'credits';
 
-//    public static $is_seller = 'is_seller';
 
     public function init() {
         add_action( 'acf/init', [$this, 'register_fields'] );
@@ -27,30 +24,10 @@ class SellerACF {
 
     public function register_fields() {
         if( function_exists('acf_add_local_field_group') ):
-
             acf_add_local_field_group(array(
                 'key' => 'group_6295f4d324db0',
                 'title' => 'Seller',
                 'fields' => array(
-//                    array(
-//                        'key' => 'field_62ac6cee40225',
-//                        'label' => 'Is Seller',
-//                        'name' => self::$is_seller,
-//                        'type' => 'true_false',
-//                        'instructions' => '',
-//                        'required' => 0,
-//                        'conditional_logic' => 0,
-//                        'wrapper' => array(
-//                            'width' => '',
-//                            'class' => '',
-//                            'id' => '',
-//                        ),
-//                        'message' => '',
-//                        'default_value' => 0,
-//                        'ui' => 0,
-//                        'ui_on_text' => '',
-//                        'ui_off_text' => '',
-//                    ),
                     array(
                         'key' => self::TYPE_F_ID,
                         'label' => 'Type',
@@ -158,5 +135,4 @@ class SellerACF {
 
         endif;
     }
-
 }

@@ -151,7 +151,7 @@ class ListingFrontendBuilder {
         foreach ( $posts as $post_obj ) {
             global $post;
             $post = get_post($post_obj);
-            require GunHub::get_instance()->plugin_path . '/templates/loop/archive-item.php';
+            Listing::archive_listing_item();
         }
         wp_reset_postdata();
     }

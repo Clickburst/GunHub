@@ -28,6 +28,7 @@ final class ModulesProvider {
 	protected function get_modules() {
 		return [
 			Listing::class,
+			ListingCategory::class,
             SearchForm::class,
             Formidable::class,
             Woocommerce::class,
