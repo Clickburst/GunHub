@@ -19,12 +19,10 @@ class Seller extends ACFData {
         return $this->get_user_field(SellerACF::LOCATION);
     }
 
-    // todo - update it to be customer billing email
     public function get_phone_number() {
         return get_user_meta( $this->get_ID(), 'billing_phone', true );
     }
     
-    // todo - maybe get seller state as a customer billing state?
     
     public function get_credits():int {
         return (int) $this->get_user_field( SellerACF::CREDITS );

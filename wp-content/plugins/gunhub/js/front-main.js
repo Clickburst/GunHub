@@ -25,7 +25,6 @@
       })
     }
     
-    // todo - not active yet
     if( $.fn.select2 !== undefined ) {
       $('.select2').select2()
     }

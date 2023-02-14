@@ -1,13 +1,13 @@
 <?php
 /*
 Plugin Name: GunHub 
-Plugin URI: https://jointheteem.com/ 
+Plugin URI: https://gunhub.com.au/
 Description: GunHub custom functions
-Version: 1.0.1
+Version: 1.0.2
 Author: Artem Lapkin
-Author URI: https://automattic.com/wordpress-plugins/
+Author URI: https://ua.linkedin.com/in/artemlapkin
 License: GPLv2 or later
-Text Domain: jointheteem
+Text Domain: gunhub
 */
 
 namespace GunHub;

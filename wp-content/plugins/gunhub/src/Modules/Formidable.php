@@ -174,7 +174,7 @@ class Formidable {
     private function print_edit_account_details_message() {
         if( $url = Shop::get_my_account_url('edit-account') ) {
             printf('%s <a href="'. esc_url( $url ) .'">%s</a>',
-                __( 'Profile deatails can be edited', 'gunhub' ),
+                __( 'Profile details can be edited', 'gunhub' ),
             __('here', 'gunhub'));
         } else {
             _e('profile details can be edited in my-account', 'gunhub');

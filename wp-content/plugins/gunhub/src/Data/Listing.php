@@ -67,7 +67,6 @@ class Listing extends ACFData {
         return $this->get_term_first_item_name(ListingState::SLUG);
     }
 
-    // todo - check image size
     public function get_featured_image_html(): string {
         if( $image_id = $this->get_featured_image_id()) {
             return wp_get_attachment_image( $image_id, 'medium');
@@ -77,7 +76,6 @@ class Listing extends ACFData {
 
     public function get_featured_image_url() {
         if( $image_id = $this->get_featured_image_id()) {
-            // todo - check image size
             return wp_get_attachment_image_url( $image_id, 'post-medium');
         }
         return '';
