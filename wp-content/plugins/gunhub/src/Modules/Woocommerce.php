@@ -5,6 +5,7 @@ use GunHub\Core\Module;
 use GunHub\Data\ListingFrontendVariables;
 use GunHub\Data\Order;
 use GunHub\Data\Seller;
+use GunHub\Data\Settings;
 use GunHub\Data\Shop;
 use GunHub\Infrastructure\SellerACF;
 
@@ -103,9 +104,10 @@ class Woocommerce {
     public function my_account_seller_details_endpoint() {
         $seller = new Seller( get_current_user_id() );
         if( ! $seller->is_seller_or_admin() ) {
-            // todo - dynamic shop page url
-            ?>
-            <h3>If you want to post some listings - please purchase credits <a href="/shop">here</a></h3>
+            $main_product_url = $this->get_main_product_url();
+            if( $main_product_url ) { ?>
+                <h3>If you want to post some listings - please purchase credits <a href="<?php echo esc_url($main_product_url) ?>">here</a></h3>
+            <?php } ?>
             <p><?php printf('Listing is displayed for %d days', Listing::EXPIRED_DAYS); ?></p>
             <?php
             return;
@@ -327,7 +329,6 @@ class Woocommerce {
         <?php
     }
 
-    // todo - new order doesn't create account now - make it create account, test acf save field, polish acf validation
     public function save_seller_acf_data_from_checkout_page( $user_id ) {
         $licence_id = $_POST['acf'][SellerACF::LICENCE_ID_F_ID];
         update_field(SellerACF::LICENCE_ID_F_ID, $licence_id, 'user_' . $user_id);
@@ -341,5 +342,16 @@ class Woocommerce {
             }
             printf('<p><a href="%s" target="_blank">%s</a></p>', $new_listing_url, __('Create New Listing', 'gunhub'));
         }
+    }
+    
+    public function get_main_product_url(){
+        $Settings = new Settings();
+        $main_product_id = $Settings->get_main_product_id();
+        
+        if( ! $main_product_id ) {
+            return '';
+        }
+
+        return get_permalink( $main_product_id );
     }
 }
