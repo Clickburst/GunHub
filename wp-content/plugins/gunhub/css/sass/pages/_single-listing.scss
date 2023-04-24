@@ -100,14 +100,20 @@
 }
 
 
-.gunhub-related {
-    
+.gunhub-square-listings {
     &__items {
         display: flex;
+        @media (max-width: $width-mobile-m) {
+            flex-wrap: wrap;
+        }
         .listing-loop {
             display: block;
             margin-right: 15px;
             width: calc( 33.33% - 10px );
+            @media (max-width: $width-mobile-m) {
+                width: 100%;
+                margin-right: 0;
+            }
             &:last-child {
                 margin-right: 0;
             }

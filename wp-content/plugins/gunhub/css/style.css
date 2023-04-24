@@ -255,15 +255,22 @@ body.woocommerce-account .site-main, body.post-type-archive-gh-listing .site-mai
   .gh-box__with-padding {
     padding: 1em; }
 
-.gunhub-related__items {
+.gunhub-square-listings__items {
   display: flex; }
-  .gunhub-related__items .listing-loop {
+  @media (max-width: 500px) {
+    .gunhub-square-listings__items {
+      flex-wrap: wrap; } }
+  .gunhub-square-listings__items .listing-loop {
     display: block;
     margin-right: 15px;
     width: calc( 33.33% - 10px ); }
-    .gunhub-related__items .listing-loop:last-child {
+    @media (max-width: 500px) {
+      .gunhub-square-listings__items .listing-loop {
+        width: 100%;
+        margin-right: 0; } }
+    .gunhub-square-listings__items .listing-loop:last-child {
       margin-right: 0; }
-    .gunhub-related__items .listing-loop__img, .gunhub-related__items .listing-loop__body {
+    .gunhub-square-listings__items .listing-loop__img, .gunhub-square-listings__items .listing-loop__body {
       width: 100%; }
 
 .single-gh-listing .listing-content__left .listing-content__attributes {

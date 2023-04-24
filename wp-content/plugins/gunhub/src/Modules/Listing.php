@@ -35,6 +35,8 @@ class Listing {
         add_action('init', [$this, 'schedule_cron']);
         add_action('update_to_expired_old_listings', [$this, 'update_to_expired_old_listings']);
         
+        
+        add_shortcode('gunhub_latest_listings_for_sale', [$this, 'latest_listings_for_sale']);
     }
 
     public function load_assets() {
@@ -106,7 +108,7 @@ class Listing {
         $term_id = $terms[0]->term_id;
 
         $args = [
-            'post_type' => \GunHub\Infrastructure\Listing::SLUG,
+            'post_type' => ListingPostType::SLUG,
             'numberposts' => 3,
             'post__not_in' => [$post->ID],
             'tax_query' => [
@@ -122,16 +124,25 @@ class Listing {
         if( empty( $related_listings ) ) {
             return '';
         }
-        echo '<div class="gunhub-related">';
-        printf('<h3>%s</h3>', __('You may also be interested in', 'gunhub'));
-        echo '<div class="gunhub-related__items">';
+        self::print_listings_as_square_row($related_listings, __('You may also be interested in', 'gunhub'));
+    }
+    
+    
+    private static function print_listings_as_square_row( $related_listings, $title = '' ){
+        global $post;
+
+        echo '<div class="gunhub-square-listings">';
+        if( $title !== '' ) {
+            printf('<h3>%s</h3>', $title);
+        }
+        echo '<div class="gunhub-square-listings__items">';
         foreach ( $related_listings as $post ) {
             setup_postdata($post);
             require GunHub::get_instance()->plugin_path . '/templates/loop/related-item.php';
         }
-        echo '</div>';
-        echo '</div>';
         wp_reset_postdata();
+        echo '</div>';
+        echo '</div>';
     }
     
     public function archive_page_show_only_published_listings( $query ) {
@@ -159,7 +170,7 @@ class Listing {
 
     public function update_to_expired_old_listings() {
         $old_listings_ids = get_posts( array(
-            'post_type' => \GunHub\Infrastructure\Listing::SLUG,
+            'post_type' => ListingPostType::SLUG,
             'post_status' => 'publish',
             'numberposts'  => -1,
             'fields' => 'ids',
@@ -177,7 +188,6 @@ class Listing {
                 'post_status' => 'expired'
             ]);
         }
-        
         // debug email
         ob_start();
         echo 'updated listings:';
@@ -188,4 +198,17 @@ class Listing {
         wp_mail('temka789@gmail.com', 'gunhub midnight crone', $out);
     }
 
+
+    public function latest_listings_for_sale() {
+        $listings = get_posts([
+            'post_type' => ListingPostType::SLUG,
+            'numberposts' => 3,
+            'orderby' => 'date',
+            'order' => 'DESC',
+        ]);
+        ob_start();
+        
+        self::print_listings_as_square_row($listings, __('Latest Listed For Sale', 'gunhub'));
+        return ob_get_clean();
+    }
 }
