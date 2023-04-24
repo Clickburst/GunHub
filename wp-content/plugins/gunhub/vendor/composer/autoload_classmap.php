@@ -27,6 +27,7 @@ return array(
     'GunHub\\Infrastructure\\SellerACF' => $baseDir . '/src/Infrastructure/SellerACF.php',
     'GunHub\\Infrastructure\\SellerRole' => $baseDir . '/src/Infrastructure/SellerRole.php',
     'GunHub\\Infrastructure\\SettingsPage' => $baseDir . '/src/Infrastructure/SettingsPage.php',
+    'GunHub\\Modules\\Ads' => $baseDir . '/src/Modules/Ads.php',
     'GunHub\\Modules\\Formidable' => $baseDir . '/src/Modules/Formidable.php',
     'GunHub\\Modules\\Listing' => $baseDir . '/src/Modules/Listing.php',
     'GunHub\\Modules\\ListingCategory' => $baseDir . '/src/Modules/ListingCategory.php',

@@ -42,6 +42,7 @@ class ComposerStaticInit3a6503e85605eee61fc168dfad22f372
         'GunHub\\Infrastructure\\SellerACF' => __DIR__ . '/../..' . '/src/Infrastructure/SellerACF.php',
         'GunHub\\Infrastructure\\SellerRole' => __DIR__ . '/../..' . '/src/Infrastructure/SellerRole.php',
         'GunHub\\Infrastructure\\SettingsPage' => __DIR__ . '/../..' . '/src/Infrastructure/SettingsPage.php',
+        'GunHub\\Modules\\Ads' => __DIR__ . '/../..' . '/src/Modules/Ads.php',
         'GunHub\\Modules\\Formidable' => __DIR__ . '/../..' . '/src/Modules/Formidable.php',
         'GunHub\\Modules\\Listing' => __DIR__ . '/../..' . '/src/Modules/Listing.php',
         'GunHub\\Modules\\ListingCategory' => __DIR__ . '/../..' . '/src/Modules/ListingCategory.php',

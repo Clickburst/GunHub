@@ -8,9 +8,12 @@ echo do_shortcode('[listings_search_form]')
     <div class="page-content gunhub-archive-body">
         <?php
         if( have_posts() ) {
+            $i = 0;
             while ( have_posts() ) {
+                $i++;
                 the_post();
                 Listing::archive_listing_item();
+                do_action('gunhub_listings_loop_after_nth_item', $i);
             }
         } else {
             require GunHub::get_instance()->plugin_path . '/templates/no-listings.php';

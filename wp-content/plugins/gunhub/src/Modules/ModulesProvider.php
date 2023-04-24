@@ -35,6 +35,7 @@ final class ModulesProvider {
             ListingFrontendBuilder::class,
             Shortcodes::class,
             ReportAbuse::class,
+            Ads::class,
 		];
 	}
 }
